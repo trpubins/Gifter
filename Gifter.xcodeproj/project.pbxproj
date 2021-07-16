@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BFECF6AF26A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
+		BFECF6B026A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
+		BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69B26A24EF00012227F /* GifterApp.swift */; };
+		BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69B26A24EF00012227F /* GifterApp.swift */; };
+		BFECF6B326A24EF00012227F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* ContentView.swift */; };
+		BFECF6B426A24EF00012227F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* ContentView.swift */; };
+		BFECF6B526A24EF00012227F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69D26A24EF00012227F /* Persistence.swift */; };
+		BFECF6B626A24EF00012227F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69D26A24EF00012227F /* Persistence.swift */; };
+		BFECF6B726A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
+		BFECF6B826A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BFECF69A26A24EF00012227F /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
+		BFECF69B26A24EF00012227F /* GifterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterApp.swift; sourceTree = "<group>"; };
+		BFECF69C26A24EF00012227F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BFECF69D26A24EF00012227F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		BFECF69E26A24EF00012227F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BFECF6A326A24EF00012227F /* Gifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFECF6A626A24EF00012227F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFECF6AB26A24EF00012227F /* Gifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFECF6AD26A24EF00012227F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFECF6AE26A24EF00012227F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BFECF6A026A24EF00012227F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFECF6A826A24EF00012227F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BFECF69326A24EEF0012227F = {
+			isa = PBXGroup;
+			children = (
+				BFECF69826A24EEF0012227F /* Shared */,
+				BFECF6A526A24EF00012227F /* iOS */,
+				BFECF6AC26A24EF00012227F /* macOS */,
+				BFECF6A426A24EF00012227F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BFECF69826A24EEF0012227F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69B26A24EF00012227F /* GifterApp.swift */,
+				BFECF69C26A24EF00012227F /* ContentView.swift */,
+				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BFECF69E26A24EF00012227F /* Assets.xcassets */,
+				BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		BFECF6A426A24EF00012227F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF6A326A24EF00012227F /* Gifter.app */,
+				BFECF6AB26A24EF00012227F /* Gifter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BFECF6A526A24EF00012227F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF6A626A24EF00012227F /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		BFECF6AC26A24EF00012227F /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF6AD26A24EF00012227F /* Info.plist */,
+				BFECF6AE26A24EF00012227F /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BFECF6A226A24EF00012227F /* Gifter (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFECF6BB26A24EF00012227F /* Build configuration list for PBXNativeTarget "Gifter (iOS)" */;
+			buildPhases = (
+				BFECF69F26A24EF00012227F /* Sources */,
+				BFECF6A026A24EF00012227F /* Frameworks */,
+				BFECF6A126A24EF00012227F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gifter (iOS)";
+			productName = "Gifter (iOS)";
+			productReference = BFECF6A326A24EF00012227F /* Gifter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BFECF6AA26A24EF00012227F /* Gifter (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFECF6BE26A24EF00012227F /* Build configuration list for PBXNativeTarget "Gifter (macOS)" */;
+			buildPhases = (
+				BFECF6A726A24EF00012227F /* Sources */,
+				BFECF6A826A24EF00012227F /* Frameworks */,
+				BFECF6A926A24EF00012227F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gifter (macOS)";
+			productName = "Gifter (macOS)";
+			productReference = BFECF6AB26A24EF00012227F /* Gifter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFECF69426A24EEF0012227F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					BFECF6A226A24EF00012227F = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					BFECF6AA26A24EF00012227F = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = BFECF69726A24EEF0012227F /* Build configuration list for PBXProject "Gifter" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BFECF69326A24EEF0012227F;
+			productRefGroup = BFECF6A426A24EF00012227F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BFECF6A226A24EF00012227F /* Gifter (iOS) */,
+				BFECF6AA26A24EF00012227F /* Gifter (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BFECF6A126A24EF00012227F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFECF6B726A24EF00012227F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFECF6A926A24EF00012227F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFECF6B826A24EF00012227F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BFECF69F26A24EF00012227F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */,
+				BFECF6B526A24EF00012227F /* Persistence.swift in Sources */,
+				BFECF6AF26A24EF00012227F /* Gifter.xcdatamodeld in Sources */,
+				BFECF6B326A24EF00012227F /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFECF6A726A24EF00012227F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */,
+				BFECF6B626A24EF00012227F /* Persistence.swift in Sources */,
+				BFECF6B026A24EF00012227F /* Gifter.xcdatamodeld in Sources */,
+				BFECF6B426A24EF00012227F /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BFECF6B926A24EF00012227F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BFECF6BA26A24EF00012227F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		BFECF6BC26A24EF00012227F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BT57S69NV3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tsauce.Gifter;
+				PRODUCT_NAME = Gifter;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BFECF6BD26A24EF00012227F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BT57S69NV3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tsauce.Gifter;
+				PRODUCT_NAME = Gifter;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BFECF6BF26A24EF00012227F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BT57S69NV3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tsauce.Gifter;
+				PRODUCT_NAME = Gifter;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BFECF6C026A24EF00012227F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BT57S69NV3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tsauce.Gifter;
+				PRODUCT_NAME = Gifter;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BFECF69726A24EEF0012227F /* Build configuration list for PBXProject "Gifter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFECF6B926A24EF00012227F /* Debug */,
+				BFECF6BA26A24EF00012227F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFECF6BB26A24EF00012227F /* Build configuration list for PBXNativeTarget "Gifter (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFECF6BC26A24EF00012227F /* Debug */,
+				BFECF6BD26A24EF00012227F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFECF6BE26A24EF00012227F /* Build configuration list for PBXNativeTarget "Gifter (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFECF6BF26A24EF00012227F /* Debug */,
+				BFECF6C026A24EF00012227F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BFECF69A26A24EF00012227F /* Shared.xcdatamodel */,
+			);
+			currentVersion = BFECF69A26A24EF00012227F /* Shared.xcdatamodel */;
+			path = Gifter.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BFECF69426A24EEF0012227F /* Project object */;
+}
