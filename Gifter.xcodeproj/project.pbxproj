@@ -61,6 +61,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF8349EB26B5CA4100F650CB /* SwiftUI Views */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69B26A24EF00012227F /* GifterApp.swift */,
+				BFECF69C26A24EF00012227F /* ContentView.swift */,
+			);
+			name = "SwiftUI Views";
+			sourceTree = "<group>";
+		};
+		BF8349EC26B5CA5000F650CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		BF8349ED26B5CA5F00F650CB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		BFECF69326A24EEF0012227F = {
 			isa = PBXGroup;
 			children = (
@@ -75,11 +100,10 @@
 		BFECF69826A24EEF0012227F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				BFECF69B26A24EF00012227F /* GifterApp.swift */,
-				BFECF69C26A24EF00012227F /* ContentView.swift */,
-				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BF8349EB26B5CA4100F650CB /* SwiftUI Views */,
+				BF8349EC26B5CA5000F650CB /* Models */,
+				BF8349ED26B5CA5F00F650CB /* Helpers */,
 				BFECF69E26A24EF00012227F /* Assets.xcassets */,
-				BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
