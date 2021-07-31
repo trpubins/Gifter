@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF24840E26B5B29800F06413 /* SwiftSMTP */; };
+		BF41128126B4ED6400BA7D4F /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF41128026B4ED6400BA7D4F /* SwiftSMTP */; };
 		BFECF6AF26A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
 		BFECF6B026A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
 		BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69B26A24EF00012227F /* GifterApp.swift */; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF41128126B4ED6400BA7D4F /* SwiftSMTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,12 +47,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF24840D26B5B29800F06413 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BFECF69326A24EEF0012227F = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +68,7 @@
 				BFECF6A526A24EF00012227F /* iOS */,
 				BFECF6AC26A24EF00012227F /* macOS */,
 				BFECF6A426A24EF00012227F /* Products */,
+				BF24840D26B5B29800F06413 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +126,9 @@
 			dependencies = (
 			);
 			name = "Gifter (iOS)";
+			packageProductDependencies = (
+				BF41128026B4ED6400BA7D4F /* SwiftSMTP */,
+			);
 			productName = "Gifter (iOS)";
 			productReference = BFECF6A326A24EF00012227F /* Gifter.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +146,9 @@
 			dependencies = (
 			);
 			name = "Gifter (macOS)";
+			packageProductDependencies = (
+				BF24840E26B5B29800F06413 /* SwiftSMTP */,
+			);
 			productName = "Gifter (macOS)";
 			productReference = BFECF6AB26A24EF00012227F /* Gifter.app */;
 			productType = "com.apple.product-type.application";
@@ -161,6 +179,9 @@
 				Base,
 			);
 			mainGroup = BFECF69326A24EEF0012227F;
+			packageReferences = (
+				BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
+			);
 			productRefGroup = BFECF6A426A24EF00012227F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,6 +274,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -312,6 +334,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -378,6 +401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = BT57S69NV3;
@@ -402,6 +426,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = BT57S69NV3;
@@ -451,6 +476,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-SMTP";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.200;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF24840E26B5B29800F06413 /* SwiftSMTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
+			productName = SwiftSMTP;
+		};
+		BF41128026B4ED6400BA7D4F /* SwiftSMTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
+			productName = SwiftSMTP;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */ = {

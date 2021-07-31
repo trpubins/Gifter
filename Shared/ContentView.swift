@@ -7,63 +7,60 @@
 
 import SwiftUI
 import CoreData
+import SwiftSMTP
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    let smtp = SMTP(
+        hostname: "smtp.mail.com",     // SMTP server address
+        email: "secret-santa-app@email.com",        // username to login
+        password: "pIfhe2-durjud-hovwib"            // password to login
+    )
+    
+    let santa = Mail.User(name: "Secret Santa", email: "secret-santa-app@email.com")
+    let tanner = Mail.User(name: "Tan Man", email: "t.pubins@icloud.com")
+    let tannerSchool = Mail.User(name: "Tan Man", email: "trpubins@asu.edu")
 
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-            }
-            .onDelete(perform: deleteItems)
+        Button(action: sendMail) {
+            Label("Send Mail", systemImage: "mail")
         }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
-        }
+        
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+    private func sendMail() {
+        let mail = Mail(
+            from: santa,
+            to: [tanner],
+            subject: "Number 1",
+            text: "This is a personal email."
+        )
+        
+        let mail1 = Mail(
+            from: santa,
+            to: [tannerSchool],
+            subject: "Number 2",
+            text: "This is a school email."
+        )
+        
+        smtp.send([mail, mail1],
+          // This optional callback gets called after each `Mail` is sent.
+          // `mail` is the attempted `Mail`, `error` is the error if one occured.
+          progress: { (mail, error) in
+            print("sent")
+          },
+          
+          // This optional callback gets called after all the mails have been sent.
+          // `sent` is an array of the successfully sent `Mail`s.
+          // `failed` is an array of (Mail, Error)--the failed `Mail`s and their corresponding errors.
+          completion: { (sent, failed) in
+            print("completed: \(sent)")
+            print("failed: \(failed)")
+          }
+        )
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
 }
 
 private let itemFormatter: DateFormatter = {
