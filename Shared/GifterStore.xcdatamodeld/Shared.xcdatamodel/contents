@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Gifter" representedClassName="Gifter" syncable="YES" codeGenerationType="class">
+        <attribute name="email_" attributeType="String"/>
+        <attribute name="exchangeIds_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[UUID]"/>
+        <attribute name="name_" attributeType="String"/>
+        <attribute name="recipientEmail_" optional="YES" attributeType="String" valueTransformerName="" customClassName="Gifter"/>
+        <attribute name="wishLists_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <relationship name="giftExchanges_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GiftExchange" inverseName="gifters_" inverseEntity="GiftExchange"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="email_"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="GiftExchange" representedClassName="GiftExchange" syncable="YES" codeGenerationType="class">
+        <attribute name="date_" attributeType="Date" minDateTimeInterval="662140800" usesScalarValueType="NO"/>
+        <attribute name="id_" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name_" attributeType="String"/>
+        <relationship name="gifters_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Gifter" inverseName="giftExchanges_" inverseEntity="Gifter"/>
+    </entity>
+    <elements>
+        <element name="Gifter" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="GiftExchange" positionX="-63" positionY="9" width="128" height="89"/>
+    </elements>
+</model>

@@ -34,7 +34,7 @@ struct PersistenceController {
         - inMemory: Optional, set to `true` for loading the store into memory
      */
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Gifter")
+        container = NSPersistentContainer(name: "GifterStore")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
