@@ -8,13 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF24840E26B5B29800F06413 /* SwiftSMTP */; };
+		BF2A865726BE6C090038C024 /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865626BE6C090038C024 /* ExchangeView.swift */; };
+		BF2A865826BE6C090038C024 /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865626BE6C090038C024 /* ExchangeView.swift */; };
+		BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
+		BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
+		BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
+		BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
+		BF2A866026BE6D9A0038C024 /* PreferencesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */; };
+		BF2A866126BE6D9A0038C024 /* PreferencesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */; };
 		BF41128126B4ED6400BA7D4F /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF41128026B4ED6400BA7D4F /* SwiftSMTP */; };
-		BFECF6AF26A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
-		BFECF6B026A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
+		BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
+		BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
+		BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
+		BFAB347226BE126400D460D8 /* Gifter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */; };
+		BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */; };
+		BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */; };
+		BFAB347626BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */; };
+		BFECF6AF26A24EF00012227F /* GifterStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */; };
+		BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */; };
 		BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69B26A24EF00012227F /* GifterApp.swift */; };
 		BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69B26A24EF00012227F /* GifterApp.swift */; };
-		BFECF6B326A24EF00012227F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* ContentView.swift */; };
-		BFECF6B426A24EF00012227F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* ContentView.swift */; };
+		BFECF6B326A24EF00012227F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* MainView.swift */; };
+		BFECF6B426A24EF00012227F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* MainView.swift */; };
 		BFECF6B526A24EF00012227F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69D26A24EF00012227F /* Persistence.swift */; };
 		BFECF6B626A24EF00012227F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69D26A24EF00012227F /* Persistence.swift */; };
 		BFECF6B726A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
@@ -22,9 +37,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF2A865626BE6C090038C024 /* ExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeView.swift; sourceTree = "<group>"; };
+		BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTabView.swift; sourceTree = "<group>"; };
+		BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftersTabView.swift; sourceTree = "<group>"; };
+		BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabView.swift; sourceTree = "<group>"; };
+		BF9EF1F326BC690E00FD01B3 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		BFAB346E26BDFD0800D460D8 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
+		BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifter+Extensions.swift"; sourceTree = "<group>"; };
+		BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiftExchange+Extensions.swift"; sourceTree = "<group>"; };
 		BFECF69A26A24EF00012227F /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		BFECF69B26A24EF00012227F /* GifterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterApp.swift; sourceTree = "<group>"; };
-		BFECF69C26A24EF00012227F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BFECF69C26A24EF00012227F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BFECF69D26A24EF00012227F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		BFECF69E26A24EF00012227F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFECF6A326A24EF00012227F /* Gifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,22 +84,36 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF2A866226BE6F8D0038C024 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		BF8349EB26B5CA4100F650CB /* SwiftUI Views */ = {
 			isa = PBXGroup;
 			children = (
 				BFECF69B26A24EF00012227F /* GifterApp.swift */,
-				BFECF69C26A24EF00012227F /* ContentView.swift */,
+				BFECF69C26A24EF00012227F /* MainView.swift */,
+				BF2A865626BE6C090038C024 /* ExchangeView.swift */,
+				BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */,
+				BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */,
+				BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */,
 			);
 			name = "SwiftUI Views";
 			sourceTree = "<group>";
 		};
-		BF8349EC26B5CA5000F650CB /* Models */ = {
+		BF8349EC26B5CA5000F650CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BFECF69D26A24EF00012227F /* Persistence.swift */,
-				BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */,
+				BF2A866226BE6F8D0038C024 /* CoreData */,
+				BFDCB0A526BCE452004553AF /* Classes */,
+				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
 			);
-			name = Models;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		BF8349ED26B5CA5F00F650CB /* Helpers */ = {
@@ -84,6 +121,23 @@
 			children = (
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		BF9EF1F226BC68F500FD01B3 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BF9EF1F326BC690E00FD01B3 /* TestData.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		BFDCB0A526BCE452004553AF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */,
+				BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		BFECF69326A24EEF0012227F = {
@@ -101,8 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				BF8349EB26B5CA4100F650CB /* SwiftUI Views */,
-				BF8349EC26B5CA5000F650CB /* Models */,
+				BF8349EC26B5CA5000F650CB /* Model */,
 				BF8349ED26B5CA5F00F650CB /* Helpers */,
+				BF9EF1F226BC68F500FD01B3 /* Data */,
 				BFECF69E26A24EF00012227F /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -240,10 +295,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
+				BF2A865726BE6C090038C024 /* ExchangeView.swift in Sources */,
 				BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */,
 				BFECF6B526A24EF00012227F /* Persistence.swift in Sources */,
-				BFECF6AF26A24EF00012227F /* Gifter.xcdatamodeld in Sources */,
-				BFECF6B326A24EF00012227F /* ContentView.swift in Sources */,
+				BFECF6AF26A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
+				BFAB347226BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
+				BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */,
+				BFECF6B326A24EF00012227F /* MainView.swift in Sources */,
+				BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
+				BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */,
+				BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
+				BF2A866026BE6D9A0038C024 /* PreferencesTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,9 +315,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */,
+				BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
+				BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
+				BF2A866126BE6D9A0038C024 /* PreferencesTabView.swift in Sources */,
 				BFECF6B626A24EF00012227F /* Persistence.swift in Sources */,
-				BFECF6B026A24EF00012227F /* Gifter.xcdatamodeld in Sources */,
-				BFECF6B426A24EF00012227F /* ContentView.swift in Sources */,
+				BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
+				BF2A865826BE6C090038C024 /* ExchangeView.swift in Sources */,
+				BFAB347626BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
+				BFECF6B426A24EF00012227F /* MainView.swift in Sources */,
+				BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
+				BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,13 +596,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */ = {
+		BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				BFECF69A26A24EF00012227F /* Shared.xcdatamodel */,
 			);
 			currentVersion = BFECF69A26A24EF00012227F /* Shared.xcdatamodel */;
-			path = Gifter.xcdatamodeld;
+			path = GifterStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
