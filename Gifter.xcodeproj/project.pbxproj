@@ -16,6 +16,8 @@
 		BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
 		BF2A866026BE6D9A0038C024 /* PreferencesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */; };
 		BF2A866126BE6D9A0038C024 /* PreferencesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */; };
+		BF2A866426BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */; };
+		BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */; };
 		BF41128126B4ED6400BA7D4F /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF41128026B4ED6400BA7D4F /* SwiftSMTP */; };
 		BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
 		BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
@@ -34,6 +36,8 @@
 		BFECF6B626A24EF00012227F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69D26A24EF00012227F /* Persistence.swift */; };
 		BFECF6B726A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
 		BFECF6B826A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
+		BFF8120726C042CF00834B50 /* GiftExchangeLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8120626C042CF00834B50 /* GiftExchangeLaunchView.swift */; };
+		BFF8120826C042CF00834B50 /* GiftExchangeLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8120626C042CF00834B50 /* GiftExchangeLaunchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,7 @@
 		BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTabView.swift; sourceTree = "<group>"; };
 		BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftersTabView.swift; sourceTree = "<group>"; };
 		BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabView.swift; sourceTree = "<group>"; };
+		BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		BF9EF1F326BC690E00FD01B3 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		BFAB346E26BDFD0800D460D8 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
 		BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifter+Extensions.swift"; sourceTree = "<group>"; };
@@ -55,6 +60,7 @@
 		BFECF6AB26A24EF00012227F /* Gifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFECF6AD26A24EF00012227F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFECF6AE26A24EF00012227F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		BFF8120626C042CF00834B50 /* GiftExchangeLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftExchangeLaunchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,62 +90,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BF2A866226BE6F8D0038C024 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				BFECF69D26A24EF00012227F /* Persistence.swift */,
-				BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */,
-			);
-			name = CoreData;
-			sourceTree = "<group>";
-		};
-		BF8349EB26B5CA4100F650CB /* SwiftUI Views */ = {
-			isa = PBXGroup;
-			children = (
-				BFECF69B26A24EF00012227F /* GifterApp.swift */,
-				BFECF69C26A24EF00012227F /* MainView.swift */,
-				BF2A865626BE6C090038C024 /* ExchangeView.swift */,
-				BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */,
-				BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */,
-				BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */,
-			);
-			name = "SwiftUI Views";
-			sourceTree = "<group>";
-		};
-		BF8349EC26B5CA5000F650CB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BF2A866226BE6F8D0038C024 /* CoreData */,
-				BFDCB0A526BCE452004553AF /* Classes */,
-				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		BF8349ED26B5CA5F00F650CB /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Helpers;
-			sourceTree = "<group>";
-		};
-		BF9EF1F226BC68F500FD01B3 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				BF9EF1F326BC690E00FD01B3 /* TestData.swift */,
-			);
-			name = Data;
-			sourceTree = "<group>";
-		};
-		BFDCB0A526BCE452004553AF /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */,
-				BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
 		BFECF69326A24EEF0012227F = {
 			isa = PBXGroup;
 			children = (
@@ -154,10 +104,10 @@
 		BFECF69826A24EEF0012227F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				BF8349EB26B5CA4100F650CB /* SwiftUI Views */,
-				BF8349EC26B5CA5000F650CB /* Model */,
-				BF8349ED26B5CA5F00F650CB /* Helpers */,
-				BF9EF1F226BC68F500FD01B3 /* Data */,
+				BFF8122126C0465400834B50 /* SwiftUI Views */,
+				BFF8122626C0475D00834B50 /* Model */,
+				BFF8122926C047FC00834B50 /* Helpers */,
+				BFF8122A26C0480500834B50 /* Data */,
 				BFECF69E26A24EF00012227F /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -187,6 +137,88 @@
 				BFECF6AE26A24EF00012227F /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		BFF8122126C0465400834B50 /* SwiftUI Views */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69B26A24EF00012227F /* GifterApp.swift */,
+				BFF8120626C042CF00834B50 /* GiftExchangeLaunchView.swift */,
+				BFECF69C26A24EF00012227F /* MainView.swift */,
+				BFF8122226C0469800834B50 /* Preferences Tab */,
+				BFF8122326C046B200834B50 /* Gifters Tab */,
+				BFF8122426C046D200834B50 /* Exchange Tab */,
+			);
+			path = "SwiftUI Views";
+			sourceTree = "<group>";
+		};
+		BFF8122226C0469800834B50 /* Preferences Tab */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */,
+			);
+			name = "Preferences Tab";
+			sourceTree = "<group>";
+		};
+		BFF8122326C046B200834B50 /* Gifters Tab */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */,
+			);
+			name = "Gifters Tab";
+			sourceTree = "<group>";
+		};
+		BFF8122426C046D200834B50 /* Exchange Tab */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */,
+				BF2A865626BE6C090038C024 /* ExchangeView.swift */,
+			);
+			name = "Exchange Tab";
+			sourceTree = "<group>";
+		};
+		BFF8122626C0475D00834B50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFF8122826C0479A00834B50 /* CoreData */,
+				BFF8122726C0479200834B50 /* Classes */,
+				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFF8122726C0479200834B50 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */,
+				BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */,
+				BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		BFF8122826C0479A00834B50 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		BFF8122926C047FC00834B50 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BFF8122A26C0480500834B50 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BF9EF1F326BC690E00FD01B3 /* TestData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,7 +329,9 @@
 			files = (
 				BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
 				BF2A865726BE6C090038C024 /* ExchangeView.swift in Sources */,
+				BFF8120726C042CF00834B50 /* GiftExchangeLaunchView.swift in Sources */,
 				BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */,
+				BF2A866426BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
 				BFECF6B526A24EF00012227F /* Persistence.swift in Sources */,
 				BFECF6AF26A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
 				BFAB347226BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
@@ -318,12 +352,14 @@
 				BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
 				BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
 				BF2A866126BE6D9A0038C024 /* PreferencesTabView.swift in Sources */,
+				BFF8120826C042CF00834B50 /* GiftExchangeLaunchView.swift in Sources */,
 				BFECF6B626A24EF00012227F /* Persistence.swift in Sources */,
 				BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
 				BF2A865826BE6C090038C024 /* ExchangeView.swift in Sources */,
 				BFAB347626BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
 				BFECF6B426A24EF00012227F /* MainView.swift in Sources */,
 				BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
+				BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
 				BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

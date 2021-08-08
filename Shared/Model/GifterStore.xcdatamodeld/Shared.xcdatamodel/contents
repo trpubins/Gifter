@@ -5,6 +5,7 @@
         <attribute name="exchangeIds_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[UUID]"/>
         <attribute name="name_" attributeType="String"/>
         <attribute name="recipientEmail_" optional="YES" attributeType="String" valueTransformerName="" customClassName="Gifter"/>
+        <attribute name="restrictedEmails_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="wishLists_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <relationship name="giftExchanges_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GiftExchange" inverseName="gifters_" inverseEntity="GiftExchange"/>
         <uniquenessConstraints>
@@ -20,7 +21,7 @@
         <relationship name="gifters_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Gifter" inverseName="giftExchanges_" inverseEntity="Gifter"/>
     </entity>
     <elements>
-        <element name="Gifter" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="Gifter" positionX="-63" positionY="-18" width="128" height="134"/>
         <element name="GiftExchange" positionX="-63" positionY="9" width="128" height="89"/>
     </elements>
 </model>
