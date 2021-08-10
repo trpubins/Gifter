@@ -10,6 +10,7 @@ import SwiftUI
 /// The primary view for the application -- uses a tab view as the means of navigation.
 /// We track the selected tab and use it to change the system images for each tab.
 struct MainView: View {
+    
     /// A state variable to capture the current tab selection
     @State private var selectedTab = 1
     

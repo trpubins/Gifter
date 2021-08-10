@@ -9,6 +9,10 @@ import CoreData
 
 /// A controller for managing the persistent storage configured with CoreData.
 struct PersistenceController {
+    
+    
+    // MARK: Properties
+    
     /// A global singleton for our entire app to use
     static let shared = PersistenceController()
 
@@ -27,6 +31,9 @@ struct PersistenceController {
         return controller
     }()
 
+    
+    // MARK: Initializer
+    
     /**
      Initializes the persistent container with an option to load the store into memory.
      
@@ -56,6 +63,9 @@ struct PersistenceController {
         })
     }
 }
+
+
+// MARK: Public Functions
 
 /**
  Checks to see if the context has any changes. Then, attempts to commit unsaved changes to the context’s parent store.
