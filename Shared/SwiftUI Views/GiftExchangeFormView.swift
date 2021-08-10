@@ -71,6 +71,9 @@ struct GiftExchangeFormView: View {
      Adds the gift exchange id to the user settings so they can start the gift exchange.
      */
     func startExchanging() {
+        #if os(iOS)
+        hideKeyboard()
+        #endif
         giftExchangeSettings.addGiftExchangeId(id: data.id)
     }
     
