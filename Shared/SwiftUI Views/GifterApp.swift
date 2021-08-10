@@ -19,16 +19,29 @@ import SwiftUI
  */
 @main
 struct GifterApp: App {
+    
     /// For tracking the phase (state) of the application
     @Environment(\.scenePhase) private var scenePhase
     
+    /// The user settings
+    @StateObject var giftExchangeSettings = UserSettings()
+    
     /// Managed object context for the application's CoreData store
     let moc = PersistenceController.shared.container.viewContext
-
+    
     var body: some Scene {
+        
         WindowGroup {
-            MainView()
-                .environment(\.managedObjectContext, moc)
+            
+            if giftExchangeSettings.idSelected != nil {
+                MainView()
+                    .environment(\.managedObjectContext, moc)
+                    .environmentObject(giftExchangeSettings)
+            } else {
+                GiftExchangeFormView(formType: "New")
+                    .environmentObject(giftExchangeSettings)
+            }
+            
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
@@ -43,5 +56,6 @@ struct GifterApp: App {
                     print("app unknown phase")
             }
         }
+        
     }
 }
