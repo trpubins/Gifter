@@ -57,6 +57,7 @@ struct MainViewIOS: View {
     
 }
 
+#if os(iOS)
 struct MainViewIOS_Previews: PreviewProvider {
     static var previews: some View {
         let giftExchangeSettings = UserSettings()
@@ -65,3 +66,4 @@ struct MainViewIOS_Previews: PreviewProvider {
             .environmentObject(giftExchangeSettings)
     }
 }
+#endif

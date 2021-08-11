@@ -31,6 +31,7 @@ struct MainViewMacOS: View {
     
 }
 
+#if os(macOS)
 struct MainViewMacOS_Previews: PreviewProvider {
     static var previews: some View {
         let giftExchangeSettings = UserSettings()
@@ -39,3 +40,4 @@ struct MainViewMacOS_Previews: PreviewProvider {
             .environmentObject(giftExchangeSettings)
     }
 }
+#endif
