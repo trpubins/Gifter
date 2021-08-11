@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GiftExchangeFormView: View {
     
+    /// Binds our View to the presentation mode so we can dismiss the View when we need to
+    @Environment(\.presentationMode) var presentationMode
+    
     /// The gift exchange user settings
     @EnvironmentObject var giftExchangeSettings: UserSettings
     
@@ -64,6 +67,12 @@ struct GiftExchangeFormView: View {
             }
             
         }  // end VStack
+        .onAppear {
+            logAppear(title: "GiftExchangeFormView")
+        }
+        .onDisappear {
+            logDisappear(title: "GiftExchangeFormView")
+        }
         
     }  // end body
     
@@ -74,6 +83,11 @@ struct GiftExchangeFormView: View {
         #if os(iOS)
         hideKeyboard()
         #endif
+        
+        presentationMode.wrappedValue.dismiss()
+
+        // updating the UserSettings object must occur last since UserSettings
+        // properties are being observed in the top-level GifterApp to change Views
         giftExchangeSettings.addGiftExchangeId(id: data.id)
     }
     
