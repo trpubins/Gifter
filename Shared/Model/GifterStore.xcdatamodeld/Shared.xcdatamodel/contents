@@ -15,7 +15,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="GiftExchange" representedClassName="GiftExchange" syncable="YES" codeGenerationType="class">
-        <attribute name="date_" attributeType="Date" minDateTimeInterval="662140800" usesScalarValueType="NO"/>
+        <attribute name="date_" attributeType="Date" minDateTimeInterval="662108400" usesScalarValueType="NO"/>
         <attribute name="id_" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name_" attributeType="String"/>
         <relationship name="gifters_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Gifter" inverseName="giftExchanges_" inverseEntity="Gifter"/>
