@@ -192,9 +192,9 @@
 			children = (
 				BFECF69B26A24EF00012227F /* GifterApp.swift */,
 				BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */,
-				BFF8122226C0469800834B50 /* Preferences Tab */,
-				BFF8122326C046B200834B50 /* Gifters Tab */,
 				BFF8122426C046D200834B50 /* Exchange Tab */,
+				BFF8122326C046B200834B50 /* Gifters Tab */,
+				BFF8122226C0469800834B50 /* Preferences Tab */,
 			);
 			path = "SwiftUI Views";
 			sourceTree = "<group>";
