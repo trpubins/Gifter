@@ -41,6 +41,11 @@ extension Date {
         return Calendar.current.component(.month,  from: self)
     }
     
+    /// The year that the Date itself belongs
+    var year: Int {
+        return Calendar.current.component(.year,  from: self)
+    }
+    
     /// `true` if the Date is the last day of the month, `false` otherwise
     var isLastDayOfMonth: Bool {
         return dayAfter.month != month
