@@ -48,7 +48,7 @@ class UserSettings: ObservableObject {
     // MARK: Object Functions
     
     /**
-     Adds a GiftExchange id to the user settings.
+     Adds a GiftExchange id to the user settings. Makes the provided id the selected GiftExchange id.
      
      - Parameters:
         - id: The GiftExchange id to add
@@ -61,12 +61,12 @@ class UserSettings: ObservableObject {
             self.idList!.append(id)
         }
         
-        // add to the selected id
+        // change selected id to newly added id
         self.idSelected = id
     }
     
     /**
-     Removes the selected GiftExchange id from the user settings.
+     Removes the selected GiftExchange id from the user settings. Does not perform removal if there is only 1 associated GiftExchange.
      */
     public func removeSelectedGiftExchangeId() {
         // use guard to to perform optional binding to new variable
@@ -77,19 +77,22 @@ class UserSettings: ObservableObject {
         }
         // at this point, compiler knows idList is not nil so force unwrapping is not necessary
         
-        // update list by removing selected id
-        idList = idList.filter {$0 != self.idSelected}  // removes the selected id from the id list by value
-        
-        // set properties to nil if the id list is empty after removing the selected id
-        if idList.isEmpty {
-            self.idList = nil
-            self.idSelected = nil
+        // do not perform removal if there is only 1 associated gift exchange
+        if idList.count <= 1 {
             return
         }
         
-        // update properties from non-empty id list
-        self.idList = idList
-        self.idSelected = idList.first  // assing first id in list to the selected id
+        // update list by removing selected id
+        idList = idList.filter {$0 != self.idSelected}  // removes the selected id from the id list by value
+        
+        if idList.count >= 1 {
+            // update properties from non-empty id list
+            self.idList = idList
+            self.idSelected = idList.first  // assing first id in list to the selected id
+        } else {
+            return
+        }
+        
     }
     
     
@@ -114,7 +117,7 @@ class UserSettings: ObservableObject {
             let encoded = try NSKeyedArchiver.archivedData(withRootObject: unwrappedProperty, requiringSecureCoding: false)
             userDefaults.set(encoded, forKey: key)
         } catch {
-            fatalError("Could not encode GiftExchangeSettings property. \(error)")
+            fatalError("Could not encode UserSettings property. \(error)")
         }
     }
 
@@ -138,7 +141,7 @@ class UserSettings: ObservableObject {
             let decoded = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(rawData) as? T
             return decoded
         } catch {
-            fatalError("Could not decode GiftExchangeSettings variable of type \(type). \(error)")
+            fatalError("Could not decode UserSettings data as type \(type). \(error)")
         }
     }
     
