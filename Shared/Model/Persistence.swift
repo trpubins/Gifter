@@ -18,33 +18,41 @@ struct PersistenceController {
 
     /// The model's storage container for CoreData
     let container: NSPersistentContainer
+
     
-    /// A test configuration intended for SwiftUI previews
-    static var preview: PersistenceController = {
-        let controller = PersistenceController(inMemory: true)
-        let viewContext = controller.container.viewContext
-//        for _ in 0..<10 {
-//            let newItem = Item(context: viewContext)
-//            newItem.timestamp = Date()
-//        }
-        saveContext(context: viewContext)
-        return controller
-    }()
+    // MARK: Computed Properties
+    
+    /// The shared managed object context
+    var context: NSManagedObjectContext {
+        // the property must be a var to be a computed property, but there shall be no intent to change its value
+        get { container.viewContext }
+        set { fatalError("PersistenceController static property `context` shall not be mutated.") }
+    }
 
     
     // MARK: Initializer
     
     /**
-     Initializes the persistent container with an option to load the store into memory.
+     Initializes the persistent container with an option to load the store into memory. Made private so only we can instantiate these objects.
      
      - Parameters:
         - inMemory: Optional, set to `true` for loading the store into memory
      */
-    init(inMemory: Bool = false) {
+    private init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "GifterStore")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
+        // enable persistent history tracking
+        guard let persistentStoreDescriptions = container.persistentStoreDescriptions.first else {
+            fatalError("\(#function): Failed to retrieve a persistent store description.")
+        }
+        // necessary to listen for remote changes (e.g. cloud)
+        // see documentation https://developer.apple.com/documentation/coredata/consuming_relevant_store_changes
+        persistentStoreDescriptions.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        persistentStoreDescriptions.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -62,24 +70,22 @@ struct PersistenceController {
             }
         })
     }
-}
-
-
-// MARK: Public Functions
-
-/**
- Checks to see if the context has any changes. Then, attempts to commit unsaved changes to the context’s parent store.
- 
- - Parameters:
-    - context: The managed object context to be saved
- */
-public func saveContext(context: NSManagedObjectContext) {
-    if context.hasChanges {
-        do {
-            try context.save()
-        } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    
+    
+    // MARK: Object Methods
+    
+    /**
+     Attempts to commit unsaved changes to the context’s parent store. But first checks to see if the context has any changes.
+     */
+    public func saveContext() {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
+    
 }

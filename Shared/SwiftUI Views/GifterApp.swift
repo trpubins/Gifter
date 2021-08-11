@@ -10,12 +10,11 @@ import SwiftUI
 /**
  The entrance point for the Gifter application.
  
- This follows the new App structure for iOS 14.  It pushes the viewContext of the singleton PersistenceController
- into the environment of the MainView -- this makes sure that all @FetchRequests from the managed object context will work.
+ This follows the App structure for iOS 14.  We don't need to push the viewContext of the singleton PersistenceController
+ into the environment of the views because the managed object context is made available globally through a static property
+ in the PersistenceController struct.
  
- As suggested here: https://developer.apple.com/forums/thread/650876
- 
- we also watch for changes to the Scene.
+ As suggested here (https://developer.apple.com/forums/thread/650876) we do watch for changes to the Scene.
  */
 @main
 struct GifterApp: App {
@@ -26,16 +25,12 @@ struct GifterApp: App {
     /// The user settings
     @StateObject var giftExchangeSettings = UserSettings()
     
-    /// Managed object context for the application's CoreData store
-    let moc = PersistenceController.shared.container.viewContext
-    
     var body: some Scene {
         
         WindowGroup {
             
             if giftExchangeSettings.idSelected != nil {
                 mainView()
-                    .environment(\.managedObjectContext, moc)
                     .environmentObject(giftExchangeSettings)
             } else {
                 GiftExchangeFormView(formType: "New")
@@ -51,7 +46,7 @@ struct GifterApp: App {
                     print("app inactive")
                 case .background:
                     print("app background")
-                    saveContext(context: moc)
+                    PersistenceController.shared.saveContext()
                 @unknown default:
                     print("app unknown phase")
             }
