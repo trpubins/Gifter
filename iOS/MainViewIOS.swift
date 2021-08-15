@@ -19,15 +19,17 @@ struct MainViewIOS: View {
         TabView(selection: $selectedTab) {
             
             ForEach(mainViewTabs, id: \.labelText) { tab in
-                navView(tabData: tab)
+                getView(tabData: tab)
             }
 
         }
+        .onAppear{ logAppear(title: "MainViewIOS") }
+        .accentColor(.red)
         
     }
     
     /**
-     Generates a NavigationView that depends on the selected tab and the specified properties.
+     Generates a View that depends on the selected tab and the specified properties.
      
      This function keeps our MainViewIOS source code DRY. In particular, it saves us from having several
      conditionals in the MainViewIOS body property to only slightly change the systemImage from generic to
@@ -36,9 +38,9 @@ struct MainViewIOS: View {
      - Parameters:
         - tabData: The data associated with a main view tab
      
-     - Returns: A NavigationView where the specified tab's image is 'filled' when it is selected.
+     - Returns: A View where the specified tab's image is 'filled' when it is selected.
      */
-    func navView(tabData: MainViewData) -> some View {
+    func getView(tabData: MainViewData) -> some View {
         var labelImg: String
         
         // opt for 'filled' image when the tab is selected
@@ -49,7 +51,7 @@ struct MainViewIOS: View {
         }
         
         return {
-            NavigationView { tabData.dest }
+             tabData.dest
                 .tabItem { Label(tabData.labelText, systemImage: labelImg) }
                 .tag(tabData.tabNum)
         }()
