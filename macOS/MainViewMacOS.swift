@@ -26,6 +26,7 @@ struct MainViewMacOS: View {
         }
         .navigationTitle("Gifter")
         .frame(minWidth: 600, maxWidth: 800, minHeight: 300, maxHeight: 500)
+        .onAppear{ logAppear(title: "MainViewMacOS") }
         
     }
     
