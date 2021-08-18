@@ -14,23 +14,45 @@ class GiftExchangeFormData: ObservableObject {
     // MARK: Published Properties
     
     /// The name of the gift exchange (a published property)
-    @Published var name: String = ""
+    @Published var name: String
     
     /// The date of the gift exchange (a published property)
     @Published var date: Date
     
     /// The unique id for the gift exchange
-    let id = UUID()
+    let id: UUID
     
     
     // MARK: Initializer
     
-    /// Initializes the date of the gift exchange to be Christmas day of the current year
-    init() {
-        let currentYear = Calendar.current.component(.year,  from: Date())
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        date = formatter.date(from: "\(currentYear)/12/25")!
+    /**
+     Initializes the gift exchange data. Published properties are empty by default, and the date is today by default.
+     
+     - Parameters:
+        - id: The unique id for the gift exchange
+        - name: The name of the gift exchange
+        - date: The date of the gift exchange
+        - defaultToXmasDay: `true` to default the form calendar to Christmas day
+     */
+    init(id: UUID = UUID(), name: String = "", date: Date? = nil, defaultToXmasDay: Bool = false) {
+        self.id = id
+        self.name = name
+        
+        if defaultToXmasDay {
+            // defaults the form date to Christmas day of the current year
+            let currentYear = Calendar.current.component(.year,  from: Date())
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            self.date = formatter.date(from: "\(currentYear)/12/25")!
+            return
+        }
+        
+        // update with provided date, or today's date
+        if date != nil {
+            self.date = date!
+        } else {
+            self.date = Date()
+        }
     }
     
     
