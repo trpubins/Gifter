@@ -8,13 +8,33 @@
 import SwiftUI
 
 struct PreferencesTabView: View {
+    
+    @ObservedObject var selectedGiftExchange: GiftExchange
+    
+    init(id: UUID) {
+        // here we use the giftExchangeSettings to initialize the
+        // @FetchedResults for a GiftExchange
+        self.selectedGiftExchange = GiftExchange.object(withID: id, context: PersistenceController.shared.context) ?? GiftExchange(context: PersistenceController.shared.context)
+    }
+    
     var body: some View {
-        Text("This is the PreferencesTabView")
+        
+        VStack {
+            Text("This is the PreferencesTabView")
+        }
+        .onAppear { logAppear(title: "PreferencesTabView") }
+        
     }
 }
 
 struct PreferencesTabView_Previews: PreviewProvider {
+    
+    static let previewUserSettings: UserSettings = getPreviewUserSettings()
+    
     static var previews: some View {
-        PreferencesTabView()
+        PreferencesTabView(id: previewUserSettings.selectedId!)
+            .environmentObject(previewUserSettings)
     }
+    
 }
+

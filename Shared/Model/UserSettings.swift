@@ -20,16 +20,30 @@ class UserSettings: ObservableObject {
     // MARK: Published Properties
     
     /// A list of GiftExchange ids associated with the user
-    @Published var idList: [UUID]? {
+    @Published var idList: [UUID] = [] {
         didSet {
-            encode(property: idList, key: "giftExchangeList")
+            encode(property: self.idList, key: "giftExchangeList")
         }
     }
     
+    
+    // MARK: Computed Properties
+    
     /// The id of the user's selected GiftExchange
-    @Published var idSelected: UUID? {
-        didSet {
-            encode(property: idSelected, key: "giftExchangeSelected")
+    var selectedId: UUID? {
+        get { return self.idList.first }
+    }
+
+    /// An array of ids that are not the selected GiftExchange
+    var unselectedIdList: [UUID] {
+        get {
+            if self.idList.count > 1 {
+                var unselectedIdList = self.idList  // arrays are passed by value
+                unselectedIdList.removeFirst()  // remove the first element, which is the selected id
+                return unselectedIdList
+            } else {
+                return []
+            }
         }
     }
     
@@ -40,12 +54,11 @@ class UserSettings: ObservableObject {
      Initializes the GiftExchange properties by decoding them from the user defaults.
      */
     init() {
-        self.idList = decode(type: [UUID].self, key: "giftExchangeList")
-        self.idSelected = decode(type: UUID.self, key: "giftExchangeSelected")
+        self.idList = decode(type: [UUID].self, key: "giftExchangeList") ?? []
     }
     
     
-    // MARK: Object Functions
+    // MARK: Object Methods
     
     /**
      Adds a GiftExchange id to the user settings. Makes the provided id the selected GiftExchange id.
@@ -54,45 +67,42 @@ class UserSettings: ObservableObject {
         - id: The GiftExchange id to add
      */
     public func addGiftExchangeId(id: UUID) {
-        // add to the list
-        if self.idList == nil {
-            self.idList = [id]
-        } else {
-            self.idList!.append(id)
-        }
-        
-        // change selected id to newly added id
-        self.idSelected = id
+        // add to the front of the list
+        self.idList.insert(id, at: 0)
     }
     
     /**
      Removes the selected GiftExchange id from the user settings. Does not perform removal if there is only 1 associated GiftExchange.
+     
+     - Returns: `true` if the selected id was removed, `false` otherwise.
      */
-    public func removeSelectedGiftExchangeId() {
-        // use guard to to perform optional binding to new variable
-        guard var idList = self.idList else {
-            self.idList = nil
-            self.idSelected = nil
-            return
-        }
-        // at this point, compiler knows idList is not nil so force unwrapping is not necessary
-        
-        // do not perform removal if there is only 1 associated gift exchange
-        if idList.count <= 1 {
-            return
-        }
-        
-        // update list by removing selected id
-        idList = idList.filter {$0 != self.idSelected}  // removes the selected id from the id list by value
-        
-        if idList.count >= 1 {
-            // update properties from non-empty id list
-            self.idList = idList
-            self.idSelected = idList.first  // assing first id in list to the selected id
+    public func removeSelectedGiftExchangeId() -> Bool {
+        if self.idList.count <= 1 {
+            // do not perform removal if there is only 1 associated gift exchange
+            return false
         } else {
-            return
+            // update list by removing the first element, which is the selected id
+            self.idList.removeFirst()
+            return true
         }
-        
+    }
+    
+    /**
+     Changes the selected id to the specified id if it exists in the idList.
+     
+     - Parameters:
+        - id: The GiftExchange id to select (switch to)
+     
+     - Returns: `true` if the selected id was successfully changed, `false` if the specified id was not in the list of ids.
+     */
+    public func changeSelectedGiftExchangeId(id: UUID) -> Bool {
+        if self.idList.contains(id) {
+            self.idList = self.idList.filter {$0 != id}  // filter the id out
+            self.idList.insert(id, at: 0)  // then add it back to make it the selected id
+            return true
+        } else {
+            return false
+        }
     }
     
     
@@ -105,17 +115,12 @@ class UserSettings: ObservableObject {
         - property: The class property to encode
         - key: The user defaults dictionary key
      */
-    private func encode<T>(property: T?, key: String) {
-        // perform optional binding
-        guard let unwrappedProperty = property else {
-            userDefaults.set(nil, forKey: key)
-            return
-        }
-        
+    private func encode<T>(property: T, key: String) {
         // attempt to encode and save to the user defaults
         do {
-            let encoded = try NSKeyedArchiver.archivedData(withRootObject: unwrappedProperty, requiringSecureCoding: false)
+            let encoded = try NSKeyedArchiver.archivedData(withRootObject: property, requiringSecureCoding: false)
             userDefaults.set(encoded, forKey: key)
+            return
         } catch {
             fatalError("Could not encode UserSettings property. \(error)")
         }

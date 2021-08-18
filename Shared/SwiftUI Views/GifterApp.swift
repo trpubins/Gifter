@@ -29,8 +29,8 @@ struct GifterApp: App {
         
         WindowGroup {
             
-            if giftExchangeSettings.idSelected != nil {
-                mainView()
+            if giftExchangeSettings.idList.count >= 1 {
+                MainView()
                     .environmentObject(giftExchangeSettings)
             } else {
                 GiftExchangeFormView(formType: "New")
@@ -52,19 +52,6 @@ struct GifterApp: App {
             }
         }
         
-    }
-    
-    /**
-     Obtains the proper MainView based on the OS target.
-     
-     - Returns: A MainView struct conforming to the View protocol.
-     */
-    func mainView() -> some View {
-        #if os(iOS)
-        return MainViewIOS()
-        #else
-        return MainViewMacOS()
-        #endif
     }
     
 }

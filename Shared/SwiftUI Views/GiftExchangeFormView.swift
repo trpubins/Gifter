@@ -53,7 +53,7 @@ struct GiftExchangeFormView: View {
                 Button(action: { self.startExchanging() }, label: {
                     HStack {
                         if formType.contains("New") {
-                            Label("Start Exchanging!", systemImage: "gift.fill")
+                            Label("Start Exchanging!", systemImage: "gift")
                         } else {
                             Text("Save Exchange")
                         }
@@ -65,14 +65,10 @@ struct GiftExchangeFormView: View {
             .onReceive(data.allValidation) { validation in
                 self.isSaveDisabled = !validation.isSuccess
             }
+            .accentColor(.red)
             
         }  // end VStack
-        .onAppear {
-            logAppear(title: "GiftExchangeFormView")
-        }
-        .onDisappear {
-            logDisappear(title: "GiftExchangeFormView")
-        }
+        .onAppear { logAppear(title: "GiftExchangeFormView") }
         
     }  // end body
     
@@ -84,6 +80,8 @@ struct GiftExchangeFormView: View {
         hideKeyboard()
         #endif
         
+        GiftExchange.update(using: data)
+        PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
 
         // updating the UserSettings object must occur last since UserSettings

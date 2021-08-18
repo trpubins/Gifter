@@ -11,6 +11,9 @@ import SwiftUI
 /// The primary view for the macOS application -- uses a sidebar list view as the means of navigation.
 struct MainViewMacOS: View {
 
+    /// An array of dictionaries holding data relevant to the MainViews
+    let mainViewTabs: [MainViewData]
+    
     var body: some View {
         
         NavigationView {
@@ -34,11 +37,13 @@ struct MainViewMacOS: View {
 
 #if os(macOS)
 struct MainViewMacOS_Previews: PreviewProvider {
+    
+    static let previewUserSettings: UserSettings = getPreviewUserSettings()
+    
     static var previews: some View {
-        let giftExchangeSettings = UserSettings()
-        
-        MainViewMacOS()
-            .environmentObject(giftExchangeSettings)
+        MainViewMacOS(mainViewTabs: getMainViewData(previewUserSettings))
+            .environmentObject(previewUserSettings)
     }
+    
 }
 #endif

@@ -25,24 +25,35 @@ struct MainViewData {
     
 }
 
-/// An array of dictionaries holding data relevant to the MainViews
-let mainViewTabs = [
-    MainViewData(
-        dest: AnyView(ExchangeTabView()),
-        tabNum: 1,
-        labelText: "Gift Exchange",
-        imgName: "gift"
-    ),
-    MainViewData(
-        dest: AnyView(GiftersTabView()),
-        tabNum: 2,
-        labelText: "Gifters",
-        imgName: "person.2"
-    ),
-    MainViewData(
-        dest: AnyView(PreferencesTabView()),
-        tabNum: 3,
-        labelText: "Preferences",
-        imgName: "gearshape"
-    ),
-]
+/**
+ Generates an array of MainViewData used to populate the MainViews.
+ 
+ - Parameters:
+    - settings: The GiftExchange settings
+ 
+ - Returns: An array of MainViewData instances.
+ */
+func getMainViewData(_ settings: UserSettings) -> [MainViewData] {
+    let giftExchangeId = settings.selectedId!
+
+    return [
+        MainViewData(
+            dest: AnyView(ExchangeTabView(id: giftExchangeId)),
+            tabNum: 1,
+            labelText: "Gift Exchange",
+            imgName: "gift"
+        ),
+        MainViewData(
+            dest: AnyView(GiftersTabView(id: giftExchangeId)),
+            tabNum: 2,
+            labelText: "Gifters",
+            imgName: "person.2"
+        ),
+        MainViewData(
+            dest: AnyView(PreferencesTabView(id: giftExchangeId)),
+            tabNum: 3,
+            labelText: "Preferences",
+            imgName: "gearshape"
+        ),
+    ]
+}

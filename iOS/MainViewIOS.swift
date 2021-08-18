@@ -1,6 +1,6 @@
 //
 //  MainView.swift
-//  Shared (View)
+//  iOS (View)
 //
 //  Created by Tanner on 7/16/21.
 //
@@ -13,6 +13,9 @@ struct MainViewIOS: View {
     
     /// A state variable to capture the current tab selection
     @State private var selectedTab = 1
+    
+    /// An array of dictionaries holding data relevant to the MainViews
+    let mainViewTabs: [MainViewData]
     
     var body: some View {
         
@@ -61,11 +64,13 @@ struct MainViewIOS: View {
 
 #if os(iOS)
 struct MainViewIOS_Previews: PreviewProvider {
+    
+    static let previewUserSettings: UserSettings = getPreviewUserSettings()
+
     static var previews: some View {
-        let giftExchangeSettings = UserSettings()
-        
-        MainViewIOS()
-            .environmentObject(giftExchangeSettings)
+        MainViewIOS(mainViewTabs: getMainViewData(previewUserSettings))
+            .environmentObject(previewUserSettings)
     }
+    
 }
 #endif
