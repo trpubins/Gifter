@@ -12,6 +12,8 @@
 		BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF24840E26B5B29800F06413 /* SwiftSMTP */; };
 		BF2A865726BE6C090038C024 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */; };
 		BF2A865826BE6C090038C024 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */; };
+		BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
+		BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
 		BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
 		BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
 		BF2A866026BE6D9A0038C024 /* PreferencesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */; };
@@ -21,8 +23,6 @@
 		BF2EF74F26C0E3840095B714 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EF74E26C0E3840095B714 /* UserSettings.swift */; };
 		BF2EF75026C0E3840095B714 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EF74E26C0E3840095B714 /* UserSettings.swift */; };
 		BF41128126B4ED6400BA7D4F /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF41128026B4ED6400BA7D4F /* SwiftSMTP */; };
-		BF6A696726CC5E6E005D480A /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A696626CC5E6E005D480A /* ExchangeTabView.swift */; };
-		BF6A696826CC5E6E005D480A /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A696626CC5E6E005D480A /* ExchangeTabView.swift */; };
 		BF8A4A5526CC9EF800EE2CCC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4A5426CC9EF800EE2CCC /* MainView.swift */; };
 		BF8A4A5626CC9EF800EE2CCC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4A5426CC9EF800EE2CCC /* MainView.swift */; };
 		BF8A4A5726CCA0DB00EE2CCC /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
@@ -69,11 +69,11 @@
 		BF0DDCA326C2FB22005D0412 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		BF0DDCA926C3023B005D0412 /* MainViewMacOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewMacOS.swift; sourceTree = "<group>"; };
 		BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDetailView.swift; sourceTree = "<group>"; };
+		BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTabView.swift; sourceTree = "<group>"; };
 		BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftersTabView.swift; sourceTree = "<group>"; };
 		BF2A865F26BE6D9A0038C024 /* PreferencesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabView.swift; sourceTree = "<group>"; };
 		BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		BF2EF74E26C0E3840095B714 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
-		BF6A696626CC5E6E005D480A /* ExchangeTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeTabView.swift; sourceTree = "<group>"; };
 		BF8A4A5426CC9EF800EE2CCC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		BF9EF1F326BC690E00FD01B3 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		BFF8122426C046D200834B50 /* Exchange Tab */ = {
 			isa = PBXGroup;
 			children = (
-				BF6A696626CC5E6E005D480A /* ExchangeTabView.swift */,
+				BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */,
 				BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */,
 			);
 			name = "Exchange Tab";
@@ -406,7 +406,6 @@
 				BFECF6AF26A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
 				BFF8123426C0506A00834B50 /* Validation.swift in Sources */,
 				BFAB347226BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
-				BF6A696726CC5E6E005D480A /* ExchangeTabView.swift in Sources */,
 				BFF8123626C0506A00834B50 /* Publisher+Validation.swift in Sources */,
 				BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */,
 				BF8A4A5526CC9EF800EE2CCC /* MainView.swift in Sources */,
@@ -415,6 +414,7 @@
 				BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
 				BFF8123826C0506A00834B50 /* ValidationPublishers.swift in Sources */,
 				BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */,
+				BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
 				BF2A866026BE6D9A0038C024 /* PreferencesTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +427,7 @@
 				BF8A4A5626CC9EF800EE2CCC /* MainView.swift in Sources */,
 				BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
 				BF8A4A5926CCA16200EE2CCC /* UIImage+Extensions.swift in Sources */,
+				BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
 				BF2A866126BE6D9A0038C024 /* PreferencesTabView.swift in Sources */,
 				BFF8120826C042CF00834B50 /* GiftExchangeFormView.swift in Sources */,
 				BFECF6B626A24EF00012227F /* Persistence.swift in Sources */,
@@ -434,7 +435,6 @@
 				BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
 				BFF8123026C0505E00834B50 /* SwiftUI+Validation.swift in Sources */,
 				BFF8124426C079A800834B50 /* Date+Extensions.swift in Sources */,
-				BF6A696826CC5E6E005D480A /* ExchangeTabView.swift in Sources */,
 				BFF8122D26C04FED00834B50 /* GiftExchangeFormData.swift in Sources */,
 				BF2A865826BE6C090038C024 /* ExchangeDetailView.swift in Sources */,
 				BF0DDCAB26C3023B005D0412 /* MainViewMacOS.swift in Sources */,
