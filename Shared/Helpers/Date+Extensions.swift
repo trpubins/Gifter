@@ -18,6 +18,13 @@ extension Date {
     /// The day after today
     static var tomorrow:  Date { return Date().dayAfter }
     
+    /// Formats the date
+    static let formatMonthDay: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd"
+        return formatter
+    }()
+    
     
     // MARK: Object Properties
     

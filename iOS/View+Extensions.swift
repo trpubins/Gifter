@@ -1,6 +1,6 @@
 //
 //  View+Extensions.swift
-//  Shared (Helper)
+//  iOS (Helper)
 //  https://www.hackingwithswift.com/quick-start/swiftui/how-to-dismiss-the-keyboard-for-a-textfield
 //
 //  Created by Tanner on 8/10/21.
