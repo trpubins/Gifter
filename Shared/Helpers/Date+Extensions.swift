@@ -30,12 +30,12 @@ extension Date {
     
     /// The day before the Date itself
     var dayBefore: Date {
-        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+        return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
     }
     
     /// The day after the Date itself
     var dayAfter: Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+        return Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     }
     
     /// The day of the week for the Date itself
