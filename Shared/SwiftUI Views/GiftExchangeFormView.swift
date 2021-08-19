@@ -31,13 +31,13 @@ struct GiftExchangeFormView: View {
     @ObservedObject var data: GiftExchangeFormData
     
     /// State variable for determining if the save button is disabled
-    @State var isSaveDisabled: Bool
+    @State var isSaveDisabled: Bool = true
     
     /// Describes the type of gift exchange form this is
     let formType: FormType
     
     /**
-     Initializes the form view and a state variable that determines whether or not the form can be saved.
+     Initializes the form view instance members.
      
      - Parameters:
         - formType: Describes the type of gift exchange form
@@ -46,15 +46,6 @@ struct GiftExchangeFormView: View {
     init(formType: FormType, data: GiftExchangeFormData = GiftExchangeFormData()) {
         self.formType = formType
         self.data = data
-        
-        if formType == .Edit {
-            // data is sure to be valid since this is existing data
-            // any changes to the form data will still have to go through validation
-            self._isSaveDisabled = State(initialValue: false)
-        } else {
-            // form is empty so the save state shall be disabled
-            self._isSaveDisabled = State(initialValue: true)
-        }
     }
     
     var body: some View {
@@ -108,7 +99,17 @@ struct GiftExchangeFormView: View {
             .accentColor(.red)
             
         }  // end VStack
-        .onAppear { logAppear(title: "GiftExchangeFormView") }
+        .onAppear {
+            logAppear(title: "GiftExchangeFormView")
+            // the data.allValidation property requires at least one message from
+            // each publisher before it can publish it’s own message. in Edit mode,
+            // we pre-populate the form with data provided at initialization.
+            // so here, we assign the name field to itself in order to publish the
+            // name field but keeping its value the same
+            if formType == .Edit {
+                self.data.name = self.data.name
+            }
+        }
         
     }  // end body
     
@@ -160,10 +161,10 @@ struct GiftExchangeFormView: View {
 struct GiftExchangeLaunchView_Previews: PreviewProvider {
     static var previews: some View {
         // 1st preview
-        GiftExchangeFormView(formType: FormType.New)
-        // 2nd preview
         NavigationView {
-            GiftExchangeFormView(formType: FormType.Add)
+            GiftExchangeFormView(formType: FormType.Edit, data: GiftExchangeFormData(name: "Zohan"))
         }
+        // 2nd preview
+        GiftExchangeFormView(formType: FormType.New)
     }
 }
