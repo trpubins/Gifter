@@ -73,9 +73,11 @@ struct ExchangeTabView: View {
                         }
                         
                     } label: {
-                        Text("🎄").baselineOffset(2)
-                        Text("\(selectedGiftExchange.name) " + String(selectedGiftExchange.date.year))
-                        Image(uiImage: UIImage(named: "dropdown.arrow")!)
+                        HStack {
+                            Text("🎄").baselineOffset(2)
+                            Text("\(selectedGiftExchange.name) " + String(selectedGiftExchange.date.year))
+                            Image(uiImage: UIImage(named: "dropdown.arrow")!)
+                        }
                     }
                     .foregroundColor(.primary)
                 }
