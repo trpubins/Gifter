@@ -46,10 +46,22 @@ struct ExchangeTabView: View {
                 Spacer()
                 if selectedGiftExchange.gifters.count < 2 {
                     Text("Not enough Gifters to begin the exchange!")
-                    Button(action: { print("add gifter") }) {
-                        Label("Add Gifter", systemImage: "plus")
+                    if #available(iOS 15.0, *) {
+                        Button(action: { print("add gifter") }) {
+                            Label("Add Gifter", systemImage: "plus")
+                        }
+                        .tint(.red)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.capsule)
+                        .controlSize(.large)
+                        .padding()
+                    } else {
+                        // fallback on earlier versions
+                        Button(action: { print("add gifter") }) {
+                            Label("Add Gifter", systemImage: "plus")
+                        }
+                        .padding()
                     }
-                    .padding()
                 } else {
                     Text("Show button to Run Exchange")
                 }
