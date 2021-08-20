@@ -1,6 +1,7 @@
 //
 //  GiftExchangeFormData.swift
 //  Shared (Model)
+//  https://newcombe.io/2020/06/08/validation-with-swiftui-combine-part-2/
 //
 //  Created by Tanner on 8/8/21.
 //
@@ -44,15 +45,17 @@ class GiftExchangeFormData: ObservableObject {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd"
             self.date = formatter.date(from: "\(currentYear)/12/25")!
-            return
+        } else {
+            // update with provided date, or today's date
+            if date != nil {
+                self.date = date!
+            } else {
+                self.date = Date()
+            }
         }
         
-        // update with provided date, or today's date
-        if date != nil {
-            self.date = date!
-        } else {
-            self.date = Date()
-        }
+        // ensure the date is normalized to noon time so date validation has same reference point
+        self.date = self.date.noon
     }
     
     
