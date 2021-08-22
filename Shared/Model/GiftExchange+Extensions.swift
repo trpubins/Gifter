@@ -26,6 +26,11 @@ extension GiftExchange {
         name_ ?? "Unknown name"
     }
     
+    /// The emoji to identify the GiftExchange
+    public var emoji: String {
+        emoji_ ?? emojis.first!
+    }
+    
     public var gifters: [Gifter] {
         let set = gifters_ as? Set<Gifter> ?? []
         return set.sorted {
@@ -40,6 +45,7 @@ extension GiftExchange {
         id_ = data.id
         date_ = data.date
         name_ = data.name
+        emoji_ = data.emoji
     }
     
     

@@ -33,7 +33,7 @@ struct GifterApp: App {
                 MainView()
                     .environmentObject(giftExchangeSettings)
             } else {
-                GiftExchangeFormView(formType: FormType.New, data: GiftExchangeFormData(defaultToXmasDay: true))
+                GiftExchangeFormView(formType: FormType.New, data: GiftExchangeFormData(christmasDay: true))
                     .environmentObject(giftExchangeSettings)
             }
             

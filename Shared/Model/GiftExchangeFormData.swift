@@ -17,6 +17,9 @@ class GiftExchangeFormData: ObservableObject {
     /// The name of the gift exchange (a published property)
     @Published var name: String
     
+    /// The emoji to identify the gift exchange (a publihsed property)
+    @Published var emoji: String
+    
     /// The date of the gift exchange (a published property)
     @Published var date: Date
     
@@ -32,14 +35,18 @@ class GiftExchangeFormData: ObservableObject {
      - Parameters:
         - id: The unique id for the gift exchange
         - name: The name of the gift exchange
+        - emoji: The emoji icon of the gift exchange
         - date: The date of the gift exchange
-        - defaultToXmasDay: `true` to default the form calendar to Christmas day
+        - christmasDay: `true` to default the form calendar to Christmas day
      */
-    init(id: UUID = UUID(), name: String = "", date: Date? = nil, defaultToXmasDay: Bool = false) {
+    init(id: UUID = UUID(), name: String = "", emoji: String = emojis.first!, date: Date? = nil, christmasDay: Bool = false) {
         self.id = id
         self.name = name
+        self.emoji = emoji
         
-        if defaultToXmasDay {
+        if christmasDay {
+            // override emoji to be Christmas tree if making it a Christmas day exchange
+            self.emoji = "🎄"
             // defaults the form date to Christmas day of the current year
             let currentYear = Calendar.current.component(.year,  from: Date())
             let formatter = DateFormatter()
@@ -56,6 +63,20 @@ class GiftExchangeFormData: ObservableObject {
         
         // ensure the date is normalized to noon time so date validation has same reference point
         self.date = self.date.noon
+    }
+    
+    /**
+     Initializes the gift exchange data using a GiftExchange object. Published properties are empty by default, and the date is today by default.
+     
+     - Parameters:
+        - giftExchange: The GiftExchange to replicate as form data
+     */
+    init(giftExchange: GiftExchange) {
+        self.id = giftExchange.id
+        self.name = giftExchange.name
+        self.emoji = giftExchange.emoji
+        // ensure the date is normalized to noon time so date validation has same reference point
+        self.date = giftExchange.date.noon
     }
     
     

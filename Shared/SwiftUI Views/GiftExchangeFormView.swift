@@ -74,6 +74,10 @@ struct GiftExchangeFormView: View {
                     .validation(data.dateValidation)
                     
                 }
+                Section(header: Text("Emoji")) {
+                    EmojiView(self.data.emoji)
+                        .environmentObject(data)
+                }
                 // insert start exchanging button when a new gift exchange is being added
                 if formType == .New || formType == .Add {
                     Button(action: { self.startExchanging() }, label: {
@@ -96,7 +100,6 @@ struct GiftExchangeFormView: View {
             .onReceive(data.allValidation) { validation in
                 self.isSaveDisabled = !validation.isSuccess
             }
-            .accentColor(.red)
             
         }  // end VStack
         .onAppear {
@@ -162,7 +165,7 @@ struct GiftExchangeLaunchView_Previews: PreviewProvider {
     static var previews: some View {
         // 1st preview
         NavigationView {
-            GiftExchangeFormView(formType: FormType.Edit, data: GiftExchangeFormData(name: "Zohan"))
+            GiftExchangeFormView(formType: FormType.Edit, data: GiftExchangeFormData(name: "Zohan", emoji: emojis.first!))
         }
         // 2nd preview
         GiftExchangeFormView(formType: FormType.New)

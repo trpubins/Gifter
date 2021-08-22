@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19197" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Gifter" representedClassName="Gifter" syncable="YES" codeGenerationType="class">
         <attribute name="email_" attributeType="String"/>
         <attribute name="exchangeIds_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[UUID]"/>
@@ -16,12 +16,13 @@
     </entity>
     <entity name="GiftExchange" representedClassName="GiftExchange" syncable="YES" codeGenerationType="class">
         <attribute name="date_" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="emoji_" optional="YES" attributeType="String"/>
         <attribute name="id_" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name_" attributeType="String"/>
         <relationship name="gifters_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Gifter" inverseName="giftExchanges_" inverseEntity="Gifter"/>
     </entity>
     <elements>
         <element name="Gifter" positionX="-63" positionY="-18" width="128" height="134"/>
-        <element name="GiftExchange" positionX="-63" positionY="9" width="128" height="89"/>
+        <element name="GiftExchange" positionX="-63" positionY="9" width="128" height="104"/>
     </elements>
 </model>

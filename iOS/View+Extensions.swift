@@ -20,5 +20,22 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
+    /**
+     Modifies a View in such a way that it permits other modifiers on condition.
+     
+     - Parameters:
+        - conditional: A conditional statement for determining if another modifier shall be applied to the View
+        - content: The additional modifier(s) to apply to this View if the condition evaluates to `true`
+     
+     - Returns: The View modified if the conditional evaluated to `true`, otherwise just returns the View that this function was applied.
+     */
+    func `ifTrue`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> some View {
+        if conditional {
+            return AnyView(content(self))
+        } else {
+            return AnyView(self)
+        }
+    }
+    
 }
 #endif

@@ -13,14 +13,21 @@ struct ExchangeTabView: View {
     /// The gift exchange user settings provided by a parent View
     @EnvironmentObject var giftExchangeSettings: UserSettings
     
-    @ObservedObject var selectedGiftExchange: GiftExchange
+    /// The gift exchange current selection
+    var selectedGiftExchange: GiftExchange
     
-    // local state to trigger showing a sheet to add a Gift Exchange
+    /// Local state to trigger a sheet for adding a new gift exchange
     @State private var isAddGiftExchangeFormShowing = false
     
-    // local state to trigger showing a sheet to edit a Gift Exchange
+    /// Local state to trigger a sheet for editing an existing gift exchange
     @State private var isEditGiftExchangeFormShowing = false
     
+    /**
+     Initializes the ExchangeTabView by pulling out of CoreData the GiftExchange object as specified by the id.
+     
+     - Parameters:
+        - id: The id used to identify the selected gift exchange
+     */
     init(id: UUID) {
         // here we use the giftExchangeSettings to initialize the
         // @FetchedResults for a GiftExchange
@@ -50,7 +57,7 @@ struct ExchangeTabView: View {
                         Button(action: { print("add gifter") }) {
                             Label("Add Gifter", systemImage: "plus")
                         }
-                        .tint(.red)
+                        .tint(.accentColor)
                         .buttonStyle(.bordered)
                         .buttonBorderShape(.capsule)
                         .controlSize(.large)
@@ -68,7 +75,6 @@ struct ExchangeTabView: View {
                 
                 Spacer()
             } // end VStack
-            .accentColor(.red)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -86,7 +92,7 @@ struct ExchangeTabView: View {
                         
                     } label: {
                         HStack {
-                            Text("🎄").baselineOffset(2)
+                            Text("\(selectedGiftExchange.emoji)").baselineOffset(2)
                             Text("\(selectedGiftExchange.name) " + String(selectedGiftExchange.date.year))
                             Image(uiImage: UIImage(named: "dropdown.arrow")!)
                         }
@@ -104,26 +110,37 @@ struct ExchangeTabView: View {
         }
     }
     
+    /**
+     Returns a form view that is configured with the provided formType.
+     
+     - Parameters:
+        - formType: Describes the type of form to generate
+     
+     - Returns: A configured GiftExchangeFormView.
+     */
     func getFormView(formType: FormType) -> some View {
         NavigationView {
             if formType == .Add {
                 GiftExchangeFormView(formType: FormType.Add)
             } else if formType == .Edit {
-                GiftExchangeFormView(formType: FormType.Edit, data: GiftExchangeFormData(id: selectedGiftExchange.id, name: selectedGiftExchange.name, date: selectedGiftExchange.date))
+                GiftExchangeFormView(formType: FormType.Edit, data: GiftExchangeFormData(giftExchange: selectedGiftExchange))
             }
         }
     }
     
+    /// Triggers a sheet for adding a new gift exchange.
     func addGiftExchange() {
         print("add gift exchange")
         isAddGiftExchangeFormShowing = true
     }
     
+    /// Triggers a sheet for editing the currenty selected gift exchange.
     func editGiftExchange() {
         print("edit gift exchange")
         isEditGiftExchangeFormShowing = true
     }
     
+    /// TODO
     func other() {
         print("other")
     }
