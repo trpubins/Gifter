@@ -26,7 +26,6 @@ struct MainViewIOS: View {
             }
 
         }
-        .accentColor(.red)
         .onAppear{ logAppear(title: "MainViewIOS") }
         
     }
