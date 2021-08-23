@@ -33,14 +33,13 @@ class GiftExchangeFormData: ObservableObject {
      Initializes the gift exchange data. Published properties are empty by default, and the date is today by default.
      
      - Parameters:
-        - id: The unique id for the gift exchange
         - name: The name of the gift exchange
         - emoji: The emoji icon of the gift exchange
         - date: The date of the gift exchange
         - christmasDay: `true` to default the form calendar to Christmas day
      */
-    init(id: UUID = UUID(), name: String = "", emoji: String = emojis.first!, date: Date? = nil, christmasDay: Bool = false) {
-        self.id = id
+    init(name: String = "", emoji: String = emojis.first!, date: Date? = nil, christmasDay: Bool = false) {
+        self.id = UUID()
         self.name = name
         self.emoji = emoji
         

@@ -15,50 +15,80 @@ extension GiftExchange {
     // MARK: Property Wrappers
     
     public var id: UUID {
-        id_ ?? UUID()
+        get { id_ ?? UUID() }
     }
     
     public var date: Date {
-        date_ ?? Date()
+        get { date_ ?? Date() }
+        set { date_ = newValue }
     }
     
     public var name: String {
-        name_ ?? "Unknown name"
+        get { name_ ?? "Unknown name" }
+        set { name_ = newValue }
     }
     
     /// The emoji to identify the GiftExchange
     public var emoji: String {
-        emoji_ ?? emojis.first!
+        get { emoji_ ?? emojis.first! }
+        set { emoji_ = newValue }
     }
     
     public var gifters: [Gifter] {
-        let set = gifters_ as? Set<Gifter> ?? []
-        return set.sorted {
-            $0.name < $1.name
+        get {
+            let set = gifters_ as? Set<Gifter> ?? []
+            return set.sorted()  // Gifter conforms to comparable so set can be sorted here
         }
     }
     
     
     // MARK: Object Methods
     
-    private func updateValues(from data: GiftExchangeFormData) {
+    /**
+     Initializes the unique id for this GiftExchange from the form data.
+     
+     - Parameters:
+        - data: The gift exchange form data
+     */
+    private func initId(from data: GiftExchangeFormData) {
         id_ = data.id
-        date_ = data.date
-        name_ = data.name
-        emoji_ = data.emoji
+    }
+    
+    /**
+     Updates the values of this GiftExchange's instance members.
+     
+     - Parameters:
+        - data: The gift exchange form data
+     */
+    private func updateValues(from data: GiftExchangeFormData) {
+        self.date = data.date
+        self.name = data.name
+        self.emoji = data.emoji
     }
     
     
     // MARK: Class Functions
     
-    class func update(using data: GiftExchangeFormData) {
+    class func addNewGiftExchange() -> GiftExchange {
+        let newGiftExchange = GiftExchange(context: PersistenceController.shared.context)
+        return newGiftExchange
+    }
+    
+    class func addNewGiftExchange(using data: GiftExchangeFormData) -> GiftExchange {
+        let newGiftExchange = addNewGiftExchange()
+        newGiftExchange.initId(from: data)
+        newGiftExchange.updateValues(from: data)
+        return newGiftExchange
+    }
+    
+    class func update(using data: GiftExchangeFormData) -> GiftExchange {
         if let giftExchange = GiftExchange.object(withID: data.id, context: PersistenceController.shared.context) {
             // if we can find a GiftExchange object in CoreData, use it
             giftExchange.updateValues(from: data)
+            return giftExchange
         } else {
             // otherwise, create a new GiftExchange from the provided data
-            let newGiftExchange = GiftExchange(context: PersistenceController.shared.context)
-            newGiftExchange.updateValues(from: data)
+            return addNewGiftExchange(using: data)
         }
     }
     

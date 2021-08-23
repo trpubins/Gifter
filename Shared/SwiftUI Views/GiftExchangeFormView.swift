@@ -151,12 +151,17 @@ struct GiftExchangeFormView: View {
     
     /// From the form data, update and persist the CoreData entity, GiftExchange.
     func commitDataEntry() {
-        GiftExchange.update(using: data)
+        let exchange: GiftExchange
+        if formType == .New || formType == .Add {
+            exchange = GiftExchange.addNewGiftExchange(using: data)
+        } else {
+            exchange = GiftExchange.update(using: data)
+        }
         PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
         // updating the UserSettings object must occur last since UserSettings
         // property is being observed in the top-level GifterApp to change/refresh Views
-        giftExchangeSettings.addGiftExchangeId(id: data.id)
+        giftExchangeSettings.addGiftExchangeId(id: exchange.id)
     }
     
 }
