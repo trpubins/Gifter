@@ -79,8 +79,8 @@ struct GiftExchangeFormView: View {
                         .environmentObject(data)
                 }
                 // insert start exchanging button when a new gift exchange is being added
-                if formType == .New || formType == .Add {
-                    Button(action: { self.startExchanging() }, label: {
+                if isNewForm() {
+                    Button(action: { startExchanging() }, label: {
                         HStack {
                             Label("Start Exchanging!", systemImage: "gift")
                         }
@@ -152,16 +152,31 @@ struct GiftExchangeFormView: View {
     /// From the form data, update and persist the CoreData entity, GiftExchange.
     func commitDataEntry() {
         let exchange: GiftExchange
-        if formType == .New || formType == .Add {
+        if isNewForm() {
             exchange = GiftExchange.addNewGiftExchange(using: data)
         } else {
             exchange = GiftExchange.update(using: data)
         }
+        
         PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
+        
         // updating the UserSettings object must occur last since UserSettings
         // property is being observed in the top-level GifterApp to change/refresh Views
-        giftExchangeSettings.addGiftExchangeId(id: exchange.id)
+        if isNewForm() {
+            giftExchangeSettings.addGiftExchangeId(id: exchange.id)
+        } else {
+            giftExchangeSettings.settingHaveChanged()
+        }
+    }
+    
+    /**
+    Evaluates a logical expression to determine if the form is for adding a new gift exchange.
+     
+    - Returns: `true` if the form is for a new gift exchange, `false` if not.
+     */
+    func isNewForm() -> Bool {
+        return (formType == .New || formType == .Add)
     }
     
 }
