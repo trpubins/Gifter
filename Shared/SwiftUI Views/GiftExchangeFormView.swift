@@ -166,7 +166,7 @@ struct GiftExchangeFormView: View {
         if isNewForm() {
             giftExchangeSettings.addGiftExchangeId(id: exchange.id)
         } else {
-            giftExchangeSettings.settingHaveChanged()
+            giftExchangeSettings.giftExchangeHasChanged()
         }
     }
     

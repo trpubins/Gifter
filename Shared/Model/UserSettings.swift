@@ -61,7 +61,7 @@ class UserSettings: ObservableObject {
     // MARK: Object Methods
     
     /// Triggers a refresh to any Views observing this UserSettings object.
-    public func settingHaveChanged() {
+    public func giftExchangeHasChanged() {
         self.objectWillChange.send()
     }
     
