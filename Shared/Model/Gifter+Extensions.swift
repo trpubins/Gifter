@@ -14,7 +14,12 @@ extension Gifter {
     
     // MARK: Property Wrappers
     
-    /// The gifter's email address (uniquely identifies the gifter)
+    /// The id that uniquely identifies the gifter
+    public var id: UUID {
+        get { id_ ?? UUID() }
+    }
+    
+    /// The gifter's email address
     public var email: String {
         get { email_ ?? "Unknown email" }
         set { email_ = newValue }
@@ -32,10 +37,10 @@ extension Gifter {
         set { recipientEmail_ = newValue }
     }
     
-    /// An array of restricted (Gifter) emails
-    public var restrictedEmails: [String] {
-        get { restrictedEmails_ ?? [] }
-        set { restrictedEmails_ = newValue }
+    /// An array of restricted gifter ids
+    public var restrictedIds: [UUID] {
+        get { restrictedIds_ ?? [] }
+        set { restrictedIds_ = newValue }
     }
     
     /// An array of wish list URLs
@@ -61,34 +66,34 @@ extension Gifter {
     // MARK: - Object Methods
     
     /**
-     Adds an email to the Gifter's restricted list. This means the Gifter will not gift an individual with that email address..
+     Adds an id to the Gifter's restricted list. This means the Gifter will not gift an individual with that id.
      
      - Parameters:
-        - email: The email address to add to the restricted list
+        - id: The id to add to the restricted list
      
-     - Returns: `true` if the email was successfully added; `false ` if the email already exists.
+     - Returns: `true` if the id was successfully added; `false ` if the id already exists.
      */
-    public func addRestrictedEmail(email: String) -> Bool {
-        if restrictedEmails.contains(email) {
+    public func addRestrictedId(id: UUID) -> Bool {
+        if restrictedIds.contains(id) {
             return false
         }
-        restrictedEmails_?.append(email)
+        restrictedIds_?.append(id)
         return true
     }
     
     /**
-     Removes an email from the Gifter's restricted list. This means the Gifter will be able to gift an individual with that email address..
+     Removes an id from the Gifter's restricted list. Following this action, the Gifter will be able to gift an individual with the specified id.
 
      - Parameters:
-        - email: The email address to add to the restricted list
+        - id: The id to remove from the restricted list
 
-     - Returns: `true` if the email was successfully removed; `false ` if the email does not exist.
+     - Returns: `true` if the id was successfully removed; `false ` if the id does not exist.
      */
-    public func removeRestrictedEmail(email: String) -> Bool {
-        if !restrictedEmails.contains(email) {
+    public func removeRestrictedId(id: UUID) -> Bool {
+        if !restrictedIds.contains(id) {
             return false
         }
-        restrictedEmails_ = restrictedEmails.filter {$0 != email}  // removes the array element by value
+        restrictedIds_ = restrictedIds.filter {$0 != id}  // removes the array element by value
         return true
     }
     
@@ -128,16 +133,16 @@ extension Gifter {
      Associates a new exchange id with the gifter.
      
      - Parameters:
-        - uuid: The new exchange id to add
+        - id: The new exchange id to add
      
      - Returns: `true` if the exchange id was successfully added; `false ` if the exchange id already exists.
      */
     @discardableResult
-    public func addExchangeId(uuid: UUID) -> Bool {
-        if exchangeIds.contains(uuid) {
+    public func addExchangeId(id: UUID) -> Bool {
+        if exchangeIds.contains(id) {
             return false
         }
-        exchangeIds_?.append(uuid)
+        exchangeIds_?.append(id)
         return true
     }
     
@@ -145,16 +150,16 @@ extension Gifter {
      Removes an exchange id from the gifter.
      
      - Parameters:
-        - uuid: The exchange id to remove
+        - id: The exchange id to remove
      
      - Returns: `true` if the exchange id was successfully removed; `false ` if the exchange id does not exist.
      */
     @discardableResult
-    public func removeExchangeId(uuid: UUID) -> Bool {
-        if !exchangeIds.contains(uuid) {
+    public func removeExchangeId(id: UUID) -> Bool {
+        if !exchangeIds.contains(id) {
             return false
         }
-        exchangeIds_ = exchangeIds.filter {$0 != uuid}  // removes the array element by value
+        exchangeIds_ = exchangeIds.filter {$0 != id}  // removes the array element by value
         return true
     }
     
@@ -171,7 +176,7 @@ extension Gifter {
             return false
         }
         self.addObject(value: exchange, forKey: "giftExchanges_")
-        addExchangeId(uuid: exchange.id)
+        addExchangeId(id: exchange.id)
         return true
     }
     
@@ -188,7 +193,7 @@ extension Gifter {
             return false
         }
         self.removeObject(value: exchange, forKey: "giftExchanges_")
-        removeExchangeId(uuid: exchange.id)
+        removeExchangeId(id: exchange.id)
         return true
     }
     
@@ -198,9 +203,9 @@ extension Gifter: Comparable {
     
     // MARK: - Conform to Comparable
     
-    // equatability is based on email, which is the Gifter's unique id
+    // equatability is based on the Gifter's unique id
     public static func == (lhs: Gifter, rhs: Gifter) -> Bool {
-        return lhs.email == rhs.email
+        return lhs.id == rhs.id
     }
     
     // order is based on a Gifter's name
