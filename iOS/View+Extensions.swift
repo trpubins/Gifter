@@ -2,6 +2,7 @@
 //  View+Extensions.swift
 //  iOS (Helper)
 //  https://www.hackingwithswift.com/quick-start/swiftui/how-to-dismiss-the-keyboard-for-a-textfield
+//  https://forums.swift.org/t/conditionally-apply-modifier-in-swiftui/32815/3
 //
 //  Created by Tanner on 8/10/21.
 //
