@@ -41,6 +41,8 @@ struct MainViewIOS: View {
                     .sheet(isPresented: $isEditGiftExchangeFormShowing) {
                         getFormView(formType: FormType.Edit)
                     }
+                    .tabItem { Label(tab.labelText, systemImage: getLabelImg(tabData: tab)) }
+                    .tag(tab.tabNum)
             }
 
         }
@@ -49,7 +51,7 @@ struct MainViewIOS: View {
     }
     
     /**
-     Generates a NavigationView that depends on the selected tab and the specified properties. The NavigationView also holds a toolbar menu.
+     Returns a 'filled' image name when the provided tab is the selected tab.
      
      This function keeps our MainViewIOS source code DRY. In particular, it saves us from having several
      conditionals in the MainViewIOS body property to only slightly change the systemImage from generic to
@@ -58,18 +60,27 @@ struct MainViewIOS: View {
      - Parameters:
         - tabData: The data associated with a main view tab
      
-     - Returns: A NavigationView where the specified tab's image is 'filled' when it is selected. The view also includes an interactive Menu in the toolbar.
+     - Returns: The system image name, generic or 'filled' version based on the tab selection.
+
      */
-    func getTabView(tabData: MainViewData) -> some View {
-        var labelImg: String
-        
+    func getLabelImg(tabData: MainViewData) -> String {
         // opt for 'filled' image when the tab is selected
         if (selectedTab == tabData.tabNum) {
-            labelImg = tabData.imgName + ".fill"
+            return tabData.imgName + ".fill"
         } else {
-            labelImg = tabData.imgName
+            return tabData.imgName
         }
-        
+    }
+    
+    /**
+     Generates a NavigationView with the specified tab data. The NavigationView also holds a toolbar menu.
+     
+     - Parameters:
+        - tabData: The data associated with a main view tab
+     
+     - Returns: A NavigationView that includes an interactive Menu in the toolbar.
+     */
+    func getTabView(tabData: MainViewData) -> some View {
         return {
             NavigationView {
                 tabData.dest
@@ -85,8 +96,6 @@ struct MainViewIOS: View {
                     }
                     .environmentObject(selectedGiftExchange)
             }
-            .tabItem { Label(tabData.labelText, systemImage: labelImg) }
-            .tag(tabData.tabNum)
         }()
     }
     
