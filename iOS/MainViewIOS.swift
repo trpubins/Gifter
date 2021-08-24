@@ -85,6 +85,17 @@ struct MainViewIOS: View {
             NavigationView {
                 tabData.dest
                     .toolbar {
+                        ToolbarItem(placement: .primaryAction) {
+                            Button(action: { print("add gifter") }) {
+                                Image(systemName: "person.badge.plus")
+                            }
+                        }
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button(action: { print("email gifters") }) {
+                                Image(systemName: "envelope")
+                            }
+                            .disabled(true)
+                        }
                         ToolbarItem(placement: .principal) {
                             ToolbarMenuView(
                                 isAddGiftExchangeFormShowing: $isAddGiftExchangeFormShowing,
