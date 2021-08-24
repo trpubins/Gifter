@@ -35,18 +35,18 @@ struct MainViewIOS: View {
             
             ForEach(mainViewTabs, id: \.labelText) { tab in
                 getTabView(tabData: tab)
-                    .sheet(isPresented: $isAddGiftExchangeFormShowing) {
-                        getFormView(formType: FormType.Add)
-                    }
-                    .sheet(isPresented: $isEditGiftExchangeFormShowing) {
-                        getFormView(formType: FormType.Edit)
-                    }
                     .tabItem { Label(tab.labelText, systemImage: getLabelImg(tabData: tab)) }
                     .tag(tab.tabNum)
             }
 
         }
         .onAppear{ logAppear(title: "MainViewIOS") }
+        .sheet(isPresented: $isAddGiftExchangeFormShowing) {
+            getFormView(formType: FormType.Add)
+        }
+        .sheet(isPresented: $isEditGiftExchangeFormShowing) {
+            getFormView(formType: FormType.Edit)
+        }
         
     }
     
