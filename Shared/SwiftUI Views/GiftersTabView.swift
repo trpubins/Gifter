@@ -9,13 +9,8 @@ import SwiftUI
 
 struct GiftersTabView: View {
     
-    @ObservedObject var selectedGiftExchange: GiftExchange
-    
-    init(id: UUID) {
-        // here we use the giftExchangeSettings to initialize the
-        // @FetchedResults for a GiftExchange
-        self.selectedGiftExchange = GiftExchange.object(withID: id, context: PersistenceController.shared.context) ?? GiftExchange(context: PersistenceController.shared.context)
-    }
+    /// The gift exchange current selection provided by a parent View
+    @EnvironmentObject var selectedGiftExchange: GiftExchange
     
     var body: some View {
         VStack {
@@ -28,11 +23,13 @@ struct GiftersTabView: View {
 
 struct GiftersTabView_Previews: PreviewProvider {
     
-    static let previewUserSettings: UserSettings = getPreviewUserSettings()
+    static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
 
     static var previews: some View {
-        GiftersTabView(id: previewUserSettings.selectedId!)
-            .environmentObject(previewUserSettings)
+        NavigationView {
+            GiftersTabView()
+                .environmentObject(previewGiftExchange)
+        }
     }
     
 }

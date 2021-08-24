@@ -60,11 +60,6 @@ class UserSettings: ObservableObject {
     
     // MARK: Object Methods
     
-    /// Triggers a refresh to any Views observing this UserSettings object.
-    public func giftExchangeHasChanged() {
-        self.objectWillChange.send()
-    }
-    
     /**
      Adds a GiftExchange id to the user settings. Makes the provided id the selected GiftExchange id.
      Also, triggers a refresh to any Views observing this UserSettings object.

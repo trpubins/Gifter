@@ -5,8 +5,8 @@
 //  Created by Tanner on 8/10/21.
 //
 
-import Foundation
 import SwiftUI
+
 
 /// Defines a structure to hold data in the MainViews that is OS-independent.
 struct MainViewData {
@@ -28,29 +28,24 @@ struct MainViewData {
 /**
  Generates an array of MainViewData used to populate the MainViews.
  
- - Parameters:
-    - settings: The GiftExchange settings
- 
  - Returns: An array of MainViewData instances.
  */
-func getMainViewData(_ settings: UserSettings) -> [MainViewData] {
-    let giftExchangeId = settings.selectedId!
-
+func getMainViewData() -> [MainViewData] {
     return [
         MainViewData(
-            dest: AnyView(ExchangeTabView(id: giftExchangeId)),
+            dest: AnyView(ExchangeTabView()),
             tabNum: 1,
             labelText: "Gift Exchange",
             imgName: "gift"
         ),
         MainViewData(
-            dest: AnyView(GiftersTabView(id: giftExchangeId)),
+            dest: AnyView(GiftersTabView()),
             tabNum: 2,
             labelText: "Gifters",
             imgName: "person.2"
         ),
         MainViewData(
-            dest: AnyView(PreferencesTabView(id: giftExchangeId)),
+            dest: AnyView(PreferencesTabView()),
             tabNum: 3,
             labelText: "Preferences",
             imgName: "gearshape"

@@ -29,6 +29,8 @@
 		BF8A4A5626CC9EF800EE2CCC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4A5426CC9EF800EE2CCC /* MainView.swift */; };
 		BF8A4A5726CCA0DB00EE2CCC /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
 		BF8A4A5926CCA16200EE2CCC /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */; };
+		BF8F8E1F26D4536A009D1D3E /* ToolbarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */; };
+		BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */; };
 		BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
 		BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
 		BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
@@ -79,6 +81,7 @@
 		BF2EF74E26C0E3840095B714 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		BF8A4A5426CC9EF800EE2CCC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenuView.swift; sourceTree = "<group>"; };
 		BF9EF1F326BC690E00FD01B3 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		BFAB346E26BDFD0800D460D8 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
 		BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifter+Extensions.swift"; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 			children = (
 				BFECF69B26A24EF00012227F /* GifterApp.swift */,
 				BF8A4A5426CC9EF800EE2CCC /* MainView.swift */,
+				BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */,
 				BF4ED36226D1C26B007FD298 /* Forms */,
 				BFF8122426C046D200834B50 /* Exchange Tab */,
 				BFF8122326C046B200834B50 /* Gifters Tab */,
@@ -406,6 +410,7 @@
 				BFF8122C26C04FED00834B50 /* GiftExchangeFormData.swift in Sources */,
 				BFEB827226C30A0C004219E7 /* MainViewData.swift in Sources */,
 				BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
+				BF8F8E1F26D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
 				BF0DDCA426C2FB22005D0412 /* View+Extensions.swift in Sources */,
 				BF2A865726BE6C090038C024 /* ExchangeDetailView.swift in Sources */,
 				BFF8120726C042CF00834B50 /* GiftExchangeFormView.swift in Sources */,
@@ -439,6 +444,7 @@
 				BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */,
 				BF8A4A5626CC9EF800EE2CCC /* MainView.swift in Sources */,
 				BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
+				BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
 				BF8A4A5926CCA16200EE2CCC /* UIImage+Extensions.swift in Sources */,
 				BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
 				BF2A866126BE6D9A0038C024 /* PreferencesTabView.swift in Sources */,

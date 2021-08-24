@@ -148,7 +148,6 @@ struct GiftExchangeFormView: View {
             .disabled(self.isSaveDisabled)
     }
     
-    
     /// From the form data, update and persist the CoreData entity, GiftExchange.
     func commitDataEntry() {
         let exchange: GiftExchange
@@ -165,9 +164,11 @@ struct GiftExchangeFormView: View {
         // property is being observed in the top-level GifterApp to change/refresh Views
         if isNewForm() {
             giftExchangeSettings.addGiftExchangeId(id: exchange.id)
-        } else {
-            giftExchangeSettings.giftExchangeHasChanged()
         }
+        
+        print("idList count: \(giftExchangeSettings.idList.count)")
+        print("idList selected: \(giftExchangeSettings.selectedId!)")
+
     }
     
     /**

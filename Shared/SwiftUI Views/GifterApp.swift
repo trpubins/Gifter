@@ -30,7 +30,7 @@ struct GifterApp: App {
         WindowGroup {
             
             if giftExchangeSettings.idList.count >= 1 {
-                MainView()
+                MainView(id: giftExchangeSettings.selectedId!)  // force unwrap since we know the settings holds at least 1 id
                     .environmentObject(giftExchangeSettings)
             } else {
                 GiftExchangeFormView(formType: FormType.New, data: GiftExchangeFormData(christmasDay: true))
