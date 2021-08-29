@@ -183,7 +183,7 @@ struct GiftExchangeFormView: View {
     func commitDataEntry() {
         let exchange: GiftExchange
         if isNewForm() {
-            exchange = GiftExchange.addNewGiftExchange(using: data)
+            exchange = GiftExchange.add(using: data)
         } else {
             exchange = GiftExchange.update(using: data)
         }

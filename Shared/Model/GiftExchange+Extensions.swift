@@ -83,11 +83,29 @@ extension GiftExchange {
     // MARK: Class Functions
     
     /**
+     Retrieves the gift exchange with the specified id.
+     
+     - Parameters:
+        - id: The id used to identify the gift exchange
+     
+     - Returns: The identified gift exchange or a new gift exchange if the identified gift exchange was not found.
+     */
+    class func get(withId id: UUID) -> GiftExchange {
+        if let giftExchange = GiftExchange.object(withId: id, context: PersistenceController.shared.context) {
+            // we found the GiftExchange object in CoreData
+            return giftExchange
+        } else {
+            // otherwise, return a new GiftExchange
+            return GiftExchange.add()
+        }
+    }
+    
+    /**
     Initializes a new gift exchange with default values.
      
      - Returns: A new gift exchange.
      */
-    class func addNewGiftExchange() -> GiftExchange {
+    private class func add() -> GiftExchange {
         let newGiftExchange = GiftExchange(context: PersistenceController.shared.context)
         return newGiftExchange
     }
@@ -100,8 +118,8 @@ extension GiftExchange {
      
      - Returns: A new gift exchange.
      */
-    class func addNewGiftExchange(using data: GiftExchangeFormData) -> GiftExchange {
-        let newGiftExchange = addNewGiftExchange()
+    class func add(using data: GiftExchangeFormData) -> GiftExchange {
+        let newGiftExchange = GiftExchange.add()
         newGiftExchange.initId(from: data)
         newGiftExchange.updateValues(from: data)
         return newGiftExchange
@@ -122,7 +140,7 @@ extension GiftExchange {
             return giftExchange
         } else {
             // otherwise, create a new GiftExchange from the provided data
-            return addNewGiftExchange(using: data)
+            return GiftExchange.add(using: data)
         }
     }
     

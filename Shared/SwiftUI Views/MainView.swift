@@ -21,8 +21,8 @@ struct MainView: View {
      - Parameters:
         - id: The id used to identify the selected gift exchange
      */
-    init(id: UUID) {
-        self.selectedGiftExchange = GiftExchange.object(withId: id, context: PersistenceController.shared.context) ?? GiftExchange(context: PersistenceController.shared.context)
+    init(withId id: UUID) {
+        self.selectedGiftExchange = GiftExchange.get(withId: id)
     }
     
     var body: some View {
@@ -42,7 +42,7 @@ struct MainView_Previews: PreviewProvider {
     static let previewUserSettings: UserSettings = getPreviewUserSettings()
     
     static var previews: some View {
-        MainView(id: UUID())
+        MainView(withId: UUID())
             .environmentObject(previewUserSettings)
     }
     
