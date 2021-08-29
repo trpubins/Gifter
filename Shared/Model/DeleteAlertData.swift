@@ -29,7 +29,7 @@ struct DeleteAlert {
             title: Text("Are you sure you want to delete this gift exchange?"),
             message: Text("This action cannot be undone"),
             primaryButton: .destructive(Text("Delete")) {
-                print("deleting gift exchange \(selectedGiftExchange.emoji) \(selectedGiftExchange.name)...")
+                logFilter("deleting gift exchange \(selectedGiftExchange.emoji) \(selectedGiftExchange.name)...")
                 // first, delete the object from CoreData
                 GiftExchange.delete(selectedGiftExchange)
                 
@@ -53,7 +53,7 @@ struct DeleteAlert {
             title: Text("Are you sure you want to delete this gifter?"),
             message: Text("This action cannot be undone"),
             primaryButton: .destructive(Text("Delete")) {
-                print("deleting gifter \(gifter.name)...")
+                logFilter("deleting gifter \(gifter.name)...")
                 // MARK: TODO
                 // Delete object from CoreData
                 

@@ -99,12 +99,12 @@ struct MainViewIOS: View {
                 tabData.dest
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
-                            Button(action: { print("add gifter") }) {
+                            Button(action: { logFilter("add gifter") }) {
                                 Image(systemName: "person.badge.plus")
                             }
                         }
                         ToolbarItem(placement: .navigationBarLeading) {
-                            Button(action: { print("email gifters") }) {
+                            Button(action: { logFilter("email gifters") }) {
                                 Image(systemName: "envelope")
                             }
                             // MARK: TODO

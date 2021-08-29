@@ -76,19 +76,19 @@ struct ToolbarMenuView: View {
     
     /// Triggers a sheet for adding a new gift exchange.
     func addGiftExchange() {
-        print("add gift exchange")
+        logFilter("add gift exchange")
         self.triggers.isAddGiftExchangeFormShowing = true
     }
     
     /// Triggers a sheet for editing the currenty selected gift exchange.
     func editGiftExchange() {
-        print("edit gift exchange")
+        logFilter("edit gift exchange")
         self.triggers.isEditGiftExchangeFormShowing = true
     }
     
     /// Triggers an alert for deleting the currently selected gift exchange.
     func deleteGiftExchange() {
-        print("delete gift exchange")
+        logFilter("delete gift exchange")
         self.triggers.isDeleteGiftExchangeAlertShowing = true
     }
     
@@ -99,7 +99,7 @@ struct ToolbarMenuView: View {
         - giftExchange: The gift exchange to make selected
      */
     func changeGiftExchange(_ giftExchange: GiftExchange) {
-        print("changing selected gift exchange to: \(giftExchange.name)")
+        logFilter("changing selected gift exchange to: \(giftExchange.name)")
         giftExchangeSettings.changeSelectedGiftExchangeId(id: giftExchange.id)
     }
     

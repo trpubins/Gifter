@@ -41,14 +41,14 @@ struct GifterApp: App {
         .onChange(of: scenePhase) { phase in
             switch phase {
                 case .active:
-                    print("app active")
+                    logFilter("app active")
                 case .inactive:
-                    print("app inactive")
+                    logFilter("app inactive")
                 case .background:
-                    print("app background")
+                    logFilter("app background")
                     PersistenceController.shared.saveContext()
                 @unknown default:
-                    print("app unknown phase")
+                    logFilter("app unknown phase")
             }
         }
         

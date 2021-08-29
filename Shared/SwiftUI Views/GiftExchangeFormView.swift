@@ -174,7 +174,7 @@ struct GiftExchangeFormView: View {
     
     /// Triggers an alert for deleting the currently selected gift exchange.
     func deleteGiftExchange() {
-        print("delete gift exchange")
+        logFilter("delete gift exchange")
         self.isDeleteGiftExchangeAlertShowing = true
     }
     
@@ -196,7 +196,7 @@ struct GiftExchangeFormView: View {
             giftExchangeSettings.addGiftExchangeId(id: exchange.id)
         }
         
-        print("idList count: \(giftExchangeSettings.idList.count)")
+        logFilter("idList count: \(giftExchangeSettings.idList.count)")
     }
     
     /**
