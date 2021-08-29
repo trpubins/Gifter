@@ -37,7 +37,7 @@ struct GiftExchangeFormView: View {
     @State private var isSaveDisabled: Bool = true
     
     /// State variable for determining if the delete alert is showing
-    @State private var isDeleteGiftExchangeAlertShowing: Bool = false
+    @State private var isDeleteAlertShowing: Bool = false
     
     /// Describes the type of gift exchange form this is
     let formType: FormType
@@ -136,7 +136,7 @@ struct GiftExchangeFormView: View {
                 self.data.name = self.data.name
             }
         }
-        .alert(isPresented: $isDeleteGiftExchangeAlertShowing) {
+        .alert(isPresented: $isDeleteAlertShowing) {
             Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
         }
         
@@ -176,7 +176,7 @@ struct GiftExchangeFormView: View {
     /// Triggers an alert for deleting the currently selected gift exchange.
     func deleteGiftExchange() {
         logFilter("delete gift exchange")
-        self.isDeleteGiftExchangeAlertShowing = true
+        self.isDeleteAlertShowing = true
     }
     
     /// From the form data, update and persist the CoreData entity, GiftExchange.
@@ -212,7 +212,7 @@ struct GiftExchangeFormView: View {
     
 }
 
-struct GiftExchangeLaunchView_Previews: PreviewProvider {
+struct GiftExchangeFormView_Previews: PreviewProvider {
     
     static let previewUserSettings: UserSettings = getPreviewUserSettings()
     static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
