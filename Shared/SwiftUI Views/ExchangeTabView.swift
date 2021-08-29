@@ -30,7 +30,8 @@ struct ExchangeTabView: View {
             }
             Spacer()
             if selectedGiftExchange.gifters.count < 2 {
-                Text("Not enough Gifters to begin the exchange!")
+                Text("Not enough gifters to begin the exchange!")
+                    .multilineTextAlignment(.center)
                 if #available(iOS 15.0, *) {
                     Button(action: { logFilter("add gifter") }) {
                         Label("Add Gifter", systemImage: "plus")
