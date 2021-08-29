@@ -199,9 +199,56 @@ extension Gifter {
         return true
     }
     
+    
+    // MARK: Class Functions
+    
+    /**
+     Retrieves the gifter with the specified id.
+     
+     - Parameters:
+        - id: The id used to identify the gifter
+     
+     - Returns: The identified gifter or a new gifter if the identified gifter was not found.
+     */
+    class func get(withId id: UUID) -> Gifter {
+        if let gifter = Gifter.object(withId: id, context: PersistenceController.shared.context) {
+            // we found the Gifter object in CoreData
+            return gifter
+        } else {
+            // otherwise, return a new Gifter
+            return Gifter.add()
+        }
+    }
+    
+    /**
+     Initializes a new gifter with default values.
+     
+     - Returns: A new gifter.
+     */
+    class func add() -> Gifter {
+        let newGifter = Gifter(context: PersistenceController.shared.context)
+        return newGifter
+    }
+    
+    /**
+     Deletes the specified gifter from CoreData.
+     
+     - Parameters:
+        - gifter: The gifter to be deleted
+     */
+    class func delete(gifter: Gifter, selectedGiftExchange: GiftExchange) {
+        // first, remove the gifter from the selected gift exchange
+        selectedGiftExchange.removeGifter(gifter)
+        // now delete and save
+        let context = gifter.managedObjectContext
+        context?.delete(gifter)
+        try? context?.save()
+    }
+    
 }
 
 extension Gifter: Comparable {
+    
     
     // MARK: - Conform to Comparable
     
