@@ -70,6 +70,15 @@ extension GiftExchange {
         self.emoji = data.emoji
     }
     
+    /**
+     Combines different elements of a gift exchange into a single string.
+     
+     - Returns: A combined string with the gift exchange's descriptive components.
+     */
+    public func toString() -> String {
+        return "\(self.emoji)  \(self.name)  " + String(self.date.year)
+    }
+    
     
     // MARK: Class Functions
     

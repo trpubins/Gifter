@@ -188,7 +188,7 @@ struct GiftExchangeFormView: View {
             exchange = GiftExchange.update(using: data)
         }
         
-        logFilter("saving gift exchange: \(exchange.name)")
+        logFilter("saving gift exchange: \(exchange.toString())")
         PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
         

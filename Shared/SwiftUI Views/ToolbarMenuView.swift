@@ -58,7 +58,7 @@ struct ToolbarMenuView: View {
                 Divider()
                 ForEach(self.otherGiftExchanges) { exchange in
                     Button(action: { changeGiftExchange(exchange) }, label: {
-                        Text("\(exchange.emoji)   \(exchange.name)  " + String(exchange.date.year))
+                        Text(exchange.toString())
                     })
                 }
             }
@@ -99,7 +99,7 @@ struct ToolbarMenuView: View {
         - giftExchange: The gift exchange to make selected
      */
     func changeGiftExchange(_ giftExchange: GiftExchange) {
-        logFilter("changing selected gift exchange to: \(giftExchange.name)")
+        logFilter("changing selected gift exchange to: \(giftExchange.toString())")
         giftExchangeSettings.changeSelectedGiftExchangeId(id: giftExchange.id)
     }
     
