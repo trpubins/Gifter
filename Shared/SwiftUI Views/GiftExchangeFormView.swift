@@ -158,6 +158,7 @@ struct GiftExchangeFormView: View {
      */
     func cancelButton() -> some View {
         Button("Cancel", action: {
+            logFilter("cancelled action")
             presentationMode.wrappedValue.dismiss()
         })
     }
@@ -187,6 +188,7 @@ struct GiftExchangeFormView: View {
             exchange = GiftExchange.update(using: data)
         }
         
+        logFilter("saving gift exchange: \(exchange.name)")
         PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
         

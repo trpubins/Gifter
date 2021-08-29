@@ -29,14 +29,17 @@ struct DeleteAlert {
             title: Text("Are you sure you want to delete this gift exchange?"),
             message: Text("This action cannot be undone"),
             primaryButton: .destructive(Text("Delete")) {
-                logFilter("deleting gift exchange \(selectedGiftExchange.emoji) \(selectedGiftExchange.name)...")
                 // first, delete the object from CoreData
                 GiftExchange.delete(selectedGiftExchange)
                 
                 // second, remove the gift exchange id from the user config data
                 giftExchangeSettings.removeSelectedGiftExchangeId()
+                
+                logFilter("deleted gift exchange \(selectedGiftExchange.emoji) \(selectedGiftExchange.name)...")
             },
-            secondaryButton: .cancel()
+            secondaryButton: .cancel() {
+                logFilter("cancelled deleting gift exchange")
+            }
         )
     }
 
@@ -58,7 +61,9 @@ struct DeleteAlert {
                 // Delete object from CoreData
                 
             },
-            secondaryButton: .cancel()
+            secondaryButton: .cancel() {
+                logFilter("cancelled deleting gifter")
+            }
         )
     }
 }
