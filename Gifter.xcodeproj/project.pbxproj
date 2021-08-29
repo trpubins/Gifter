@@ -42,8 +42,8 @@
 		BFAB347626BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */; };
 		BFDFFC2E26D9A52700360050 /* StateTriggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC2D26D9A52700360050 /* StateTriggers.swift */; };
 		BFDFFC2F26D9A52700360050 /* StateTriggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC2D26D9A52700360050 /* StateTriggers.swift */; };
-		BFDFFC3526D9D5E300360050 /* DeleteAlertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC3426D9D5E300360050 /* DeleteAlertData.swift */; };
-		BFDFFC3626D9D5E300360050 /* DeleteAlertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC3426D9D5E300360050 /* DeleteAlertData.swift */; };
+		BFDFFC3526D9D5E300360050 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC3426D9D5E300360050 /* Alerts.swift */; };
+		BFDFFC3626D9D5E300360050 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC3426D9D5E300360050 /* Alerts.swift */; };
 		BFEB827226C30A0C004219E7 /* MainViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEB827126C30A0C004219E7 /* MainViewData.swift */; };
 		BFEB827326C30A0C004219E7 /* MainViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEB827126C30A0C004219E7 /* MainViewData.swift */; };
 		BFEB827626C354A5004219E7 /* Development.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEB827526C354A5004219E7 /* Development.swift */; };
@@ -94,7 +94,7 @@
 		BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifter+Extensions.swift"; sourceTree = "<group>"; };
 		BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiftExchange+Extensions.swift"; sourceTree = "<group>"; };
 		BFDFFC2D26D9A52700360050 /* StateTriggers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTriggers.swift; sourceTree = "<group>"; };
-		BFDFFC3426D9D5E300360050 /* DeleteAlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAlertData.swift; sourceTree = "<group>"; };
+		BFDFFC3426D9D5E300360050 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		BFEB827126C30A0C004219E7 /* MainViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewData.swift; sourceTree = "<group>"; };
 		BFEB827526C354A5004219E7 /* Development.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Development.swift; sourceTree = "<group>"; };
 		BFECF69A26A24EF00012227F /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				BFDFFC2D26D9A52700360050 /* StateTriggers.swift */,
-				BFDFFC3426D9D5E300360050 /* DeleteAlertData.swift */,
+				BFDFFC3426D9D5E300360050 /* Alerts.swift */,
 				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
 				BFF8122B26C04FED00834B50 /* GiftExchangeFormData.swift */,
 				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
@@ -448,7 +448,7 @@
 				BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */,
 				BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
 				BF2A866026BE6D9A0038C024 /* PreferencesTabView.swift in Sources */,
-				BFDFFC3526D9D5E300360050 /* DeleteAlertData.swift in Sources */,
+				BFDFFC3526D9D5E300360050 /* Alerts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +485,7 @@
 				BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
 				BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */,
 				BFEB827726C354A5004219E7 /* Development.swift in Sources */,
-				BFDFFC3626D9D5E300360050 /* DeleteAlertData.swift in Sources */,
+				BFDFFC3626D9D5E300360050 /* Alerts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

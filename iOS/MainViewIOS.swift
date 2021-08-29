@@ -58,7 +58,7 @@ struct MainViewIOS: View {
                 get: { triggers.isDeleteGiftExchangeAlertShowing },
                 set: { triggers.isDeleteGiftExchangeAlertShowing = $0 }
                )) {
-                   DeleteAlert.giftExchangeAlert(selectedGiftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
+                   Alerts.giftExchangeDeleteAlert(selectedGiftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
                }
     }
     

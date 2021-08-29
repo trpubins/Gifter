@@ -10,10 +10,30 @@ import SwiftUI
 
 
 /// A struct that helps generate alerts when the user is attempting to delete something.
-struct DeleteAlert {
+struct Alerts {
 
     
     // MARK: Static Functions
+    
+    /**
+     Generates an alert and subsequent action if the specified gift exchange has finished.
+     
+     - Parameters:
+        - completedGiftExchange: The gift exchange that has completed
+     
+     - Returns: A populated alert that updates the provided gift exchange to the same date next year.
+     */
+    static func giftExchangeCompletedAlert(_ completedGiftExchange: GiftExchange) -> Alert {
+        return Alert(
+            title: Text("Gift exchange completed"),
+            message: Text("The gift exchange date will remain the same for next year"),
+            dismissButton: .cancel(Text("OK")) {
+                logFilter("updated gift exchange year")
+                completedGiftExchange.updateNextYear()
+                PersistenceController.shared.saveContext()
+            }
+        )
+    }
     
     /**
      Generates an alert and subsequent action if the user intends to delete the selected gift exchange.
@@ -24,7 +44,7 @@ struct DeleteAlert {
      
      - Returns: A populated alert that deletes the selected gift exchange if the user presses the Delete button.
      */
-    static func giftExchangeAlert(selectedGiftExchange: GiftExchange, giftExchangeSettings: UserSettings) -> Alert {
+    static func giftExchangeDeleteAlert(selectedGiftExchange: GiftExchange, giftExchangeSettings: UserSettings) -> Alert {
         return Alert(
             title: Text("Are you sure you want to delete this gift exchange?"),
             message: Text("This action cannot be undone"),
@@ -53,7 +73,7 @@ struct DeleteAlert {
      
      - Returns: A populated alert that deletes the specified gifter if the user presses the Delete button.
      */
-    static func gifterAlert(_ gifter: Gifter) -> Alert {
+    static func gifterDeleteAlert(_ gifter: Gifter) -> Alert {
         return Alert(
             title: Text("Are you sure you want to delete this gifter?"),
             message: Text("This action cannot be undone"),
