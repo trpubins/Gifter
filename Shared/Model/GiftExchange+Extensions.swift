@@ -80,6 +80,28 @@ extension GiftExchange {
     }
     
     /**
+     Adds a gifter to this GiftExchange.
+     
+     - Parameters:
+        - gifter: The gifter to add
+     */
+    public func addGifter(_ gifter: Gifter) {
+        // use the generated accessor for the gifters_ instance member
+        self.addToGifters_(gifter)
+    }
+    
+    /**
+     Removes a gifter from this GiftExchange.
+     
+     - Parameters:
+        - gifter: The gifter to add
+     */
+    public func removeGifter(_ gifter: Gifter) {
+        // use the generated accessor for the gifters_ instance member
+        self.removeFromGifters_(gifter)
+    }
+    
+    /**
      Combines different elements of a gift exchange into a single string.
      
      - Returns: A combined string with the gift exchange's descriptive components.
