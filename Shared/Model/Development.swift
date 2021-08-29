@@ -14,7 +14,8 @@ import Foundation
     - title: The title of the View that is appearing
  */
 func logAppear(title: String) {
-    print(title + " Appears")
+    let message = "\(title) Appears"
+    logFilter(message)
 }
 
 /**
@@ -24,5 +25,17 @@ func logAppear(title: String) {
     - title: The title of the View that is disappearing
  */
 func logDisappear(title: String) {
-    print(title + " Disappears")
+    let message = "\(title) Disappears"
+    logFilter(message)
+}
+
+/**
+ Logs a message with extra text that can be easily filtered from other messages in the console window.
+ 
+ - Parameters:
+    - msg: The message content to display
+    - filter: The text filter to use alongside the message content
+ */
+func logFilter(_ msg: String, filter: String = "GifterLog") {
+    print("\(filter): \(msg)")
 }
