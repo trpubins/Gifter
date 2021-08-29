@@ -12,6 +12,9 @@ extension Date {
     
     // MARK: Static Properties
     
+    /// Today's date at noon
+    static var today: Date { return Date().noon }
+    
     /// The day before today
     static var yesterday: Date { return Date().dayBefore }
     
@@ -58,6 +61,11 @@ extension Date {
     /// The year that the Date itself belongs
     var year: Int {
         return Calendar.current.component(.year,  from: self)
+    }
+    
+    /// The year after the Date itself
+    var yearAfter: Date {
+        return Calendar.current.date(byAdding: .year, value: 1, to: noon)!
     }
     
     /// The number of days until the Date itself arrives.

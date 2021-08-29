@@ -70,6 +70,15 @@ extension GiftExchange {
         self.emoji = data.emoji
     }
     
+    /// Updates this GiftExchange's date to the same date next year.
+    public func updateNextYear() {
+        var newDate = self.date
+        while newDate < Date.today {
+            newDate = newDate.yearAfter
+        }
+        self.date = newDate
+    }
+    
     /**
      Combines different elements of a gift exchange into a single string.
      
