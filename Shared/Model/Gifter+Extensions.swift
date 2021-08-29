@@ -74,7 +74,7 @@ extension Gifter {
      - Returns: `true` if the id was successfully added; `false ` if the id already exists.
      */
     public func addRestrictedId(id: UUID) -> Bool {
-        if restrictedIds.contains(id) {
+        if self.restrictedIds.contains(id) {
             return false
         }
         restrictedIds_?.append(id)
@@ -90,10 +90,10 @@ extension Gifter {
      - Returns: `true` if the id was successfully removed; `false ` if the id does not exist.
      */
     public func removeRestrictedId(id: UUID) -> Bool {
-        if !restrictedIds.contains(id) {
+        if !self.restrictedIds.contains(id) {
             return false
         }
-        restrictedIds_ = restrictedIds.filter {$0 != id}  // removes the array element by value
+        restrictedIds_ = self.restrictedIds.filter {$0 != id}  // removes the array element by value
         return true
     }
     
@@ -106,7 +106,7 @@ extension Gifter {
      - Returns: `true` if the wish list was successfully added; `false ` if the wish list already exists.
      */
     public func addWishList(list: String) -> Bool {
-        if wishLists.contains(list) {
+        if self.wishLists.contains(list) {
             return false
         }
         wishLists_?.append(list)
@@ -122,10 +122,46 @@ extension Gifter {
      - Returns: `true` if the wish list was successfully removed; `false ` if the wish list does not exist.
      */
     public func removeWishList(list: String) -> Bool {
-        if !wishLists.contains(list) {
+        if !self.wishLists.contains(list) {
             return false
         }
-        wishLists_ = wishLists.filter {$0 != list}  // removes the array element by value
+        wishLists_ = self.wishLists.filter {$0 != list}  // removes the array element by value
+        return true
+    }
+    
+    /**
+     Associates a new GiftExchange with the gifter. Additionally, adds the exchange id.
+     
+     - Parameters:
+        - exchange: The new GiftExchange to add
+     
+     - Returns: `true` if the gift exchange was successfully added; `false ` if the gift exchange already exists.
+     */
+    @discardableResult
+    public func addGiftExchange(exchange: GiftExchange) -> Bool {
+        if self.giftExchanges.contains(exchange) {
+            return false
+        }
+        self.addObject(value: exchange, forKey: "giftExchanges_")
+        self.addExchangeId(id: exchange.id)
+        return true
+    }
+    
+    /**
+     Removes the specified GiftExchange from the gifter. Additionally, removes the exchange id.
+     
+     - Parameters:
+        - exchange: The GiftExchange to be removed
+     
+     - Returns: `true` if the gift exchange was successfully removed; `false ` if the gift exchange does not exist..
+     */
+    @discardableResult
+    public func removeGiftExchange(exchange: GiftExchange) -> Bool {
+        if !self.giftExchanges.contains(exchange) {
+            return false
+        }
+        self.removeObject(value: exchange, forKey: "giftExchanges_")
+        self.removeExchangeId(id: exchange.id)
         return true
     }
     
@@ -138,8 +174,8 @@ extension Gifter {
      - Returns: `true` if the exchange id was successfully added; `false ` if the exchange id already exists.
      */
     @discardableResult
-    public func addExchangeId(id: UUID) -> Bool {
-        if exchangeIds.contains(id) {
+    private func addExchangeId(id: UUID) -> Bool {
+        if self.exchangeIds.contains(id) {
             return false
         }
         exchangeIds_?.append(id)
@@ -155,45 +191,11 @@ extension Gifter {
      - Returns: `true` if the exchange id was successfully removed; `false ` if the exchange id does not exist.
      */
     @discardableResult
-    public func removeExchangeId(id: UUID) -> Bool {
-        if !exchangeIds.contains(id) {
+    private func removeExchangeId(id: UUID) -> Bool {
+        if !self.exchangeIds.contains(id) {
             return false
         }
         exchangeIds_ = exchangeIds.filter {$0 != id}  // removes the array element by value
-        return true
-    }
-    
-    /**
-     Associates a new GiftExchange with the gifter. Additionally, adds the exchange id.
-     
-     - Parameters:
-        - exchange: The new GiftExchange to add
-     
-     - Returns: `true` if the gift exchange was successfully added; `false ` if the gift exchange already exists.
-     */
-    public func addGiftExchange(exchange: GiftExchange) -> Bool {
-        if giftExchanges.contains(exchange) {
-            return false
-        }
-        self.addObject(value: exchange, forKey: "giftExchanges_")
-        addExchangeId(id: exchange.id)
-        return true
-    }
-    
-    /**
-     Removes the specified GiftExchange from the gifter. Additionally, removes the exchange id.
-     
-     - Parameters:
-        - exchange: The GiftExchange to be removed
-     
-     - Returns: `true` if the gift exchange was successfully removed; `false ` if the gift exchange does not exist..
-     */
-    public func removeGiftExchange(exchange: GiftExchange) -> Bool {
-        if !giftExchanges.contains(exchange) {
-            return false
-        }
-        self.removeObject(value: exchange, forKey: "giftExchanges_")
-        removeExchangeId(id: exchange.id)
         return true
     }
     
