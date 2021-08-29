@@ -15,31 +15,61 @@ struct ToolbarMenuView: View {
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
-    /// Local state to trigger a sheet for adding a new gift exchange
-    @Binding var isAddGiftExchangeFormShowing: Bool
+    /// Object encapsulating various state variables provided by a parent View
+    @EnvironmentObject var triggers: StateTriggers
     
-    /// Local state to trigger a sheet for editing an existing gift exchange
-    @Binding var isEditGiftExchangeFormShowing: Bool
+    /// An array of other (unselected) gift exchanges to which the user belongs
+    private var otherGiftExchanges: [GiftExchange] = []
+    
+    /**
+     Initializes the toolbar menu view.
+     
+     - Parameters:
+        - unselectedIds: A list of ids mapping to unselected gift exchanges that are associated with the user
+     */
+    init(unselectedIds: [UUID]) {
+        self.otherGiftExchanges = GiftExchange.objectArr(entity: GiftExchange.self, withIdArr: unselectedIds, context: PersistenceController.shared.context)
+    }
     
     var body: some View {
         Menu {
+            // only show Delete button if there is more than 1 gift exchange
+            if self.giftExchangeSettings.hasMultipleGiftExchanges() {
+                if #available(iOS 15.0, *) {
+                    Button(role: .destructive, action: { deleteGiftExchange() }, label: {
+                        Label("Delete Gift Exchange", systemImage: "trash")
+                    })
+                } else {
+                    // fallback on earlier versions
+                    Button(action: { deleteGiftExchange() }, label: {
+                        Label("Delete Gift Exchange", systemImage: "trash")
+                            .foregroundColor(.red)
+                    })
+                }
+            }
             Button(action: { editGiftExchange() }) {
                 Label("Edit Gift Exchange", systemImage: "pencil")
             }
             Button(action: { addGiftExchange() }) {
                 Label("Add Gift Exchange", systemImage: "plus")
             }
-            Divider()
-            Button(action: { other() }) {
-                Text("🎁  Pubins 2021")
+            // show the other gift exchanges if they exist
+            if self.giftExchangeSettings.hasMultipleGiftExchanges() {
+                Divider()
+                ForEach(self.otherGiftExchanges) { exchange in
+                    Button(action: { changeGiftExchange(exchange) }, label: {
+                        Text("\(exchange.emoji)   \(exchange.name)  " + String(exchange.date.year))
+                    })
+                }
             }
-            
         } label: {
             HStack {
                 Text("\(selectedGiftExchange.emoji)").baselineOffset(2)
-                Text("\(selectedGiftExchange.name) " + String(selectedGiftExchange.date.year))
+                Text("\(selectedGiftExchange.name)")
+                Text(String(selectedGiftExchange.date.year))
                 Image(uiImage: UIImage(named: "dropdown.arrow")!)
             }
+            .frame(maxWidth: UIScreen.screenWidth*3/5)
         }
         .foregroundColor(.primary)
     }
@@ -47,18 +77,30 @@ struct ToolbarMenuView: View {
     /// Triggers a sheet for adding a new gift exchange.
     func addGiftExchange() {
         print("add gift exchange")
-        isAddGiftExchangeFormShowing = true
+        self.triggers.isAddGiftExchangeFormShowing = true
     }
     
     /// Triggers a sheet for editing the currenty selected gift exchange.
     func editGiftExchange() {
         print("edit gift exchange")
-        isEditGiftExchangeFormShowing = true
+        self.triggers.isEditGiftExchangeFormShowing = true
     }
     
-    /// TODO
-    func other() {
-        print("other")
+    /// Triggers an alert for deleting the currently selected gift exchange.
+    func deleteGiftExchange() {
+        print("delete gift exchange")
+        self.triggers.isDeleteGiftExchangeAlertShowing = true
+    }
+    
+    /**
+     Change the selected gift exchange to the specified gift exchange.
+     
+     - Parameters:
+        - giftExchange: The gift exchange to make selected
+     */
+    func changeGiftExchange(_ giftExchange: GiftExchange) {
+        print("changing selected gift exchange to: \(giftExchange.name)")
+        giftExchangeSettings.changeSelectedGiftExchangeId(id: giftExchange.id)
     }
     
 }
@@ -67,34 +109,21 @@ struct ToolbarMenuView_Previews: PreviewProvider {
     
     static let previewUserSettings: UserSettings = getPreviewUserSettings()
     static var previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
-    
-    static var previews: some View {
-        PreviewWrapper()
-    }
-    
-    // we create a wrapper around the preview to pass @Binding objects
-    struct PreviewWrapper: View {
-        @State(initialValue: false) var isAddFormShowing: Bool
-        @State(initialValue: false) var isEditFormShowing: Bool
-        
-        var body: some View {
-            
-            NavigationView {
-                VStack {
-                }
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        ToolbarMenuView(
-                            isAddGiftExchangeFormShowing: $isAddFormShowing,
-                            isEditGiftExchangeFormShowing: $isEditFormShowing
-                        )
-                            .environmentObject(previewUserSettings)
-                            .environmentObject(previewGiftExchange)
-                    }
-                }
-            }  // end NavigationView
+    static let previewTriggers: StateTriggers = StateTriggers()
 
-        }
+    static var previews: some View {
+        NavigationView {
+            VStack {
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    ToolbarMenuView(unselectedIds: previewUserSettings.unselectedIdList)
+                        .environmentObject(previewUserSettings)
+                        .environmentObject(previewGiftExchange)
+                        .environmentObject(previewTriggers)
+                }
+            }
+        }  // end NavigationView
     }
     
 }

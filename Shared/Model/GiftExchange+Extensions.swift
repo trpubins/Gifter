@@ -8,32 +8,36 @@
 import Foundation
 import CoreData
 
-/// A gift exchange, which holds meta data and acts as a container for an array of gifters.
+/// A gift exchange, which holds meta data and acts as a container for any number of gifters.
 extension GiftExchange {
     
     
     // MARK: Property Wrappers
     
+    /// The id that uniquely identifies the gift exchange
     public var id: UUID {
         get { id_ ?? UUID() }
     }
     
+    /// The date of the gift exchange 
     public var date: Date {
         get { date_ ?? Date() }
         set { date_ = newValue }
     }
     
+    /// The name of the gift exchange
     public var name: String {
         get { name_ ?? "Unknown name" }
         set { name_ = newValue }
     }
     
-    /// The emoji to identify the GiftExchange
+    /// The emoji to identify the gift exchange
     public var emoji: String {
         get { emoji_ ?? emojis.first! }
         set { emoji_ = newValue }
     }
     
+    /// This gift exchange's associated gifters -- converts NSSet to swift array
     public var gifters: [Gifter] {
         get {
             let set = gifters_ as? Set<Gifter> ?? []
@@ -69,11 +73,24 @@ extension GiftExchange {
     
     // MARK: Class Functions
     
+    /**
+    Initializes a new gift exchange with default values.
+     
+     - Returns: A new gift exchange.
+     */
     class func addNewGiftExchange() -> GiftExchange {
         let newGiftExchange = GiftExchange(context: PersistenceController.shared.context)
         return newGiftExchange
     }
     
+    /**
+     Initializes a new gift exchange with the provided form data.
+     
+     - Parameters:
+        - data: The form data used to initialize the gift exchange
+     
+     - Returns: A new gift exchange.
+     */
     class func addNewGiftExchange(using data: GiftExchangeFormData) -> GiftExchange {
         let newGiftExchange = addNewGiftExchange()
         newGiftExchange.initId(from: data)
@@ -81,8 +98,16 @@ extension GiftExchange {
         return newGiftExchange
     }
     
+    /**
+     Updates the gift exchange with the provided form data.
+     
+     - Parameters:
+        - data: The form data used to update the gift exchange
+     
+     - Returns: The updated gift exchange.
+     */
     class func update(using data: GiftExchangeFormData) -> GiftExchange {
-        if let giftExchange = GiftExchange.object(withID: data.id, context: PersistenceController.shared.context) {
+        if let giftExchange = GiftExchange.object(withId: data.id, context: PersistenceController.shared.context) {
             // if we can find a GiftExchange object in CoreData, use it
             giftExchange.updateValues(from: data)
             return giftExchange
@@ -92,10 +117,27 @@ extension GiftExchange {
         }
     }
     
+    /**
+     Deletes the specified gift exchange from CoreData.
+     
+     - Parameters:
+        - giftExchange: The gift exchange to be deleted
+    */
+    class func delete(_ giftExchange: GiftExchange) {
+        // remove the reference to this gift exchange from its associated gifters
+        // by resetting its (real, Core Data) gifters to nil
+        giftExchange.gifters_ = nil
+        // now delete and save
+        let context = giftExchange.managedObjectContext
+        context?.delete(giftExchange)
+        try? context?.save()
+    }
+    
     
 }
 
 extension GiftExchange: Comparable {
+    
     
     // MARK: - Conform to Comparable
     

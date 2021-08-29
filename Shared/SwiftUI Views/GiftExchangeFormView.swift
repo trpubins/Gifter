@@ -27,11 +27,17 @@ struct GiftExchangeFormView: View {
     /// The gift exchange user settings provided by a parent View
     @EnvironmentObject var giftExchangeSettings: UserSettings
     
+    /// The gift exchange current selection provided by a parent View
+    @EnvironmentObject var selectedGiftExchange: GiftExchange
+    
     /// The gift exchange form data whose properties are bound to the UI form
     @ObservedObject var data: GiftExchangeFormData
     
     /// State variable for determining if the save button is disabled
-    @State var isSaveDisabled: Bool = true
+    @State private var isSaveDisabled: Bool = true
+    
+    /// State variable for determining if the delete alert is showing
+    @State private var isDeleteGiftExchangeAlertShowing: Bool = false
     
     /// Describes the type of gift exchange form this is
     let formType: FormType
@@ -86,6 +92,23 @@ struct GiftExchangeFormView: View {
                         }
                     })
                     .disabled(self.isSaveDisabled)
+                } else {
+                    // insert delete exchange button if there is more than 1 gift exchange
+                    if giftExchangeSettings.hasMultipleGiftExchanges() {
+                        if #available(iOS 15.0, *) {
+                            Button(role: .destructive, action: { deleteGiftExchange() }, label: {
+                                Text("Delete Gift Exchange")
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            })
+                        } else {
+                            // fallback on earlier versions
+                            Button(action: { deleteGiftExchange() }, label: {
+                                Text("Delete Gift Exchange")
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .foregroundColor(.red)
+                            })
+                        }
+                    }
                 }
             }
             .navigationTitle(String(stringLiteral: "\(formType)"))
@@ -113,12 +136,13 @@ struct GiftExchangeFormView: View {
                 self.data.name = self.data.name
             }
         }
+        .alert(isPresented: $isDeleteGiftExchangeAlertShowing) {
+            DeleteAlert.giftExchangeAlert(selectedGiftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
+        }
         
     }  // end body
     
-    /**
-     Adds the gift exchange id to the user settings so they can start the gift exchange.
-     */
+    /// Adds the gift exchange id to the user settings so they can start the gift exchange.
     func startExchanging() {
         #if os(iOS)
         hideKeyboard()
@@ -148,6 +172,12 @@ struct GiftExchangeFormView: View {
             .disabled(self.isSaveDisabled)
     }
     
+    /// Triggers an alert for deleting the currently selected gift exchange.
+    func deleteGiftExchange() {
+        print("delete gift exchange")
+        self.isDeleteGiftExchangeAlertShowing = true
+    }
+    
     /// From the form data, update and persist the CoreData entity, GiftExchange.
     func commitDataEntry() {
         let exchange: GiftExchange
@@ -167,8 +197,6 @@ struct GiftExchangeFormView: View {
         }
         
         print("idList count: \(giftExchangeSettings.idList.count)")
-        print("idList selected: \(giftExchangeSettings.selectedId!)")
-
     }
     
     /**
@@ -183,10 +211,19 @@ struct GiftExchangeFormView: View {
 }
 
 struct GiftExchangeLaunchView_Previews: PreviewProvider {
+    
+    static let previewUserSettings: UserSettings = getPreviewUserSettings()
+    static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
+
     static var previews: some View {
         // 1st preview
         NavigationView {
-            GiftExchangeFormView(formType: FormType.Edit, data: GiftExchangeFormData(name: "Zohan", emoji: emojis.first!))
+            GiftExchangeFormView(
+                formType: FormType.Edit,
+                data: GiftExchangeFormData(name: "Zohan", emoji: emojis.first!)
+            )
+                .environmentObject(previewUserSettings)
+                .environmentObject(previewGiftExchange)
         }
         // 2nd preview
         GiftExchangeFormView(formType: FormType.New)

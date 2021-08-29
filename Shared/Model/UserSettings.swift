@@ -37,7 +37,7 @@ class UserSettings: ObservableObject {
     /// An array of ids that are not the selected GiftExchange
     var unselectedIdList: [UUID] {
         get {
-            if self.idList.count > 1 {
+            if self.hasMultipleGiftExchanges() {
                 var unselectedIdList = self.idList  // arrays are passed by value
                 unselectedIdList.removeFirst()  // remove the first element, which is the selected id
                 return unselectedIdList
@@ -61,6 +61,15 @@ class UserSettings: ObservableObject {
     // MARK: Object Methods
     
     /**
+     Used to determine if the user has more than one gift exchange saved.
+     
+     - Returns: `true` if user has more than one gift exchange, `false` otherwise
+     */
+    public func hasMultipleGiftExchanges() -> Bool {
+        return self.idList.count > 1
+    }
+    
+    /**
      Adds a GiftExchange id to the user settings. Makes the provided id the selected GiftExchange id.
      Also, triggers a refresh to any Views observing this UserSettings object.
      
@@ -77,14 +86,15 @@ class UserSettings: ObservableObject {
      
      - Returns: `true` if the selected id was removed, `false` otherwise.
      */
+    @discardableResult
     public func removeSelectedGiftExchangeId() -> Bool {
-        if self.idList.count <= 1 {
-            // do not perform removal if there is only 1 associated gift exchange
-            return false
-        } else {
+        if self.hasMultipleGiftExchanges() {
             // update list by removing the first element, which is the selected id
             self.idList.removeFirst()
             return true
+        } else {
+            // do not perform removal if there is only 1 associated gift exchange
+            return false
         }
     }
     
@@ -96,6 +106,7 @@ class UserSettings: ObservableObject {
      
      - Returns: `true` if the selected id was successfully changed, `false` if the specified id was not in the list of ids.
      */
+    @discardableResult
     public func changeSelectedGiftExchangeId(id: UUID) -> Bool {
         if self.idList.contains(id) {
             self.idList = self.idList.filter {$0 != id}  // filter the id out
