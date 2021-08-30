@@ -9,6 +9,8 @@
 import Foundation
 import Combine
 
+
+/// Holds data associated with a GiftExchange and validation publishers used in a form.
 class GiftExchangeFormData: ObservableObject {
     
     
