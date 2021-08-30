@@ -49,7 +49,7 @@ extension GiftExchange {
     // MARK: Object Methods
     
     /**
-     Initializes the unique id for this GiftExchange from the form data.
+     Initializes the unique id for this GiftExchange from the provided id.
      
      - Parameters:
         - id: The gift exchange unique id
