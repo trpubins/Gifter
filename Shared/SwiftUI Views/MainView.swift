@@ -15,9 +15,6 @@ struct MainView: View {
     /// Object encapsulating various state variables
     var triggers: StateTriggers = StateTriggers()
     
-    /// State variable for determining if the gift exchange completed alert is showing
-    @State private var isGiftExchangeCompletedAlertShowing: Bool = false
-    
     /**
      Initializes the MainView by pulling out of CoreData the GiftExchange object as specified by the id.
      
@@ -26,24 +23,32 @@ struct MainView: View {
      */
     init(withId id: UUID) {
         self.selectedGiftExchange = GiftExchange.get(withId: id)
-        
+
         // present the alert if the gift exchange's date has passed
-        if self.selectedGiftExchange.date < Date.today {
-            self._isGiftExchangeCompletedAlertShowing = State(initialValue: true)
+        if self.selectedGiftExchange.hasDatePassed() {
+            self.triggers.isGiftExchangeCompletedAlertShowing = true
+        } else {
+            self.triggers.isGiftExchangeCompletedAlertShowing = false
         }
     }
     
     var body: some View {
         #if os(iOS)
         MainViewIOS(mainViewTabs: getMainViewData())
-            .alert(isPresented: $isGiftExchangeCompletedAlertShowing) {
+            .alert(isPresented: .init(
+                get: { triggers.isGiftExchangeCompletedAlertShowing },
+                set: { triggers.isGiftExchangeCompletedAlertShowing = $0 }
+            )) {
                 Alerts.giftExchangeCompletedAlert(self.selectedGiftExchange)
             }
             .environmentObject(selectedGiftExchange)
             .environmentObject(triggers)
         #else
         MainViewMacOS(mainViewTabs: getMainViewData())
-            .alert(isPresented: $isGiftExchangeCompletedAlertShowing) {
+            .alert(isPresented: .init(
+                get: { triggers.isGiftExchangeCompletedAlertShowing },
+                set: { triggers.isGiftExchangeCompletedAlertShowing = $0 }
+            )) {
                 Alerts.giftExchangeCompletedAlert(self.selectedGiftExchange)
             }
         #endif

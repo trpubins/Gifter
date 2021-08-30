@@ -24,6 +24,9 @@ class StateTriggers: ObservableObject {
     /// Triggers an alert for deleting a gift exchange
     @Published var isDeleteGiftExchangeAlertShowing: Bool = false
     
+    /// Triggers an alert for when a gift exchange date has passed
+    @Published var isGiftExchangeCompletedAlertShowing: Bool = false
+    
     
     // MARK: Gifter Triggers
 

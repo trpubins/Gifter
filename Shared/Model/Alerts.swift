@@ -21,12 +21,12 @@ struct Alerts {
      - Parameters:
         - completedGiftExchange: The gift exchange that has completed
      
-     - Returns: A populated alert that updates the provided gift exchange to the same date next year.
+     - Returns: A populated alert that updates the provided gift exchange to the same date for the upcoming year.
      */
     static func giftExchangeCompletedAlert(_ completedGiftExchange: GiftExchange) -> Alert {
         return Alert(
-            title: Text("Gift exchange completed"),
-            message: Text("The gift exchange date will remain the same for next year"),
+            title: Text("Gift exchange completed!"),
+            message: Text("The gift exchange date will remain the same for the upcoming year"),
             dismissButton: .cancel(Text("OK")) {
                 logFilter("updated gift exchange year")
                 completedGiftExchange.updateNextYear()

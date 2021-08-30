@@ -80,6 +80,15 @@ extension GiftExchange {
     }
     
     /**
+     Determines if this GiftExchange date has passed.
+     
+     - Returns: `true` if this GiftExchange date has passed, `false` if it has not.
+     */
+    public func hasDatePassed() -> Bool {
+        return self.date.noon < Date.today
+    }
+    
+    /**
      Adds a gifter to this GiftExchange.
      
      - Parameters:
