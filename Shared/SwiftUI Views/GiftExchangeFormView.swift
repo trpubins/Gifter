@@ -142,13 +142,21 @@ struct GiftExchangeFormView: View {
         
     }  // end body
     
-    /// Adds the gift exchange id to the user settings so they can start the gift exchange.
+    /// Adds the gift exchange to persistent storage and the new gift exchange id to the user settings.
+    /// The gift exchange can commence.
     func startExchanging() {
         #if os(iOS)
         hideKeyboard()
         #endif
         
+        let exchange = GiftExchange.add(using: data)
         commitDataEntry()
+        logFilter("adding gift exchange: \(exchange.toString())")
+
+        // updating the UserSettings object must occur last since UserSettings
+        // property is being observed in the top-level GifterApp to change/refresh Views
+        giftExchangeSettings.addGiftExchangeId(id: exchange.id)
+        logFilter("idList count: \(giftExchangeSettings.idList.count)")
     }
     
     /**
@@ -169,7 +177,12 @@ struct GiftExchangeFormView: View {
      - Returns: A Button View
      */
     func saveButton() -> some View {
-        Button("Save", action: { commitDataEntry() })
+        Button("Save", action: {
+            let exchange = GiftExchange.update(using: data)
+            logFilter("saving gift exchange: \(exchange.toString())")
+            commitDataEntry()
+            logFilter("idList count: \(giftExchangeSettings.idList.count)")
+        })
             .disabled(self.isSaveDisabled)
     }
     
@@ -179,26 +192,10 @@ struct GiftExchangeFormView: View {
         self.isDeleteAlertShowing = true
     }
     
-    /// From the form data, update and persist the CoreData entity, GiftExchange.
+    /// Update and persist the provided GiftExchange into CoreData.
     func commitDataEntry() {
-        let exchange: GiftExchange
-        if isNewForm() {
-            exchange = GiftExchange.add(using: data)
-        } else {
-            exchange = GiftExchange.update(using: data)
-        }
-        
-        logFilter("saving gift exchange: \(exchange.toString())")
         PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
-        
-        // updating the UserSettings object must occur last since UserSettings
-        // property is being observed in the top-level GifterApp to change/refresh Views
-        if isNewForm() {
-            giftExchangeSettings.addGiftExchangeId(id: exchange.id)
-        }
-        
-        logFilter("idList count: \(giftExchangeSettings.idList.count)")
     }
     
     /**
