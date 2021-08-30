@@ -19,16 +19,16 @@ extension GiftExchange {
         get { id_ ?? UUID() }
     }
     
-    /// The date of the gift exchange 
-    public var date: Date {
-        get { date_ ?? Date() }
-        set { date_ = newValue }
-    }
-    
     /// The name of the gift exchange
     public var name: String {
         get { name_ ?? "Unknown name" }
         set { name_ = newValue }
+    }
+    
+    /// The date of the gift exchange
+    public var date: Date {
+        get { date_ ?? Date() }
+        set { date_ = newValue }
     }
     
     /// The emoji to identify the gift exchange

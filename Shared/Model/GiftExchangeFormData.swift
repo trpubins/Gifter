@@ -12,19 +12,19 @@ import Combine
 class GiftExchangeFormData: ObservableObject {
     
     
-    // MARK: Published Properties
+    // MARK: Properties
+    
+    /// The unique id for the gift exchange
+    let id: UUID
     
     /// The name of the gift exchange (a published property)
     @Published var name: String
     
-    /// The emoji to identify the gift exchange (a publihsed property)
-    @Published var emoji: String
-    
     /// The date of the gift exchange (a published property)
     @Published var date: Date
     
-    /// The unique id for the gift exchange
-    let id: UUID
+    /// The emoji to identify the gift exchange (a publihsed property)
+    @Published var emoji: String
     
     
     // MARK: Initializer
