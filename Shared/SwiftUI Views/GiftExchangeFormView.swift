@@ -192,7 +192,7 @@ struct GiftExchangeFormView: View {
         self.isDeleteAlertShowing = true
     }
     
-    /// Update and persist the provided GiftExchange into CoreData.
+    /// Save the GiftExchange in CoreData and dismiss the view.
     func commitDataEntry() {
         PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
