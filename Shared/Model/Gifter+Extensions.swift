@@ -19,16 +19,16 @@ extension Gifter {
         get { id_ ?? UUID() }
     }
     
-    /// The gifter's email address
-    public var email: String {
-        get { email_ ?? "Unknown email" }
-        set { email_ = newValue }
-    }
-    
     /// The name of the gifter
     public var name: String {
         get { name_ ?? "Unknown gifter name" }
         set { name_ = newValue }
+    }
+    
+    /// The gifter's email address
+    public var email: String {
+        get { email_ ?? "Unknown email" }
+        set { email_ = newValue }
     }
     
     /// The email of a person who shall receive gifts from this gifter
@@ -63,7 +63,31 @@ extension Gifter {
         }
     }
     
+    
     // MARK: - Object Methods
+    
+    /**
+     Initializes the unique id for this Gifter from the provided id.
+     
+     - Parameters:
+        - id: The gifter unique id
+     */
+    private func initId(withId id: UUID) {
+        id_ = id
+    }
+    
+    /**
+     Updates the values of this Gifter's instance members.
+     
+     - Parameters:
+        - data: The gifter form data
+     */
+    private func updateValues(from data: GifterFormData) {
+        self.name = data.name
+        self.email = data.email
+        self.restrictedIds = data.restrictedIds
+        self.wishLists = data.wishLists
+    }
     
     /**
      Adds an id to the Gifter's restricted list. This means the Gifter will not gift an individual with that id.
@@ -199,6 +223,15 @@ extension Gifter {
         return true
     }
     
+    /**
+     Combines different elements of a gifter into a single string.
+     
+     - Returns: A combined string with the gifter's descriptive components.
+     */
+    public func toString() -> String {
+        return "\(self.name), \(self.email)"
+    }
+    
     
     // MARK: Class Functions
     
@@ -225,9 +258,43 @@ extension Gifter {
      
      - Returns: A new gifter.
      */
-    class func add() -> Gifter {
+    private class func add() -> Gifter {
         let newGifter = Gifter(context: PersistenceController.shared.context)
         return newGifter
+    }
+    
+    /**
+     Initializes a new gifter with the provided form data.
+     
+     - Parameters:
+        - data: The form data used to initialize the gifter
+     
+     - Returns: A new gifter.
+     */
+    class func add(using data: GifterFormData) -> Gifter {
+        let newGifter = Gifter.add()
+        newGifter.initId(withId: data.id)
+        newGifter.updateValues(from: data)
+        return newGifter
+    }
+    
+    /**
+     Updates the gifter with the provided form data.
+     
+     - Parameters:
+        - data: The form data used to update the gifter
+     
+     - Returns: The updated gifter.
+     */
+    class func update(using data: GifterFormData) -> Gifter {
+        if let gifter = Gifter.object(withId: data.id, context: PersistenceController.shared.context) {
+            // if we can find a Gifter object in CoreData, use it
+            gifter.updateValues(from: data)
+            return gifter
+        } else {
+            // otherwise, create a new Gifter from the provided data
+            return Gifter.add(using: data)
+        }
     }
     
     /**
