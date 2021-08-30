@@ -52,10 +52,10 @@ extension GiftExchange {
      Initializes the unique id for this GiftExchange from the form data.
      
      - Parameters:
-        - data: The gift exchange form data
+        - id: The gift exchange unique id
      */
-    private func initId(from data: GiftExchangeFormData) {
-        id_ = data.id
+    private func initId(withId id: UUID) {
+        id_ = id
     }
     
     /**
@@ -151,7 +151,7 @@ extension GiftExchange {
      */
     class func add(using data: GiftExchangeFormData) -> GiftExchange {
         let newGiftExchange = GiftExchange.add()
-        newGiftExchange.initId(from: data)
+        newGiftExchange.initId(withId: data.id)
         newGiftExchange.updateValues(from: data)
         return newGiftExchange
     }
