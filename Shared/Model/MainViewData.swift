@@ -25,6 +25,13 @@ struct MainViewData {
     
 }
 
+/// An enum that maps a tab view name to its tab number.
+enum TabNum: Int {
+    case ExchangeTab = 1        // first tab
+    case GiftersTab = 2         // second tab
+    case PreferencesTab = 3     // third tab
+}
+
 /**
  Generates an array of MainViewData used to populate the MainViews.
  
@@ -34,19 +41,19 @@ func getMainViewData() -> [MainViewData] {
     return [
         MainViewData(
             dest: AnyView(ExchangeTabView()),
-            tabNum: 1,
+            tabNum: TabNum.ExchangeTab.rawValue,
             labelText: "Gift Exchange",
             imgName: "gift"
         ),
         MainViewData(
             dest: AnyView(GiftersTabView()),
-            tabNum: 2,
+            tabNum: TabNum.GiftersTab.rawValue,
             labelText: "Gifters",
             imgName: "person.2"
         ),
         MainViewData(
             dest: AnyView(PreferencesTabView()),
-            tabNum: 3,
+            tabNum: TabNum.PreferencesTab.rawValue,
             labelText: "Preferences",
             imgName: "gearshape"
         ),
