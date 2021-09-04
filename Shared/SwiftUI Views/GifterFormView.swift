@@ -16,6 +16,9 @@ struct GifterFormView: View {
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
+    /// Object encapsulating various state variables provided by a parent View
+    @EnvironmentObject var triggers: StateTriggers
+    
     /// The gift exchange form data whose properties are bound to the UI form
     @ObservedObject var data: GifterFormData
     
@@ -128,7 +131,6 @@ struct GifterFormView: View {
         selectedGiftExchange.addGifter(gifter)
         commitDataEntry()
         logFilter("adding gifter: \(gifter.toString())")
-        logFilter("gifters count: \(selectedGiftExchange.gifters.count)")
     }
     
     /**
@@ -153,7 +155,6 @@ struct GifterFormView: View {
             let gifter = Gifter.update(using: data)
             commitDataEntry()
             logFilter("saving gifter: \(gifter.toString())")
-            logFilter("gifters count: \(selectedGiftExchange.gifters.count)")
         })
             .disabled(self.isSaveDisabled)
     }
@@ -164,10 +165,12 @@ struct GifterFormView: View {
         self.isDeleteAlertShowing = true
     }
     
-    /// Save the Gifter in CoreData and dismiss the view.
+    /// Save the Gifter in CoreData, send user to Gifters Tab and dismiss the view.
     func commitDataEntry() {
         PersistenceController.shared.saveContext()
+        triggers.selectedTab = TabNum.GiftersTab.rawValue
         presentationMode.wrappedValue.dismiss()
+        logFilter("gifters count: \(selectedGiftExchange.gifters.count)")
     }
     
     /**

@@ -13,6 +13,9 @@ struct ExchangeTabView: View {
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
+    /// Object encapsulating various state variables provided by a parent View
+    @EnvironmentObject var triggers: StateTriggers
+    
     var body: some View {
         
         VStack {
@@ -24,7 +27,11 @@ struct ExchangeTabView: View {
                 Spacer()
                 VStack(alignment: .trailing) {
                     Text("\(selectedGiftExchange.date.dayOfWeek), \(selectedGiftExchange.date, formatter: Date.formatMonthDay)")
-                    Text("\(selectedGiftExchange.date.daysUntil) days rem")
+                    if selectedGiftExchange.hasDatePassed() {
+                        Text("Completed")
+                    } else {
+                        Text("\(selectedGiftExchange.date.daysUntil) days rem")
+                    }
                 }
                 .padding([.top, .leading, .trailing])
             }
@@ -33,7 +40,7 @@ struct ExchangeTabView: View {
                 Text("Not enough gifters to begin the exchange!")
                     .multilineTextAlignment(.center)
                 if #available(iOS 15.0, *) {
-                    Button(action: { logFilter("add gifter") }) {
+                    Button(action: { addGifter() }) {
                         Label("Add Gifter", systemImage: "plus")
                     }
                     .tint(.accentColor)
@@ -43,7 +50,7 @@ struct ExchangeTabView: View {
                     .padding()
                 } else {
                     // fallback on earlier versions
-                    Button(action: { logFilter("add gifter") }) {
+                    Button(action: { addGifter() }) {
                         Label("Add Gifter", systemImage: "plus")
                     }
                     .padding()
@@ -57,6 +64,12 @@ struct ExchangeTabView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { logAppear(title: "ExchangeTabView") }
         
+    }
+    
+    /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
+    func addGifter() {
+        logFilter("add gifter")
+        triggers.isAddGifterFormShowing = true
     }
     
 }

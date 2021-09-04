@@ -22,15 +22,18 @@ struct GifterApp: App {
     /// For tracking the phase (state) of the application
     @Environment(\.scenePhase) private var scenePhase
     
-    /// The user settings
+    /// The application user settings
     @StateObject var giftExchangeSettings = UserSettings()
+    
+    /// Object encapsulating various state variables for the entire application
+    var triggers: StateTriggers = StateTriggers()
     
     var body: some Scene {
         
         WindowGroup {
             
             if giftExchangeSettings.idList.count >= 1 {
-                MainView(withId: giftExchangeSettings.selectedId!)  // force unwrap since we know the settings holds at least 1 id
+                MainView(withId: giftExchangeSettings.selectedId!, and: triggers)  // force unwrap id since we know the settings holds at least 1
                     .environmentObject(giftExchangeSettings)
             } else {
                 GiftExchangeFormView(formType: FormType.New, data: GiftExchangeFormData(christmasDay: true))

@@ -12,6 +12,9 @@ struct GiftersTabView: View {
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
+    /// Object encapsulating various state variables provided by a parent View
+    @EnvironmentObject var triggers: StateTriggers
+    
     var body: some View {
         
         VStack {
@@ -31,7 +34,7 @@ struct GiftersTabView: View {
                 Text("There are no gifters participating in this gift exchange!")
                     .multilineTextAlignment(.center)
                 if #available(iOS 15.0, *) {
-                    Button(action: { logFilter("add gifter") }) {
+                    Button(action: { addGifter() }) {
                         Label("Add Gifter", systemImage: "plus")
                     }
                     .tint(.accentColor)
@@ -41,7 +44,7 @@ struct GiftersTabView: View {
                     .padding()
                 } else {
                     // fallback on earlier versions
-                    Button(action: { logFilter("add gifter") }) {
+                    Button(action: { addGifter() }) {
                         Label("Add Gifter", systemImage: "plus")
                     }
                     .padding()
@@ -55,6 +58,12 @@ struct GiftersTabView: View {
         } // end VStack
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { logAppear(title: "GiftersTabView") }
+    }
+    
+    /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
+    func addGifter() {
+        logFilter("add gifter")
+        triggers.isAddGifterFormShowing = true
     }
     
 }

@@ -20,19 +20,15 @@ struct MainViewIOS: View {
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
     
-    /// A state variable to capture the current tab selection
-    @State private var selectedTab = 1
-    
     /// An array of dictionaries holding data relevant to the MainViews
     let mainViewTabs: [MainViewData]
     
     var body: some View {
-        
-        // For reference:
-        //  tab 1 = Exchange Tab
-        //  tab 2 = Gifters Tab
-        //  tab 3 = Preferences Tab
-        TabView(selection: $selectedTab) {
+
+        TabView(selection: .init(
+            get: { triggers.selectedTab },
+            set: { triggers.selectedTab = $0 }
+        )) {
             
             ForEach(mainViewTabs, id: \.labelText) { tab in
                 getTabView(tabData: tab)
@@ -42,24 +38,35 @@ struct MainViewIOS: View {
 
         }
         .onAppear{ logAppear(title: "MainViewIOS") }
+        // add gift exchange sheet
         .sheet(isPresented: .init(
             get: { triggers.isAddGiftExchangeFormShowing },
             set: { triggers.isAddGiftExchangeFormShowing = $0 }
-               )) {
-                   getFormView(formType: FormType.Add)
+        )) {
+            getGiftExchangeFormView(formType: FormType.Add)
+            
         }
+        // edit gift exchange sheet
         .sheet(isPresented: .init(
-                get: { triggers.isEditGiftExchangeFormShowing },
-                set: { triggers.isEditGiftExchangeFormShowing = $0 }
-               )) {
-                   getFormView(formType: FormType.Edit)
+            get: { triggers.isEditGiftExchangeFormShowing },
+            set: { triggers.isEditGiftExchangeFormShowing = $0 }
+        )) {
+            getGiftExchangeFormView(formType: FormType.Edit)
         }
+        // add gifter sheet
+        .sheet(isPresented: .init(
+            get: { triggers.isAddGifterFormShowing },
+            set: { triggers.isAddGifterFormShowing = $0 }
+        )) {
+            getGifterFormView(formType: FormType.Add)
+        }
+        // delete gift exchange alert
         .alert(isPresented: .init(
-                get: { triggers.isDeleteGiftExchangeAlertShowing },
-                set: { triggers.isDeleteGiftExchangeAlertShowing = $0 }
-               )) {
-                   Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
-               }
+            get: { triggers.isDeleteGiftExchangeAlertShowing },
+            set: { triggers.isDeleteGiftExchangeAlertShowing = $0 }
+        )) {
+            Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
+        }
     }
     
     /**
@@ -78,7 +85,7 @@ struct MainViewIOS: View {
      */
     func getLabelImg(tabData: MainViewData) -> String {
         // opt for 'filled' image when the tab is selected
-        if (self.selectedTab == tabData.tabNum) {
+        if (self.triggers.selectedTab == tabData.tabNum) {
             return tabData.imgName + ".fill"
         } else {
             return tabData.imgName
@@ -99,7 +106,7 @@ struct MainViewIOS: View {
                 tabData.dest
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
-                            Button(action: { logFilter("add gifter") }) {
+                            Button(action: { addGifter() }) {
                                 Image(systemName: "person.badge.plus")
                             }
                         }
@@ -125,14 +132,14 @@ struct MainViewIOS: View {
     }
     
     /**
-     Returns a form view that is configured with the provided formType.
+     Returns a GiftExchangeFormView that is configured with the provided formType.
      
      - Parameters:
         - formType: Describes the type of form to generate
      
      - Returns: A configured GiftExchangeFormView.
      */
-    func getFormView(formType: FormType) -> some View {
+    func getGiftExchangeFormView(formType: FormType) -> some View {
         NavigationView {
             if formType == .Add {
                 GiftExchangeFormView(formType: FormType.Add)
@@ -143,6 +150,28 @@ struct MainViewIOS: View {
                 )
             }
         }
+    }
+    
+    /**
+     Returns a GifterFormView that is configured with the provided formType.
+     
+     - Parameters:
+        - formType: Describes the type of form to generate
+     
+     - Returns: A configured GifterFormView.
+     */
+    func getGifterFormView(formType: FormType) -> some View {
+        NavigationView {
+            if formType == .Add {
+                GifterFormView(formType: FormType.Add)
+            }
+        }
+    }
+    
+    /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
+    func addGifter() {
+        logFilter("add gifter")
+        triggers.isAddGifterFormShowing = true
     }
     
 }

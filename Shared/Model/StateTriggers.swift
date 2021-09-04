@@ -8,9 +8,16 @@
 import Foundation
 
 
-/// Class for holding several state variables that trigger different View functions such as sheets and alerts.
+/// Class for holding several state variables that trigger different application behaviors and View
+/// functions such as sheets and alerts.
 /// All instance members are published variables and the class conforms to ObservableObject.
 class StateTriggers: ObservableObject {
+    
+    
+    // MARK: SwiftUI Views Triggers
+    
+    /// Triggers the tab selection, which is the application's primary means of navigation
+    @Published var selectedTab: Int = TabNum.ExchangeTab.rawValue
     
     
     // MARK: GiftExchange Triggers
