@@ -137,7 +137,7 @@ struct GiftExchangeFormView: View {
             }
         }
         .alert(isPresented: $isDeleteAlertShowing) {
-            Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
+            Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings, mode: presentationMode)
         }
         
     }  // end body

@@ -60,13 +60,7 @@ struct MainViewIOS: View {
         )) {
             getGifterFormView(formType: FormType.Add)
         }
-        // delete gift exchange alert
-        .alert(isPresented: .init(
-            get: { triggers.isDeleteGiftExchangeAlertShowing },
-            set: { triggers.isDeleteGiftExchangeAlertShowing = $0 }
-        )) {
-            Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
-        }
+        // alerts won't display here since there is a parent view with an alert modifier already
     }
     
     /**

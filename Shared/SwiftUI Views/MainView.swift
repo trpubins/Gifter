@@ -9,11 +9,14 @@ import SwiftUI
 
 struct MainView: View {
     
-    /// The gift exchange current selection
-    var selectedGiftExchange: GiftExchange
+    /// The gift exchange user settings provided by a parent View
+    @EnvironmentObject var giftExchangeSettings: UserSettings
     
     /// Object encapsulating various state variables
-    var triggers: StateTriggers
+    @ObservedObject var triggers: StateTriggers
+    
+    /// The gift exchange current selection
+    var selectedGiftExchange: GiftExchange
     
     /**
      Initializes the MainView by pulling out of CoreData the GiftExchange object as specified by the id.
@@ -38,24 +41,35 @@ struct MainView: View {
     }
     
     var body: some View {
-        #if os(iOS)
-        MainViewIOS(mainViewTabs: getMainViewData())
+        mainView()
+            // gift exchange completed alert
             .alert(isPresented: .init(
                 get: { triggers.isGiftExchangeCompletedAlertShowing },
                 set: { triggers.isGiftExchangeCompletedAlertShowing = $0 }
             )) {
                 Alerts.giftExchangeCompletedAlert(self.selectedGiftExchange)
+            }
+            // delete gift exchange alert
+            .alert(isPresented: .init(
+                get: { triggers.isDeleteGiftExchangeAlertShowing },
+                set: { triggers.isDeleteGiftExchangeAlertShowing = $0 }
+            )) {
+                Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
             }
             .environmentObject(selectedGiftExchange)
             .environmentObject(triggers)
+    }
+    
+    /**
+     The proper main view based on the OS.
+     
+     - Returns: The OS-specific main view.
+     */
+    func mainView() -> some View {
+        #if os(iOS)
+        MainViewIOS(mainViewTabs: getMainViewData())
         #else
         MainViewMacOS(mainViewTabs: getMainViewData())
-            .alert(isPresented: .init(
-                get: { triggers.isGiftExchangeCompletedAlertShowing },
-                set: { triggers.isGiftExchangeCompletedAlertShowing = $0 }
-            )) {
-                Alerts.giftExchangeCompletedAlert(self.selectedGiftExchange)
-            }
         #endif
     }
     
