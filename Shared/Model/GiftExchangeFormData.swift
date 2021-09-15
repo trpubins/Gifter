@@ -67,7 +67,7 @@ class GiftExchangeFormData: ObservableObject {
     }
     
     /**
-     Initializes the gift exchange data using a GiftExchange object. Published properties are empty by default, and the date is today by default.
+     Initializes the gift exchange data using a GiftExchange object.
      
      - Parameters:
         - giftExchange: The GiftExchange to replicate as form data
