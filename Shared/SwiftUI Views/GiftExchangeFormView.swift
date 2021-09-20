@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-
-/**
- An enumeration for describing a form.
- 
- Enumerations include: .New, .Add, & .Edit
- */
-enum FormType {
-    case New
-    case Add
-    case Edit
-}
-
 struct GiftExchangeFormView: View {
     
     /// Binds our View to the presentation mode so we can dismiss the View when we need to
