@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GifterRowView: View {
     
-    var gifter: Gifter
+    /// The specified gifter described by the row
+    @ObservedObject var gifter: Gifter
     
     var body: some View {
         HStack {
