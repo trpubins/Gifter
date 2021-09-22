@@ -59,6 +59,7 @@ struct GiftExchangeFormView: View {
             Form {
                 Section(header: Text("Gift Exchange Info")) {
                     TextField("Name", text: $data.name)
+                        .disableAutocorrection(true)
                         .validation(data.nameValidation)
                     // SwiftUI bug: DatePicker causes app to throw warning when
                     // embedded inside a form. Ignore warning.
@@ -73,7 +74,7 @@ struct GiftExchangeFormView: View {
                         .environmentObject(data)
                 }
                 // insert start exchanging button when a new gift exchange is being added
-                if isNewForm() {
+                if isNewForm(formType) {
                     Button(action: { startExchanging() }, label: {
                         HStack {
                             Label("Start Exchanging!", systemImage: "gift")
@@ -105,7 +106,7 @@ struct GiftExchangeFormView: View {
                 ToolbarItem(placement: .cancellationAction) { cancelButton() }
                 ToolbarItem(placement: .confirmationAction) {
                     // only an Edit form shall have the save button in the toolbar
-                    if formType == .Edit { saveButton() }
+                    if !isNewForm(formType) { saveButton() }
                 }
             }
             .onReceive(data.allValidation) { validation in
@@ -120,7 +121,7 @@ struct GiftExchangeFormView: View {
             // we pre-populate the form with data provided at initialization.
             // so here, we assign the name field to itself in order to publish the
             // name field but keeping its value the same
-            if formType == .Edit {
+            if !isNewForm(formType) {
                 self.data.name = self.data.name
             }
         }
@@ -184,15 +185,6 @@ struct GiftExchangeFormView: View {
     func commitDataEntry() {
         PersistenceController.shared.saveContext()
         presentationMode.wrappedValue.dismiss()
-    }
-    
-    /**
-    Evaluates a logical expression to determine if the form is for adding a new gift exchange.
-     
-    - Returns: `true` if the form is for a new gift exchange, `false` if not.
-     */
-    func isNewForm() -> Bool {
-        return (formType == .New || formType == .Add)
     }
     
 }
