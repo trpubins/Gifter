@@ -135,9 +135,9 @@ struct MainViewIOS: View {
      */
     func getGiftExchangeFormView(formType: FormType) -> some View {
         NavigationView {
-            if formType == .Add {
+            if isNewForm(formType) {
                 GiftExchangeFormView(formType: FormType.Add)
-            } else if formType == .Edit {
+            } else {
                 GiftExchangeFormView(
                     formType: FormType.Edit,
                     data: GiftExchangeFormData(giftExchange: selectedGiftExchange)
@@ -156,7 +156,7 @@ struct MainViewIOS: View {
      */
     func getGifterFormView(formType: FormType) -> some View {
         NavigationView {
-            if formType == .Add {
+            if isNewForm(formType) {
                 GifterFormView(formType: FormType.Add)
             }
         }
