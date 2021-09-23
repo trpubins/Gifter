@@ -81,6 +81,26 @@ class GiftExchangeFormData: ObservableObject {
     }
     
     
+    // MARK: Object Methods
+    
+    /**
+     Determines if the form data has changed compared to the properties of the specified gift exchange.
+     
+     - Parameters:
+        - giftExchange: The gift exchange whose properties to compare
+     
+     - Returns: `true` if the form data differs from any property values, `false` otherwise.
+     */
+    func hasChanged(comparedTo giftExchange: GiftExchange) -> Bool {
+        return (
+            self.id != giftExchange.id
+            || self.name != giftExchange.name
+            || self.date.noon != giftExchange.date.noon
+            || self.emoji != giftExchange.emoji
+        )
+    }
+    
+    
     // MARK: Validation Publishers
     
     /// Validates that the name property is not empty
@@ -92,17 +112,23 @@ class GiftExchangeFormData: ObservableObject {
     lazy var dateValidation: ValidationPublisher = {
         $date.dateValidation(afterDate: Date.yesterday, errorMessage: "Date must be after yesterday")
     }()
+    
+    /// Detects a change to the emoji property and always returns valid
+    lazy var emojiValidation: ValidationPublisher = {
+        $emoji.alwaysValid()
+    }()
 
     
     // MARK: Combined Publishers
     
     /// Validates that all the ValidationPublishers are successful
     lazy var allValidation: ValidationPublisher = {
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
             nameValidation,
-            dateValidation
-        ).map { v1, v2 in
-            return [v1, v2].allSatisfy { $0.isSuccess } ? .success : .failure(message: "")
+            dateValidation,
+            emojiValidation
+        ).map { v1, v2, v3 in
+            return [v1, v2, v3].allSatisfy { $0.isSuccess } ? .success : .failure(message: "")
         }.eraseToAnyPublisher()
     }()
 

@@ -110,7 +110,16 @@ struct GiftExchangeFormView: View {
                 }
             }
             .onReceive(data.allValidation) { validation in
-                self.isSaveDisabled = !validation.isSuccess
+                if isNewForm(formType) {
+                    self.isSaveDisabled = !validation.isSuccess
+                } else {
+                    // form data needs to change in order to enable save button
+                    if (validation.isSuccess && data.hasChanged(comparedTo: selectedGiftExchange)) {
+                        self.isSaveDisabled = false
+                    } else {
+                        self.isSaveDisabled = true
+                    }
+                }
             }
             
         }  // end VStack
@@ -119,10 +128,12 @@ struct GiftExchangeFormView: View {
             // the data.allValidation property requires at least one message from
             // each publisher before it can publish it’s own message. in Edit mode,
             // we pre-populate the form with data provided at initialization.
-            // so here, we assign the name field to itself in order to publish the
-            // name field but keeping its value the same
+            // so here, we assign the data fields to itself in order to publish the
+            // fields but keeping their values the same
             if !isNewForm(formType) {
                 self.data.name = self.data.name
+                self.data.date = self.data.date
+                self.data.emoji = self.data.emoji
             }
         }
         .alert(isPresented: $isDeleteAlertShowing) {

@@ -23,6 +23,10 @@ extension Published.Publisher where Value == String {
         return ValidationPublishers.matcherValidation(for: self, withPattern: pattern.r!, errorMessage: errorMessage())
     }
     
+    func alwaysValid() -> ValidationPublisher {
+        return ValidationPublishers.alwaysValid(for: self)
+    }
+    
 }
 
 extension Published.Publisher where Value == Date {
