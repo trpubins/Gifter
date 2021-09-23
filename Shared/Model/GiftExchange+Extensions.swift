@@ -27,7 +27,7 @@ extension GiftExchange {
     
     /// The date of the gift exchange
     public var date: Date {
-        get { date_ ?? Date() }
+        get { date_ ?? Date.today }
         set { date_ = newValue }
     }
     
