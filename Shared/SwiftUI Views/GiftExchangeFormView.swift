@@ -1,5 +1,5 @@
 //
-//  GiftExchangeLaunchView.swift
+//  GiftExchangeFormView.swift
 //  Shared (View)
 //
 //  Created by Tanner on 8/8/21.
@@ -42,6 +42,9 @@ struct GiftExchangeFormView: View {
         self.data = data
     }
     
+    
+    // MARK: Body
+    
     var body: some View {
         
         let formName = "\(formType) Gift Exchange"
@@ -58,9 +61,7 @@ struct GiftExchangeFormView: View {
             
             Form {
                 Section(header: Text("Gift Exchange Info")) {
-                    TextField("Name", text: $data.name)
-                        .disableAutocorrection(true)
-                        .validation(data.nameValidation)
+                    nameTextField()
                     // SwiftUI bug: DatePicker causes app to throw warning when
                     // embedded inside a form. Ignore warning.
                     DatePicker(selection: $data.date, displayedComponents: [.date]) {
@@ -84,22 +85,10 @@ struct GiftExchangeFormView: View {
                 } else {
                     // insert delete exchange button if there is more than 1 gift exchange
                     if giftExchangeSettings.hasMultipleGiftExchanges() {
-                        if #available(iOS 15.0, *) {
-                            Button(role: .destructive, action: { deleteGiftExchange() }, label: {
-                                Text("Delete Gift Exchange")
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                            })
-                        } else {
-                            // fallback on earlier versions
-                            Button(action: { deleteGiftExchange() }, label: {
-                                Text("Delete Gift Exchange")
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .foregroundColor(.red)
-                            })
-                        }
+                        deleteButton()
                     }
                 }
-            }
+            }  // end Form
             .navigationTitle(String(stringLiteral: "\(formType)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -142,6 +131,84 @@ struct GiftExchangeFormView: View {
         
     }  // end body
     
+    
+    // MARK: Sub Views
+    
+    /**
+     A field for capturing the name of the gift exchange. Validation occurs differently based on the
+     form type.
+     
+     - Returns: The name text field with a validation modifier.
+     */
+    @ViewBuilder
+    func nameTextField() -> some View {
+        // drop the first publisher element for a new form so the field
+        // is not invalidated before the user has a chance to type
+        if isNewForm(formType) {
+            TextField("Name", text: $data.name)
+                .disableAutocorrection(true)
+                .validation(data.nameValidation(dropFirst: true))
+        } else {
+            TextField("Name", text: $data.name)
+                .disableAutocorrection(true)
+                .validation(data.nameValidation(dropFirst: false))
+        }
+    }
+    
+    /**
+     A Cancel button that dismisses the view.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func cancelButton() -> some View {
+        Button("Cancel", action: {
+            logFilter("cancelled action")
+            presentationMode.wrappedValue.dismiss()
+        })
+    }
+    
+    /**
+     A Save button that commits the form data.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func saveButton() -> some View {
+        Button("Save", action: {
+            let exchange = GiftExchange.update(using: data)
+            logFilter("saving gift exchange: \(exchange.toString())")
+            commitDataEntry()
+            logFilter("idList count: \(giftExchangeSettings.idList.count)")
+        })
+            .disabled(self.isSaveDisabled)
+    }
+    
+    /**
+     A Delete button that deletes a gift exchange.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func deleteButton() -> some View {
+        if #available(iOS 15.0, *) {
+            Button(role: .destructive, action: { deleteGiftExchange() }, label: {
+                Text("Delete Gift Exchange")
+                    .frame(maxWidth: .infinity, alignment: .center)
+            })
+        } else {
+            // fallback on earlier versions
+            Button(action: { deleteGiftExchange() }, label: {
+                Text("Delete Gift Exchange")
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .foregroundColor(.red)
+            })
+        }
+    }
+    
+    
+    // MARK: Model Functions
+    
     /// Adds the gift exchange to persistent storage and the new gift exchange id to the user settings.
     /// The gift exchange can commence.
     func startExchanging() {
@@ -157,33 +224,6 @@ struct GiftExchangeFormView: View {
         // property is being observed in the top-level GifterApp to change/refresh Views
         giftExchangeSettings.addGiftExchangeId(id: exchange.id)
         logFilter("idList count: \(giftExchangeSettings.idList.count)")
-    }
-    
-    /**
-     A Cancel button that dismisses the view.
-     
-     - Returns: A Button View
-     */
-    func cancelButton() -> some View {
-        Button("Cancel", action: {
-            logFilter("cancelled action")
-            presentationMode.wrappedValue.dismiss()
-        })
-    }
-    
-    /**
-     A Save button that commits the form data.
-     
-     - Returns: A Button View
-     */
-    func saveButton() -> some View {
-        Button("Save", action: {
-            let exchange = GiftExchange.update(using: data)
-            logFilter("saving gift exchange: \(exchange.toString())")
-            commitDataEntry()
-            logFilter("idList count: \(giftExchangeSettings.idList.count)")
-        })
-            .disabled(self.isSaveDisabled)
     }
     
     /// Triggers an alert for deleting the currently selected gift exchange.

@@ -40,26 +40,30 @@ class GiftExchangeFormData: ObservableObject {
         - date: The date of the gift exchange
         - christmasDay: `true` to default the form calendar to Christmas day
      */
-    init(name: String = "", emoji: String = emojis.first!, date: Date? = nil, christmasDay: Bool = false) {
+    init(name: String = "", emoji: String = emojis.first!, date: Date = Date(), christmasDay: Bool = false) {
         self.id = UUID()
         self.name = name
-        self.emoji = emoji
         
         if christmasDay {
             // override emoji to be Christmas tree if making it a Christmas day exchange
             self.emoji = "🎄"
-            // defaults the form date to Christmas day of the current year
-            let currentYear = Calendar.current.component(.year,  from: Date())
+            
+            // default the form date to Christmas day of the current year
+            let today = Date.today
+            var currentYear = Calendar.current.component(.year,  from: today)
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd"
+            let christmasDate = formatter.date(from: "\(currentYear)/12/25")!
+            
+            // move to next year if Christmas day of the current year has already passed
+            if today > christmasDate.noon {
+                currentYear += 1
+            }
+            
             self.date = formatter.date(from: "\(currentYear)/12/25")!
         } else {
-            // update with provided date, or today's date
-            if date != nil {
-                self.date = date!
-            } else {
-                self.date = Date()
-            }
+            self.emoji = emoji
+            self.date = date
         }
         
         // ensure the date is normalized to noon time so date validation has same reference point
@@ -103,12 +107,19 @@ class GiftExchangeFormData: ObservableObject {
     
     // MARK: Validation Publishers
     
-    /// Validates that the name property is not empty
-    lazy var nameValidation: ValidationPublisher = {
-        $name.nonEmptyValidator("Name must be provided")
-    }()
+    /**
+     Validates that the name property is not empty.
+     
+     - Parameters:
+        - dropFirst: `true` to drop the first element that is published, `false` to drop no elements. By default, this parameter is `false`.
+     
+     - Returns: A validation publisher for the name property ensuring it is not empty.
+     */
+    func nameValidation(dropFirst: Bool = false) -> ValidationPublisher {
+        return $name.nonEmptyValidator("Name must be provided", dropFirst: dropFirst)
+    }
     
-    /// Validates that the date property is after yesterday
+    /// Validates that the date property is after yesterday's date
     lazy var dateValidation: ValidationPublisher = {
         $date.dateValidation(afterDate: Date.yesterday, errorMessage: "Date must be after yesterday")
     }()
@@ -124,7 +135,7 @@ class GiftExchangeFormData: ObservableObject {
     /// Validates that all the ValidationPublishers are successful
     lazy var allValidation: ValidationPublisher = {
         Publishers.CombineLatest3(
-            nameValidation,
+            nameValidation(),
             dateValidation,
             emojiValidation
         ).map { v1, v2, v3 in
