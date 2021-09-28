@@ -142,14 +142,16 @@ struct GiftExchangeFormView: View {
      */
     @ViewBuilder
     func nameTextField() -> some View {
+        let textField = TextField("Name", text: $data.name)
+        
         // drop the first publisher element for a new form so the field
         // is not invalidated before the user has a chance to type
         if isNewForm(formType) {
-            TextField("Name", text: $data.name)
+            textField
                 .disableAutocorrection(true)
                 .validation(data.nameValidation(dropFirst: true))
         } else {
-            TextField("Name", text: $data.name)
+            textField
                 .disableAutocorrection(true)
                 .validation(data.nameValidation(dropFirst: false))
         }
