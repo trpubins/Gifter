@@ -14,22 +14,41 @@ import SwiftUI
 
 struct ValidationModifier: ViewModifier {
     
-    @State var latestValidation: Validation = .success
+    /// Saves the latest validation scenario to state
+    @State var latestValidation: Validation = .empty
     
+    /// Publishes the validation scenario
     let validationPublisher: ValidationPublisher
-        
+    
+    @ViewBuilder
     func body(content: Content) -> some View {
-        return VStack(alignment: .leading) {
-            content
+        VStack(alignment: .leading) {
+            HStack {
+                content
+                    .onReceive(validationPublisher) { validation in
+                        self.latestValidation = validation
+                    }
+                Spacer()
+                validationCheckmark
+            }
             validationMessage
-        }.onReceive(validationPublisher) { validation in
-            self.latestValidation = validation
         }
     }
     
-    var validationMessage: some View {
+    /// Uses the validation state to return a checkmark for valid scenarios
+    private var validationCheckmark: some View {
         switch latestValidation {
         case .success:
+            return AnyView(Image(systemName: "checkmark.circle.fill"))
+        case .failure, .empty:
+            return AnyView(EmptyView())
+        }
+    }
+    
+    /// Uses the validation state to return an error message for invalid scenarios
+    private var validationMessage: some View {
+        switch latestValidation {
+        case .success, .empty:
             return AnyView(EmptyView())
         case .failure(let message):
             let text = Text(message)
@@ -42,6 +61,14 @@ struct ValidationModifier: ViewModifier {
 
 extension View {
     
+    /**
+     Modifies a form sub view depending on the validation scenario.
+     
+     - Parameters:
+        - validationPublisher: Publishes the validation scenario
+     
+     - Returns: The modified view.
+     */
     func validation(_ validationPublisher: ValidationPublisher) -> some View {
         self.modifier(ValidationModifier(validationPublisher: validationPublisher))
     }

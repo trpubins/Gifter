@@ -14,6 +14,7 @@ import Foundation
 enum Validation {
     case success
     case failure(message: String)
+    case empty
     
     var isSuccess: Bool {
         if case .success = self {
