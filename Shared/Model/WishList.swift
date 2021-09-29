@@ -50,9 +50,9 @@ extension WishList: Comparable {
     
     // MARK: - Conform to Comparable
     
-    // equatability is based on the WishList's url
+    // equatability is based on the WishList's id
     public static func == (lhs: WishList, rhs: WishList) -> Bool {
-        return lhs.url == rhs.url
+        return lhs.id == rhs.id
     }
     
     // order is based on a WishList's number
