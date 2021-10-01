@@ -193,15 +193,17 @@ struct GiftExchangeFormView: View {
      */
     @ViewBuilder
     func deleteButton() -> some View {
+        let text = Text("Delete Gift Exchange")
+        
         if #available(iOS 15.0, *) {
             Button(role: .destructive, action: { deleteGiftExchange() }, label: {
-                Text("Delete Gift Exchange")
+                text
                     .frame(maxWidth: .infinity, alignment: .center)
             })
         } else {
             // fallback on earlier versions
             Button(action: { deleteGiftExchange() }, label: {
-                Text("Delete Gift Exchange")
+                text
                     .frame(maxWidth: .infinity, alignment: .center)
                     .foregroundColor(.red)
             })
