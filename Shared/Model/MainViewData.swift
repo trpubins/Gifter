@@ -29,7 +29,7 @@ struct MainViewData {
 enum TabNum: Int {
     case ExchangeTab = 1        // first tab
     case GiftersTab = 2         // second tab
-    case PreferencesTab = 3     // third tab
+    case SettingsTab = 3        // third tab
 }
 
 /**
@@ -52,9 +52,9 @@ func getMainViewData() -> [MainViewData] {
             imgName: "person.2"
         ),
         MainViewData(
-            dest: AnyView(PreferencesTabView()),
-            tabNum: TabNum.PreferencesTab.rawValue,
-            labelText: "Preferences",
+            dest: AnyView(SettingsTabView()),
+            tabNum: TabNum.SettingsTab.rawValue,
+            labelText: "Settings",
             imgName: "gearshape"
         ),
     ]
