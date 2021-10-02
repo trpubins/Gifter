@@ -46,6 +46,8 @@
 		BF8F8E1F26D4536A009D1D3E /* ToolbarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */; };
 		BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */; };
 		BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
+		BFAB10D32708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */; };
+		BFAB10D42708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */; };
 		BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
 		BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
 		BFAB347226BE126400D460D8 /* Gifter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */; };
@@ -71,8 +73,6 @@
 		BFECF6B826A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
 		BFF8120726C042CF00834B50 /* GiftExchangeFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */; };
 		BFF8120826C042CF00834B50 /* GiftExchangeFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */; };
-		BFF8122C26C04FED00834B50 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8122B26C04FED00834B50 /* GiftExchangeFormData.swift */; };
-		BFF8122D26C04FED00834B50 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8122B26C04FED00834B50 /* GiftExchangeFormData.swift */; };
 		BFF8122F26C0505E00834B50 /* SwiftUI+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8122E26C0505E00834B50 /* SwiftUI+Validation.swift */; };
 		BFF8123026C0505E00834B50 /* SwiftUI+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8122E26C0505E00834B50 /* SwiftUI+Validation.swift */; };
 		BFF8123426C0506A00834B50 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8123126C0506900834B50 /* Validation.swift */; };
@@ -108,6 +108,7 @@
 		BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenuView.swift; sourceTree = "<group>"; };
 		BF9EF1F326BC690E00FD01B3 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftExchangeFormData.swift; sourceTree = "<group>"; };
 		BFAB346E26BDFD0800D460D8 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
 		BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifter+Extensions.swift"; sourceTree = "<group>"; };
 		BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiftExchange+Extensions.swift"; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		BFECF6AD26A24EF00012227F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFECF6AE26A24EF00012227F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftExchangeFormView.swift; sourceTree = "<group>"; };
-		BFF8122B26C04FED00834B50 /* GiftExchangeFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftExchangeFormData.swift; sourceTree = "<group>"; };
 		BFF8122E26C0505E00834B50 /* SwiftUI+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Validation.swift"; sourceTree = "<group>"; };
 		BFF8123126C0506900834B50 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		BFF8123226C0506A00834B50 /* Publisher+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
@@ -174,6 +174,17 @@
 			name = Forms;
 			sourceTree = "<group>";
 		};
+		BFAB10D127084338009ADBC1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BFDFFC2D26D9A52700360050 /* StateTriggers.swift */,
+				BF2EF74E26C0E3840095B714 /* UserSettings.swift */,
+				BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */,
+				BF40D05C26DC57A200B02504 /* GifterFormData.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		BFEB827426C353E2004219E7 /* Development */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF8122126C0465400834B50 /* SwiftUI Views */,
+				BFAB10D127084338009ADBC1 /* ViewModel */,
 				BFF8122626C0475D00834B50 /* Model */,
 				BFF8122926C047FC00834B50 /* Helpers */,
 				BFF8122A26C0480500834B50 /* Data */,
@@ -278,11 +290,8 @@
 		BFF8122626C0475D00834B50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BFDFFC2D26D9A52700360050 /* StateTriggers.swift */,
 				BFDFFC3426D9D5E300360050 /* Alerts.swift */,
 				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
-				BFF8122B26C04FED00834B50 /* GiftExchangeFormData.swift */,
-				BF40D05C26DC57A200B02504 /* GifterFormData.swift */,
 				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
 				BFF8122826C0479A00834B50 /* CoreData */,
 				BFF8122726C0479200834B50 /* Custom Classes */,
@@ -296,7 +305,6 @@
 			children = (
 				BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */,
 				BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */,
-				BF2EF74E26C0E3840095B714 /* UserSettings.swift */,
 				BF60E31226F1A3D800EB6A42 /* WishList.swift */,
 			);
 			name = "Custom Classes";
@@ -443,9 +451,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFF8122C26C04FED00834B50 /* GiftExchangeFormData.swift in Sources */,
 				BFEB827226C30A0C004219E7 /* MainViewData.swift in Sources */,
 				BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
+				BFAB10D32708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */,
 				BF8F8E1F26D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
 				BF60E31326F1A3D800EB6A42 /* WishList.swift in Sources */,
 				BF0DDCA426C2FB22005D0412 /* View+Extensions.swift in Sources */,
@@ -489,6 +497,7 @@
 				BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */,
 				BF8A4A5626CC9EF800EE2CCC /* MainView.swift in Sources */,
 				BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
+				BFAB10D42708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */,
 				BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
 				BF60E31426F1A3D800EB6A42 /* WishList.swift in Sources */,
 				BF8A4A5926CCA16200EE2CCC /* UIImage+Extensions.swift in Sources */,
@@ -504,7 +513,6 @@
 				BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
 				BFF8123026C0505E00834B50 /* SwiftUI+Validation.swift in Sources */,
 				BFF8124426C079A800834B50 /* Date+Extensions.swift in Sources */,
-				BFF8122D26C04FED00834B50 /* GiftExchangeFormData.swift in Sources */,
 				BF2A865826BE6C090038C024 /* ExchangeDetailView.swift in Sources */,
 				BF0DDCAB26C3023B005D0412 /* MainViewMacOS.swift in Sources */,
 				BFF8123926C0506A00834B50 /* ValidationPublishers.swift in Sources */,
