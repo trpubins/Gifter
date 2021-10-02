@@ -249,16 +249,26 @@ struct GiftExchangeFormView_Previews: PreviewProvider {
     static let previewUserSettings: UserSettings = getPreviewUserSettings()
     static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
 
+    struct EditGiftExchangeFormView_Preview: View {
+        init() {
+            GiftExchangeFormView_Previews.previewGiftExchange.name = "Zohan"
+            GiftExchangeFormView_Previews.previewGiftExchange.emoji = emojis.first!
+        }
+        var body: some View {
+            NavigationView {
+                GiftExchangeFormView(
+                    formType: FormType.Edit,
+                    data: GiftExchangeFormData(giftExchange: GiftExchangeFormView_Previews.previewGiftExchange)
+                )
+                    .environmentObject(GiftExchangeFormView_Previews.previewUserSettings)
+                    .environmentObject(GiftExchangeFormView_Previews.previewGiftExchange)
+            }
+        }
+    }
+    
     static var previews: some View {
         // 1st preview
-        NavigationView {
-            GiftExchangeFormView(
-                formType: FormType.Edit,
-                data: GiftExchangeFormData(name: "Zohan", emoji: emojis.first!)
-            )
-                .environmentObject(previewUserSettings)
-                .environmentObject(previewGiftExchange)
-        }
+        EditGiftExchangeFormView_Preview()
         // 2nd preview
         GiftExchangeFormView(formType: FormType.New)
     }

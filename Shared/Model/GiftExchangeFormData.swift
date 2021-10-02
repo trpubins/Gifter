@@ -97,8 +97,7 @@ class GiftExchangeFormData: ObservableObject {
      */
     func hasChanged(comparedTo giftExchange: GiftExchange) -> Bool {
         return (
-            self.id != giftExchange.id
-            || self.name != giftExchange.name
+            self.name != giftExchange.name
             || self.date.noon != giftExchange.date.noon
             || self.emoji != giftExchange.emoji
         )
