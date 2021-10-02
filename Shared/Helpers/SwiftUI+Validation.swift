@@ -39,7 +39,9 @@ struct ValidationModifier: ViewModifier {
     private var validationCheckmark: some View {
         switch latestValidation {
         case .success:
-            return AnyView(Image(systemName: "checkmark.circle.fill"))
+            let checkmark = Image(systemName: "checkmark.circle.fill")
+                .foregroundColor(.secondary)
+            return AnyView(checkmark)
         case .failure, .empty:
             return AnyView(EmptyView())
         }
