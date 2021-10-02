@@ -130,18 +130,7 @@ struct GifterFormView: View {
             }
             
         }  // end VStack
-        .onAppear {
-            logAppear(title: "GifterFormView")
-            // the data.allValidation property requires at least one message from
-            // each publisher before it can publish it’s own message. in Edit mode,
-            // we pre-populate the form with data provided at initialization.
-            // so here, we assign the data fields to itself in order to publish the
-            // fields but keeping their values the same
-            if !isNewForm(formType) {
-                self.data.name = self.data.name
-                self.data.email = self.data.email
-            }
-        }
+        .onAppear { logAppear(title: "GifterFormView") }
         .alert(isPresented: $isDeleteAlertShowing) {
             Alerts.gifterDeleteAlert(gifter: selectedGifter, selectedGiftExchange: selectedGiftExchange)
         }
