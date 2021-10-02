@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct GifterFormView: View {
     
     /// Binds our View to the presentation mode so we can dismiss the View when we need to
@@ -15,6 +14,9 @@ struct GifterFormView: View {
     
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
+    
+    /// The gifter selection provided by a parent View
+    @EnvironmentObject var selectedGifter: Gifter
     
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
@@ -31,6 +33,9 @@ struct GifterFormView: View {
     /// Describes the type of gifter form this is
     let formType: FormType
     
+    /// Holds a copy of the original gifter form data, which may be required to reset the gifter form
+    let originalData: GifterFormData
+    
     /**
      Initializes the form view instance members.
      
@@ -41,7 +46,11 @@ struct GifterFormView: View {
     init(formType: FormType, data: GifterFormData = GifterFormData()) {
         self.formType = formType
         self.data = data
+        self.originalData = GifterFormData(formData: data)
     }
+    
+    
+    // MARK: Body
     
     var body: some View {
         
@@ -59,13 +68,33 @@ struct GifterFormView: View {
             
             Form {
                 Section(header: Text("Gifter Info")) {
-                    TextField("Name", text: $data.name)
-                        .validation(data.nameValidation)
-                    TextField("Email Address", text: $data.email)
-                        .validation(data.emailValidation)
+                    nameTextField()
+                    emailTextField()
                 }
+                Section(header: Text("Wish Lists")) {
+                    ForEach($data.wishLists) { $wishList in
+                        HStack {
+                            Button(
+                                action: { data.deleteWishList($wishList) },
+                                label: { Image(systemName: "minus.circle") }
+                            )
+                            wishListTextField($wishList)
+                        }
+
+                    }
+                    Button(action: { data.addWishList() }, label: {
+                        Text("Add Wish List")
+                    })
+                }
+                if (isNewForm(formType) && selectedGiftExchange.gifters.count > 0) ||
+                (selectedGiftExchange.gifters.count > 1) {
+                    Section(header: Text("Restrictions")) {
+                        // MARK: TODO
+                    }
+                }
+                
                 // insert add gifter button when a new gifter is being added
-                if isNewForm() {
+                if isNewForm(formType) {
                     Button(action: { addNewGifter() }, label: {
                         HStack {
                             Label("Add Gifter", systemImage: "person.badge.plus")
@@ -74,33 +103,30 @@ struct GifterFormView: View {
                         .disabled(self.isSaveDisabled)
                 } else {
                     // insert delete button if in edit mode
-                    if #available(iOS 15.0, *) {
-                        Button(role: .destructive, action: { deleteGifter() }, label: {
-                            Text("Delete Gifter")
-                                .frame(maxWidth: .infinity, alignment: .center)
-                        })
-                    } else {
-                        // fallback on earlier versions
-                        Button(action: { deleteGifter() }, label: {
-                            Text("Delete Gifter")
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                .foregroundColor(.red)
-                        })
-                    }
-                    
+                    deleteButton()
                 }
-            }
+            }  // end Form
             .navigationTitle(String(stringLiteral: "\(formType)"))
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { cancelButton() }
                 ToolbarItem(placement: .confirmationAction) {
                     // only an Edit form shall have the save button in the toolbar
-                    if formType == .Edit { saveButton() }
+                    if !isNewForm(formType) { saveButton() }
                 }
             }
             .onReceive(data.allValidation) { validation in
-                self.isSaveDisabled = !validation.isSuccess
+                if isNewForm(formType) {
+                    self.isSaveDisabled = !validation.isSuccess
+                } else {
+                    // form data needs to change in order to enable save button
+                    if (validation.isSuccess && data.hasChanged(comparedTo: selectedGifter)) {
+                        self.isSaveDisabled = false
+                    } else {
+                        self.isSaveDisabled = true
+                    }
+                }
             }
             
         }  // end VStack
@@ -109,17 +135,158 @@ struct GifterFormView: View {
             // the data.allValidation property requires at least one message from
             // each publisher before it can publish it’s own message. in Edit mode,
             // we pre-populate the form with data provided at initialization.
-            // so here, we assign the name field to itself in order to publish the
-            // name field but keeping its value the same
-            if formType == .Edit {
+            // so here, we assign the data fields to itself in order to publish the
+            // fields but keeping their values the same
+            if !isNewForm(formType) {
                 self.data.name = self.data.name
+                self.data.email = self.data.email
             }
         }
-//        .alert(isPresented: $isDeleteAlertShowing) {
-//            Alerts.gifterDeleteAlert(gifter: gifter, selectedGiftExchange: selectedGiftExchange)
-//        }
+        .alert(isPresented: $isDeleteAlertShowing) {
+            Alerts.gifterDeleteAlert(gifter: selectedGifter, selectedGiftExchange: selectedGiftExchange)
+        }
         
     }  // end body
+    
+    
+    // MARK: Sub Views
+    
+    /**
+     A field for capturing the gifter's name. Validation occurs differently based on the
+     form type.
+     
+     - Returns: The name text field with a validation modifier.
+     */
+    @ViewBuilder
+    func nameTextField() -> some View {
+        let textField = TextField("Name", text: $data.name)
+        
+        // drop the first publisher element for a new form so the field
+        // is not invalidated before the user has a chance to type
+        if isNewForm(formType) {
+            textField
+                .disableAutocorrection(true)
+                .validation(data.nameValidation(dropFirst: true))
+        } else {
+            textField
+                .disableAutocorrection(true)
+                .validation(data.nameValidation(dropFirst: false))
+        }
+    }
+    
+    /**
+     A field for capturing the gifter's email. Validation occurs differently based on the
+     form type.
+     
+     - Returns: The email text field with a validation modifier.
+     */
+    @ViewBuilder
+    func emailTextField() -> some View {
+        let textField = TextField("Email address", text: $data.email)
+        
+        // drop the first publisher element for a new form so the field
+        // is not invalidated before the user has a chance to type
+        if isNewForm(formType) {
+            textField
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .validation(data.emailValidation(dropFirst: true))
+        } else {
+            textField
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .validation(data.emailValidation(dropFirst: false))
+        }
+    }
+    
+    /**
+     A field for capturing a wish list url. Validation occurs differently based on the initial url string.
+     
+     - Parameters:
+        - wishList: A binding to the wish list form field
+     
+     - Returns: A wish list text field with a validation modifier.
+     */
+    @ViewBuilder
+    func wishListTextField(_ wishList: Binding<WishList>) -> some View {
+        let textField = TextField("URL address", text: wishList.url)
+        
+        // do not drop the first publisher element if the wishlist is part of
+        // the original data but do so if the wishlist is newly added so the
+        // text field is not invalidated before the user has a chance to type
+        if originalData.wishLists.contains(wishList.wrappedValue) {
+            textField
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .validation(data.wishListValidation(wishList.wrappedValue.id,
+                                                    dropFirst: false))
+        } else {
+            textField
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .validation(data.wishListValidation(wishList.wrappedValue.id,
+                                                    dropFirst: true))
+        }
+    }
+    
+    /**
+     A Cancel button that dismisses the view.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func cancelButton() -> some View {
+        Button("Cancel", action: {
+            logFilter("cancelled action")
+            presentationMode.wrappedValue.dismiss()
+            if !isNewForm(formType) {
+                // need to reset the gifter form data to the original since this
+                // form is called as a NavigationLink and not a sheet like the
+                // GiftExchangeFormView
+                data.resetForm(with: originalData)
+            }
+        })
+    }
+    
+    /**
+     A Save button that commits the form data.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func saveButton() -> some View {
+        Button("Save", action: {
+            let gifter = Gifter.update(using: data)
+            commitDataEntry()
+            logFilter("saving gifter: \(gifter.toString())")
+        })
+            .disabled(self.isSaveDisabled)
+    }
+    
+    /**
+     A Delete button that deletes a gifter.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func deleteButton() -> some View {
+        if #available(iOS 15.0, *) {
+            Button(role: .destructive, action: { deleteGifter() }, label: {
+                Text("Delete Gifter")
+                    .frame(maxWidth: .infinity, alignment: .center)
+            })
+        } else {
+            // fallback on earlier versions
+            Button(action: { deleteGifter() }, label: {
+                Text("Delete Gifter")
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .foregroundColor(.red)
+            })
+        }
+    }
+    
+    
+    // MARK: Model Functions
     
     /// Adds the gifter to the selected gift exchange and to persistent storage.
     func addNewGifter() {
@@ -131,32 +298,6 @@ struct GifterFormView: View {
         selectedGiftExchange.addGifter(gifter)
         commitDataEntry()
         logFilter("adding gifter: \(gifter.toString())")
-    }
-    
-    /**
-     A Cancel button that dismisses the view.
-     
-     - Returns: A Button View
-     */
-    func cancelButton() -> some View {
-        Button("Cancel", action: {
-            logFilter("cancelled action")
-            presentationMode.wrappedValue.dismiss()
-        })
-    }
-    
-    /**
-     A Save button that commits the form data.
-     
-     - Returns: A Button View
-     */
-    func saveButton() -> some View {
-        Button("Save", action: {
-            let gifter = Gifter.update(using: data)
-            commitDataEntry()
-            logFilter("saving gifter: \(gifter.toString())")
-        })
-            .disabled(self.isSaveDisabled)
     }
     
     /// Triggers an alert for deleting the currently selected gift exchange.
@@ -173,34 +314,42 @@ struct GifterFormView: View {
         logFilter("gifters count: \(selectedGiftExchange.gifters.count)")
     }
     
-    /**
-     Evaluates a logical expression to determine if the form is for adding a new gifter.
-     
-     - Returns: `true` if the form is for a new gifter, `false` if not.
-     */
-    func isNewForm() -> Bool {
-        return (formType == .Add)
-    }
-    
 }
 
 struct GifterFormView_Previews: PreviewProvider {
     
     static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
+    static let previewGifter: Gifter = Gifter(context: PersistenceController.shared.context)
+    
+    
+    struct EditGifterFormView_Preview: View {
+        init() {
+            GifterFormView_Previews.previewGifter.name = "Santa"
+            GifterFormView_Previews.previewGifter.email = "yohoho@northpole.com"
+            GifterFormView_Previews.previewGifter.wishLists = ["presents.com/santa",
+                                                               "https://bagz.org"]
+        }
+        var body: some View {
+            NavigationView {
+                GifterFormView(
+                    formType: FormType.Edit,
+                    data: GifterFormData(gifter: GifterFormView_Previews.previewGifter)
+                )
+                    .environmentObject(GifterFormView_Previews.previewGiftExchange)
+                    .environmentObject(GifterFormView_Previews.previewGifter)
+            }
+        }
+    }
     
     static var previews: some View {
         // 1st preview
-        NavigationView {
-            GifterFormView(
-                formType: FormType.Edit,
-                data: GifterFormData(name: "Santa", email: "yohoho@northpole.com")
-            )
-                .environmentObject(previewGiftExchange)
-        }
+        EditGifterFormView_Preview()
         // 2nd preview
         NavigationView {
             GifterFormView(formType: FormType.Add)
                 .environmentObject(previewGiftExchange)
         }
     }
+    
+    
 }

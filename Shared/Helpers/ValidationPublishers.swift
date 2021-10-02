@@ -128,6 +128,38 @@ class ValidationPublishers {
     }
     
     /**
+     Validates whether all array elements in a wish list match the provided regular expression.
+     
+     - Parameters:
+        - publisher: The class property that is publishing values
+        - pattern: The regular expression pattern to match
+        - errorMessage: The message to provide in an invalid scenario
+        - dropFirst: `true` drops the first element from the publisher, `false` does not drop any elements
+     
+     - Returns: The validation publisher that validates all array elements against the regular expression.
+     */
+    static func allWishListValidation(for publisher: Published<Array<WishList>>.Publisher,
+                                      withPattern pattern: Regex,
+                                      errorMessage: @autoclosure @escaping ValidationErrorClosure,
+                                      dropFirst: Bool) -> ValidationPublisher {
+        
+        func getPublisherMap() -> Publishers.Map<Published<Array<WishList>>.Publisher, Validation> {
+            return publisher.map { array in
+                for value in array {
+                    guard pattern.matches(value.url) else {
+                        // publish failure if even one url does not match the regular expression
+                        return .failure(message: errorMessage())
+                    }
+                }
+                // all values in array are valid
+                return .success
+            }
+        }
+        
+        return getValidationPublisher(getPublisherMap(), dropFirst: dropFirst)
+    }
+    
+    /**
      Validates whether a date falls between a date range. If one of the bounds isn't provided, a suitable distant detail is used.
      
      - Parameters:

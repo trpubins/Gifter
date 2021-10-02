@@ -28,7 +28,7 @@ struct GiftersTabView: View {
                     Text("Number of gifters: \(selectedGiftExchange.gifters.count)")
                 }
                 .padding([.top, .leading, .trailing])
-            }
+            }  // end HStack
             Spacer()
             if selectedGiftExchange.gifters.count == 0 {
                 Text("There are no gifters participating in this gift exchange!")
@@ -50,12 +50,22 @@ struct GiftersTabView: View {
                     .padding()
                 }
             } else {
-                Text("At least 1 gifter is participating in this gift exchange!")
-                    .multilineTextAlignment(.center)
+                List(selectedGiftExchange.gifters) { gifter in
+                    NavigationLink(
+                        destination: GifterFormView(
+                            formType: .Edit,
+                            data: GifterFormData(gifter: gifter)
+                        )
+                            .environmentObject(selectedGiftExchange)
+                            .environmentObject(gifter)
+                    ) {
+                        GifterRowView(gifter: gifter)
+                    }
+                }
             }
             
             Spacer()
-        } // end VStack
+        }  // end VStack
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { logAppear(title: "GiftersTabView") }
     }

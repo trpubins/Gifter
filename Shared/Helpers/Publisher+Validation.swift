@@ -85,6 +85,25 @@ extension Published.Publisher where Value == [WishList] {
                                                        dropFirst: dropFirst)
     }
     
+    /**
+     Validates whether all array elements in a wish list match the provided regular expression.
+     
+     - Parameters:
+        - pattern: The regular expression pattern to match
+        - errorMessage: The message to provide in an invalid scenario
+        - dropFirst: `true` drops the first element from the publisher, `false` does not drop any elements
+     
+     - Returns: The validation publisher that validates all array elements against the regular expression.
+     */
+    func allWishListValidation(_ pattern: String,
+                               _ errorMessage: @autoclosure @escaping ValidationErrorClosure,
+                               dropFirst: Bool) -> ValidationPublisher {
+        return ValidationPublishers.allWishListValidation(for: self,
+                                                          withPattern: pattern.r!,
+                                                          errorMessage: errorMessage(),
+                                                          dropFirst: dropFirst)
+    }
+    
 }
 
 extension Published.Publisher where Value == Date {

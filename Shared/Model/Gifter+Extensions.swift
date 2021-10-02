@@ -64,7 +64,7 @@ extension Gifter {
     }
     
     
-    // MARK: - Object Methods
+    // MARK: Object Methods
     
     /**
      Initializes the unique id for this Gifter from the provided id.
@@ -86,7 +86,7 @@ extension Gifter {
         self.name = data.name
         self.email = data.email
         self.restrictedIds = data.restrictedIds
-        self.wishLists = data.wishLists
+        self.wishLists = data.getWishListURLs()
     }
     
     /**
