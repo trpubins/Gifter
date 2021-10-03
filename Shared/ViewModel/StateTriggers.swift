@@ -28,12 +28,6 @@ class StateTriggers: ObservableObject {
     /// Triggers a sheet for editing an existing gift exchange
     @Published var isEditGiftExchangeFormShowing: Bool = false
     
-    /// Triggers an alert for deleting a gift exchange
-    @Published var isDeleteGiftExchangeAlertShowing: Bool = false
-    
-    /// Triggers an alert for when a gift exchange date has passed
-    @Published var isGiftExchangeCompletedAlertShowing: Bool = false
-    
     
     // MARK: Gifter Triggers
 
@@ -42,7 +36,4 @@ class StateTriggers: ObservableObject {
     
     /// Triggers a sheet for editing an existing gifter
     @Published var isEditGifterFormShowing: Bool = false
-    
-    /// Triggers an alert for deleting a gifter
-    @Published var isDeleteGifterAlertShowing: Bool = false
 }

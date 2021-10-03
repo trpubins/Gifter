@@ -15,6 +15,9 @@ struct ToolbarMenuView: View {
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
+    /// The alert controller provided by a parent View
+    @EnvironmentObject var alertController: AlertController
+    
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
     
@@ -31,21 +34,14 @@ struct ToolbarMenuView: View {
         self.otherGiftExchanges = GiftExchange.objectArr(entity: GiftExchange.self, withIdArr: unselectedIds, context: PersistenceController.shared.context)
     }
     
+    
+    // MARK: Body
+    
     var body: some View {
         Menu {
             // only show Delete button if there is more than 1 gift exchange
             if self.giftExchangeSettings.hasMultipleGiftExchanges() {
-                if #available(iOS 15.0, *) {
-                    Button(role: .destructive, action: { deleteGiftExchange() }, label: {
-                        Label("Delete Gift Exchange", systemImage: "trash")
-                    })
-                } else {
-                    // fallback on earlier versions
-                    Button(action: { deleteGiftExchange() }, label: {
-                        Label("Delete Gift Exchange", systemImage: "trash")
-                            .foregroundColor(.red)
-                    })
-                }
+                deleteGiftExchangeButton()
             }
             Button(action: { editGiftExchange() }) {
                 Label("Edit Gift Exchange", systemImage: "pencil")
@@ -74,6 +70,34 @@ struct ToolbarMenuView: View {
         .foregroundColor(.primary)
     }
     
+    
+    // MARK: Sub Views
+    
+    /**
+     A Delete button that deletes a gift exchange.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func deleteGiftExchangeButton() -> some View {
+        let label = Label("Delete Gift Exchange", systemImage: "trash")
+        
+        if #available(iOS 15.0, *) {
+            Button(role: .destructive, action: { deleteGiftExchange() }, label: {
+                label
+            })
+        } else {
+            // fallback on earlier versions
+            Button(action: { deleteGiftExchange() }, label: {
+                label
+                    .foregroundColor(.red)
+            })
+        }
+    }
+    
+    
+    // MARK: ViewModel Functions
+    
     /// Triggers a sheet for adding a new gift exchange.
     func addGiftExchange() {
         logFilter("add gift exchange")
@@ -89,7 +113,10 @@ struct ToolbarMenuView: View {
     /// Triggers an alert for deleting the currently selected gift exchange.
     func deleteGiftExchange() {
         logFilter("delete gift exchange")
-        self.triggers.isDeleteGiftExchangeAlertShowing = true
+        self.alertController.info = AlertInfo(
+            id: .DeleteGiftExchange,
+            alert: Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
+        )
     }
     
     /**
@@ -100,7 +127,7 @@ struct ToolbarMenuView: View {
      */
     func changeGiftExchange(_ giftExchange: GiftExchange) {
         logFilter("changing selected gift exchange to: \(giftExchange.toString())")
-        giftExchangeSettings.changeSelectedGiftExchangeId(id: giftExchange.id)
+        self.giftExchangeSettings.changeSelectedGiftExchangeId(id: giftExchange.id)
     }
     
 }
@@ -109,7 +136,8 @@ struct ToolbarMenuView_Previews: PreviewProvider {
     
     static let previewUserSettings: UserSettings = getPreviewUserSettings()
     static var previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
-    static let previewTriggers: StateTriggers = StateTriggers()
+    static let previewAlertController = AlertController()
+    static let previewTriggers = StateTriggers()
 
     static var previews: some View {
         NavigationView {
@@ -120,6 +148,7 @@ struct ToolbarMenuView_Previews: PreviewProvider {
                     ToolbarMenuView(unselectedIds: previewUserSettings.unselectedIdList)
                         .environmentObject(previewUserSettings)
                         .environmentObject(previewGiftExchange)
+                        .environmentObject(previewAlertController)
                         .environmentObject(previewTriggers)
                 }
             }

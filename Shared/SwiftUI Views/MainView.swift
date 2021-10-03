@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    
-    /// The gift exchange user settings provided by a parent View
-    @EnvironmentObject var giftExchangeSettings: UserSettings
+
+    /// Controls the alert information at the app level
+    @ObservedObject var alertController = AlertController()
     
     /// Object encapsulating various state variables
     @ObservedObject var triggers: StateTriggers
@@ -30,41 +30,44 @@ struct MainView: View {
         self.selectedGiftExchange = GiftExchange.get(withId: id)
         self.triggers = triggers
         
-        // present the alert if the gift exchange's date has passed
-        // and send user to the Exchange Tab
+        // present the gift exchange completed alert if the gift exchange's
+        // date has passed and send user to the Exchange Tab
         if self.selectedGiftExchange.hasDatePassed() {
-            self.triggers.isGiftExchangeCompletedAlertShowing = true
+            self.alertController.info = AlertInfo(
+                id: .GiftExchangeCompleted,
+                alert: Alerts.giftExchangeCompletedAlert(self.selectedGiftExchange)
+            )
             self.triggers.selectedTab = TabNum.ExchangeTab.rawValue
-        } else {
-            self.triggers.isGiftExchangeCompletedAlertShowing = false
         }
+        
+        // https://developer.apple.com/forums/thread/673147
+        // the below code is a hack for the SwiftUI bug mentioned in the above thread
+        // the bug is that alert buttons do not take on the project's accent color
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "AccentColor")
     }
+    
+    
+    // MARK: Body
     
     var body: some View {
         mainView()
-            // gift exchange completed alert
-            .alert(isPresented: .init(
-                get: { triggers.isGiftExchangeCompletedAlertShowing },
-                set: { triggers.isGiftExchangeCompletedAlertShowing = $0 }
-            )) {
-                Alerts.giftExchangeCompletedAlert(self.selectedGiftExchange)
-            }
-            // delete gift exchange alert
-            .alert(isPresented: .init(
-                get: { triggers.isDeleteGiftExchangeAlertShowing },
-                set: { triggers.isDeleteGiftExchangeAlertShowing = $0 }
-            )) {
-                Alerts.giftExchangeDeleteAlert(giftExchange: selectedGiftExchange, giftExchangeSettings: giftExchangeSettings)
-            }
             .environmentObject(selectedGiftExchange)
             .environmentObject(triggers)
+            .environmentObject(alertController)
+            .alert(item: $alertController.info, content: { info in
+                info.alert
+            })
     }
+    
+    
+    // MARK: Sub Views
     
     /**
      The proper main view based on the OS.
      
      - Returns: The OS-specific main view.
      */
+    @ViewBuilder
     func mainView() -> some View {
         #if os(iOS)
         MainViewIOS(mainViewTabs: getMainViewData())
