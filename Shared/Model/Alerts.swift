@@ -5,11 +5,31 @@
 //  Created by Tanner on 8/27/21.
 //
 
-import Foundation
 import SwiftUI
 
+/// An identifiable item that captures alert information.
+struct AlertInfo: Identifiable {
+    
+    /**
+     An enumeration for describing alert information.
+     
+     Enumerations include: .GiftExchangeCompleted, .DeleteGiftExchange, & .DeleteGifter
+     */
+    enum AlertType {
+        case GiftExchangeCompleted
+        case DeleteGiftExchange
+        case DeleteGifter
+    }
+    
+    /// The alert type serving as the structure's unique id
+    let id: AlertType
+    
+    /// A fully assembled alert
+    let alert: Alert
+}
 
-/// A struct that helps generate alerts when the user is attempting to delete something.
+
+/// A struct that supports building alerts.
 struct Alerts {
 
     
