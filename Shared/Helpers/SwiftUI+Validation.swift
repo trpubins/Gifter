@@ -1,6 +1,6 @@
 //
 //  SwiftUI+Validation.swift
-//  SwiftUI-Validation (Helper)
+//  Shared (Helper)
 //  https://newcombe.io/2020/03/05/validation-with-swiftui-combine-part-1/
 //  https://github.com/jnewc/SwiftUI-Validation
 //  Apache-2.0 License

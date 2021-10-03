@@ -1,6 +1,6 @@
 //
 //  UIScreen+Extensions.swift
-//  UIScreen+Extensions
+//  Shared (Helper)
 //
 //  Created by Tanner on 8/28/21.
 //
