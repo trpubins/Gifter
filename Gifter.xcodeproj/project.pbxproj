@@ -291,29 +291,21 @@
 			isa = PBXGroup;
 			children = (
 				BFDFFC3426D9D5E300360050 /* Alerts.swift */,
+				BF60E31226F1A3D800EB6A42 /* WishList.swift */,
 				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
 				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
 				BFF8122826C0479A00834B50 /* CoreData */,
-				BFF8122726C0479200834B50 /* Custom Classes */,
 				BFEB827426C353E2004219E7 /* Development */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		BFF8122726C0479200834B50 /* Custom Classes */ = {
-			isa = PBXGroup;
-			children = (
-				BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */,
-				BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */,
-				BF60E31226F1A3D800EB6A42 /* WishList.swift */,
-			);
-			name = "Custom Classes";
 			sourceTree = "<group>";
 		};
 		BFF8122826C0479A00834B50 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */,
+				BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */,
 				BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */,
 			);
 			name = CoreData;
