@@ -1,6 +1,6 @@
 //
 //  ToolbarMenuView.swift
-//  ToolbarMenuView
+//  Shared (View)
 //
 //  Created by Tanner on 8/23/21.
 //

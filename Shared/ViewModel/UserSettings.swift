@@ -1,6 +1,6 @@
 //
 //  UserSettings.swift
-//  Shared (Model)
+//  Shared (ViewModel)
 //  https://www.simpleswiftguide.com/how-to-use-userdefaults-in-swiftui/
 //  https://stackoverflow.com/a/41355671
 //

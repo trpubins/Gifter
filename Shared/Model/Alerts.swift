@@ -1,6 +1,6 @@
 //
-//  DeleteAlertData.swift
-//  DeleteAlertData
+//  Alerts.swift
+//  Shared (Model)
 //
 //  Created by Tanner on 8/27/21.
 //

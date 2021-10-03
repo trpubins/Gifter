@@ -1,6 +1,6 @@
 //
 //  WishList.swift
-//  WishList
+//  Shared (Model)
 //
 //  Created by Tanner on 9/14/21.
 //

@@ -1,6 +1,6 @@
 //
 //  EmojiView.swift
-//  EmojiView
+//  Shared (View)
 //
 //  Created by Tanner on 8/19/21.
 //

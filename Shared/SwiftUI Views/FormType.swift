@@ -1,6 +1,6 @@
 //
 //  FormType.swift
-//  FormType
+//  Shared (Type)
 //
 //  Created by Tanner on 9/18/21.
 //

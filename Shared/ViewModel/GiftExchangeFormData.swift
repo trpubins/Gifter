@@ -1,6 +1,6 @@
 //
 //  GiftExchangeFormData.swift
-//  Shared (Model)
+//  Shared (ViewModel)
 //  https://newcombe.io/2020/06/08/validation-with-swiftui-combine-part-2/
 //
 //  Created by Tanner on 8/8/21.

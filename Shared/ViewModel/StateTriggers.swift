@@ -1,6 +1,6 @@
 //
 //  StateTriggers.swift
-//  StateTriggers
+//  Shared (ViewModel)
 //
 //  Created by Tanner on 8/27/21.
 //

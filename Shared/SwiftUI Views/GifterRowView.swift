@@ -1,6 +1,6 @@
 //
 //  GifterRowView.swift
-//  GifterRowView
+//  Shared (View)
 //
 //  Created by Tanner on 9/18/21.
 //
