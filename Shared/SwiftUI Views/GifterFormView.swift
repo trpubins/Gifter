@@ -198,7 +198,7 @@ struct GifterFormView: View {
      */
     @ViewBuilder
     func wishListTextField(_ wishList: Binding<WishList>) -> some View {
-        let textField = TextField("Website URL link", text: wishList.url)
+        let textField = TextField("Website link or URL", text: wishList.url)
         
         // do not drop the first publisher element if the wishlist is part of
         // the original data but do so if the wishlist is newly added so the
