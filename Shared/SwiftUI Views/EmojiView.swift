@@ -83,7 +83,11 @@ struct EmojiView: View {
 
 struct EmojiView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiView()
-            .environmentObject(GiftExchangeFormData())
+        Form {
+            Section(header: Text("Emoji")) {
+                EmojiView()
+                    .environmentObject(GiftExchangeFormData())
+            }
+        }
     }
 }
