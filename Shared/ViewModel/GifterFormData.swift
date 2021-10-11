@@ -162,7 +162,7 @@ class GifterFormData: ObservableObject {
         return (
             self.name != gifter.name
             || self.email != gifter.email
-            || !self.restrictedIds.elementsEqual(gifter.restrictedIds)
+            || Set(self.restrictedIds) != Set(gifter.restrictedIds)
             || !self.getWishListURLs().elementsEqual(gifter.wishLists)
         )
     }
