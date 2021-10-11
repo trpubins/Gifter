@@ -78,7 +78,7 @@ class ValidationPublishers {
      Retrieves a publisher that will always publish valid.
      
      - Parameters:
-        - publisher: The class property that is publishing values
+        - publisher: The class property, String, that is publishing values
      
      - Returns: The validation publisher that always emits .success.
      */
@@ -90,6 +90,25 @@ class ValidationPublishers {
             }
         }
 
+        return getValidationPublisher(getPublisherMap(), dropFirst: false)
+    }
+    
+    /**
+     Retrieves a publisher that will always publish valid.
+     
+     - Parameters:
+        - publisher: The class property, [UUID], that is publishing values
+     
+     - Returns: The validation publisher that always emits .success.
+     */
+    static func alwaysValid(for publisher: Published<Array<UUID>>.Publisher) -> ValidationPublisher {
+        
+        func getPublisherMap() -> Publishers.Map<Published<Array<UUID>>.Publisher, Validation> {
+            return publisher.map { value in
+                return .success
+            }
+        }
+        
         return getValidationPublisher(getPublisherMap(), dropFirst: false)
     }
     

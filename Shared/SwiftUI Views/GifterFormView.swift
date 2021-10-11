@@ -67,10 +67,13 @@ struct GifterFormView: View {
             }
             
             Form {
+                // Gifter Info
                 Section(header: Text("Gifter Info")) {
                     nameTextField()
                     emailTextField()
                 }
+                
+                // Wish Lists
                 Section(header: Text("Wish Lists")) {
                     ForEach($data.wishLists) { $wishList in
                         HStack {
@@ -86,10 +89,21 @@ struct GifterFormView: View {
                         Text("Add Wish List")
                     })
                 }
+                
+                // add Restrictions section if enough gifters are present
                 if (isNewForm(formType) && selectedGiftExchange.gifters.count > 0) ||
                 (selectedGiftExchange.gifters.count > 1) {
-                    Section(header: Text("Restrictions")) {
-                        // MARK: TODO
+                    // Restrictions
+                    let subHeading = "Restrictions"
+                    Section(header: Text(subHeading)) {
+                        NavigationLink(destination:
+                                        MultipleSelectionList(navTitle: subHeading)
+                                        .environmentObject(selectedGiftExchange)
+                                        .environmentObject(data)
+                        )
+                        {
+                            Text("Number of restrictions: \(data.restrictedIds.count)")
+                        }
                     }
                 }
                 
@@ -309,7 +323,7 @@ struct GifterFormView_Previews: PreviewProvider {
     
     static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
     static let previewGifter: Gifter = Gifter(context: PersistenceController.shared.context)
-    
+    static var previewGifterFormData: GifterFormData = GifterFormData()
     
     struct EditGifterFormView_Preview: View {
         init() {
@@ -317,26 +331,37 @@ struct GifterFormView_Previews: PreviewProvider {
             GifterFormView_Previews.previewGifter.email = "yohoho@northpole.com"
             GifterFormView_Previews.previewGifter.wishLists = ["presents.com/santa",
                                                                "https://bagz.org"]
+            GifterFormView_Previews.previewGiftExchange.addGifter(GifterFormView_Previews.previewGifter)
+            
+            GifterFormView_Previews.previewGifterFormData = GifterFormData(gifter: GifterFormView_Previews.previewGifter)
+            
+            let otherGifter = Gifter(context: PersistenceController.shared.context)
+            otherGifter.name = "Rudolph"
+            GifterFormView_Previews.previewGiftExchange.addGifter(otherGifter)
         }
+        
         var body: some View {
-            NavigationView {
-                GifterFormView(
-                    formType: FormType.Edit,
-                    data: GifterFormData(gifter: GifterFormView_Previews.previewGifter)
-                )
-                    .environmentObject(GifterFormView_Previews.previewGiftExchange)
-                    .environmentObject(GifterFormView_Previews.previewGifter)
-            }
+            GifterFormView(
+                formType: FormType.Edit,
+                data: GifterFormView_Previews.previewGifterFormData
+            )
         }
     }
     
     static var previews: some View {
         // 1st preview
-        EditGifterFormView_Preview()
+        NavigationView {
+            EditGifterFormView_Preview()
+                .environmentObject(previewGiftExchange)
+                .environmentObject(previewGifter)
+                .environmentObject(previewGifterFormData)
+        }
         // 2nd preview
         NavigationView {
             GifterFormView(formType: FormType.Add)
                 .environmentObject(previewGiftExchange)
+                .environmentObject(previewGifter)
+                .environmentObject(previewGifterFormData)
         }
     }
     

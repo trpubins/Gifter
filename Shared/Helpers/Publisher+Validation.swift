@@ -61,6 +61,20 @@ extension Published.Publisher where Value == String {
     
 }
 
+extension Published.Publisher where Value == [UUID] {
+
+    /**
+     Retrieves a publisher that will always publish valid.
+     
+     - Returns: The validation publisher that always emits .success.
+     */
+    func alwaysValid() -> ValidationPublisher {
+        return ValidationPublishers.alwaysValid(for: self)
+    }
+    
+}
+
+
 extension Published.Publisher where Value == [WishList] {
     
     /**

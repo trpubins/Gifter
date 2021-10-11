@@ -162,7 +162,7 @@ class GifterFormData: ObservableObject {
         return (
             self.name != gifter.name
             || self.email != gifter.email
-            || self.restrictedIds != gifter.restrictedIds
+            || !self.restrictedIds.elementsEqual(gifter.restrictedIds)
             || !self.getWishListURLs().elementsEqual(gifter.wishLists)
         )
     }
@@ -196,6 +196,11 @@ class GifterFormData: ObservableObject {
                                         dropFirst: dropFirst)
     }
     
+    /// Detects a change to the restricted ids property and always returns valid
+    lazy var restrictionsValidation: ValidationPublisher = {
+        $restrictedIds.alwaysValid()
+    }()
+    
     /**
      Validates that the wish list property with the provided id matches the url regular expression.
      
@@ -223,12 +228,13 @@ class GifterFormData: ObservableObject {
     
     /// Validates that all the ValidationPublishers are successful
     lazy var allValidation: ValidationPublisher = {
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest4(
             nameValidation(),
             emailValidation(),
+            restrictionsValidation,
             allWishListValidation
-        ).map { v1, v2, v3 in
-            return [v1, v2, v3].allSatisfy { $0.isSuccess } ? .success : .failure(message: "")
+        ).map { v1, v2, v3, v4 in
+            return [v1, v2, v3, v4].allSatisfy { $0.isSuccess } ? .success : .failure(message: "")
         }.eraseToAnyPublisher()
     }()
     
