@@ -26,22 +26,60 @@ func getPreviewUserSettings() -> UserSettings {
  - Returns: A Gifter object array.
  */
 func getPreviewGifters() -> [Gifter] {
-    let names = [
-        "David",
-        "Debbie",
-        "Taylor",
-        "Amanda",
-        "Tanner",
-        "Molly",
-        "Trey",
-        "Larissa"
+    let testGifters = [
+        [
+            "name": "Tanner",
+            "email": "t.pubins@icloud.com"
+        ],
+        [
+            "name": "Molly",
+            "email": "tmpubins@icloud.com"
+        ],
+        [
+            "name": "Taylor",
+            "email": "trpubins@asu.edu"
+        ],
+        [
+            "name": "Trey",
+            "email": "tanner.pubins@biola.edu"
+        ],
     ]
+
+    var tanner: Gifter? = nil
+    var molly: Gifter? = nil
+    
     var gifters: [Gifter] = []
-    for name in names {
-        let gifter = Gifter(context: PersistenceController.shared.context)
-        gifter.name = name
+    for testData in testGifters {
+        // convert the test dict into form data
+        let data = GifterFormData()
+        
+        if let name = testData["name"] {
+            data.name = name
+        } else {
+            data.name = "Unknown gifter"
+        }
+        
+        if let email = testData["email"] {
+            data.email = email
+        } else {
+            data.email = "Unkown email"
+        }
+        
+        // initialize a gifter from the form data
+        let gifter = Gifter.update(using: data)
         gifters.append(gifter)
+        
+        if data.name == "Tanner" {
+            tanner = gifter
+        } else if data.name == "Molly" {
+            molly = gifter
+        }
+        
     }
+    
+    tanner!.addRestrictedId(id: molly!.id)
+    molly!.addRestrictedId(id: tanner!.id)
+    
     return gifters
 }
 

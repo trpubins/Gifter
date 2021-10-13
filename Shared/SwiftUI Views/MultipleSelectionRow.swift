@@ -13,7 +13,7 @@ struct MultipleSelectionRow: View {
     var title: String
     
     /// Determines if the row is selected or not
-    var isSelected: Bool
+    @State var isSelected: Bool = false
     
     /// Determines if the row is disabled or not
     var isDisabled: Bool = false
@@ -25,7 +25,10 @@ struct MultipleSelectionRow: View {
     // MARK: Body
     
     var body: some View {
-        Button(action: self.action) {
+        Button(action: {
+            self.isSelected.toggle()
+            self.action()
+        }) {
             HStack {
                 Text(self.title)
                 if self.isSelected {

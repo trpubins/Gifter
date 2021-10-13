@@ -26,7 +26,7 @@ struct MultipleSelectionList: View {
         let otherGifters = self.selectedGiftExchange.gifters.filter({ $0.id != self.data.id })
         
         List {
-            ForEach(otherGifters, id: \.self) { gifter in
+            ForEach(otherGifters) { gifter in
                 /// Shorthand to determine if a gifter is selected or not
                 let isSelected = self.data.restrictedIds.contains(gifter.id)
                 
@@ -82,15 +82,17 @@ struct MultipleSelectionList: View {
 
 struct MultipleSelectionList_Previews: PreviewProvider {
     
-    static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
+    static var previewGiftExchange: GiftExchange? = nil
     static var previewFormData: GifterFormData = GifterFormData()
     
     struct MultipleSelectionList_Preview: View {
         let previewGifters = getPreviewGifters()
         
-        init() {
+        init() {            
+            MultipleSelectionList_Previews.previewGiftExchange = GiftExchange(context: PersistenceController.shared.context)
+            
             for gifter in previewGifters {
-                MultipleSelectionList_Previews.previewGiftExchange.addGifter(gifter)
+                MultipleSelectionList_Previews.previewGiftExchange!.addGifter(gifter)
             }
             let selectedGifter = previewGifters.first!
             MultipleSelectionList_Previews.previewFormData = GifterFormData(gifter: selectedGifter)
@@ -105,7 +107,7 @@ struct MultipleSelectionList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             MultipleSelectionList_Preview()
-                .environmentObject(previewGiftExchange)
+                .environmentObject(previewGiftExchange!)
                 .environmentObject(previewFormData)
         }
     }

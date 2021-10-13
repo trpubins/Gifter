@@ -321,23 +321,28 @@ struct GifterFormView: View {
 
 struct GifterFormView_Previews: PreviewProvider {
     
-    static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
-    static let previewGifter: Gifter = Gifter(context: PersistenceController.shared.context)
+    static var previewGiftExchange: GiftExchange? = nil
+    static var previewGifter: Gifter? = nil
     static var previewGifterFormData: GifterFormData = GifterFormData()
     
     struct EditGifterFormView_Preview: View {
+        let previewGifters = getPreviewGifters()
+        
         init() {
-            GifterFormView_Previews.previewGifter.name = "Santa"
-            GifterFormView_Previews.previewGifter.email = "yohoho@northpole.com"
-            GifterFormView_Previews.previewGifter.wishLists = ["presents.com/santa",
-                                                               "https://bagz.org"]
-            GifterFormView_Previews.previewGiftExchange.addGifter(GifterFormView_Previews.previewGifter)
+            GifterFormView_Previews.previewGifterFormData.name = "Santa"
+            GifterFormView_Previews.previewGifterFormData.email = "yohoho@northpole.com"
+            GifterFormView_Previews.previewGifterFormData.wishLists = [
+                WishList(with: "presents.com/santa"),
+                WishList(with: "https://bagz.org")
+            ]
             
-            GifterFormView_Previews.previewGifterFormData = GifterFormData(gifter: GifterFormView_Previews.previewGifter)
+            GifterFormView_Previews.previewGifter = Gifter.update(using: GifterFormView_Previews.previewGifterFormData)
             
-            let otherGifter = Gifter(context: PersistenceController.shared.context)
-            otherGifter.name = "Rudolph"
-            GifterFormView_Previews.previewGiftExchange.addGifter(otherGifter)
+            GifterFormView_Previews.previewGiftExchange = GiftExchange(context: PersistenceController.shared.context)
+            
+            for gifter in previewGifters {
+                GifterFormView_Previews.previewGiftExchange!.addGifter(gifter)
+            }
         }
         
         var body: some View {
@@ -352,15 +357,15 @@ struct GifterFormView_Previews: PreviewProvider {
         // 1st preview
         NavigationView {
             EditGifterFormView_Preview()
-                .environmentObject(previewGiftExchange)
-                .environmentObject(previewGifter)
+                .environmentObject(previewGiftExchange!)
+                .environmentObject(previewGifter!)
                 .environmentObject(previewGifterFormData)
         }
         // 2nd preview
         NavigationView {
             GifterFormView(formType: FormType.Add)
-                .environmentObject(previewGiftExchange)
-                .environmentObject(previewGifter)
+                .environmentObject(previewGiftExchange!)
+                .environmentObject(previewGifter!)
                 .environmentObject(previewGifterFormData)
         }
     }
