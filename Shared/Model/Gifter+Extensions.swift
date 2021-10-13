@@ -97,6 +97,7 @@ extension Gifter {
      
      - Returns: `true` if the id was successfully added; `false ` if the id already exists.
      */
+    @discardableResult
     public func addRestrictedId(id: UUID) -> Bool {
         if self.restrictedIds.contains(id) {
             return false
@@ -113,6 +114,7 @@ extension Gifter {
 
      - Returns: `true` if the id was successfully removed; `false ` if the id does not exist.
      */
+    @discardableResult
     public func removeRestrictedId(id: UUID) -> Bool {
         if !self.restrictedIds.contains(id) {
             return false
@@ -129,6 +131,7 @@ extension Gifter {
      
      - Returns: `true` if the wish list was successfully added; `false ` if the wish list already exists.
      */
+    @discardableResult
     public func addWishList(list: String) -> Bool {
         if self.wishLists.contains(list) {
             return false
@@ -145,6 +148,7 @@ extension Gifter {
      
      - Returns: `true` if the wish list was successfully removed; `false ` if the wish list does not exist.
      */
+    @discardableResult
     public func removeWishList(list: String) -> Bool {
         if !self.wishLists.contains(list) {
             return false
