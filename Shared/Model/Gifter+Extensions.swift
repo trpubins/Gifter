@@ -240,21 +240,15 @@ extension Gifter {
     // MARK: Class Functions
     
     /**
-     Retrieves the gifter with the specified id.
+     Attempts to retrieve a gifter with the specified id.
      
      - Parameters:
         - id: The id used to identify the gifter
      
-     - Returns: The identified gifter or a new gifter if the identified gifter was not found.
+     - Returns: The identified gifter or `nil` if the identified gifter was not found.
      */
-    class func get(withId id: UUID) -> Gifter {
-        if let gifter = Gifter.object(withId: id, context: PersistenceController.shared.context) {
-            // we found the Gifter object in CoreData
-            return gifter
-        } else {
-            // otherwise, return a new Gifter
-            return Gifter.add()
-        }
+    class func get(withId id: UUID) -> Gifter? {
+        return Gifter.object(withId: id, context: PersistenceController.shared.context)
     }
     
     /**
