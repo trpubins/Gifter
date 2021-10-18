@@ -26,6 +26,13 @@ class UserSettings: ObservableObject {
         }
     }
     
+    /// Automatically restricts gifters from matching in consecutive gift exchanges if `true`
+    @Published var autoRestrictions: Bool = true {
+        didSet {
+            encode(property: self.autoRestrictions, key: "autoRestrictions")
+        }
+    }
+
     
     // MARK: Computed Properties
     
@@ -51,10 +58,11 @@ class UserSettings: ObservableObject {
     // MARK: Initializer
     
     /**
-     Initializes the GiftExchange properties by decoding them from the user defaults.
+     Initializes the settings properties by decoding them from the user defaults.
      */
     init() {
         self.idList = decode(type: [UUID].self, key: "giftExchangeList") ?? []
+        self.autoRestrictions = decode(type: Bool.self, key: "autoRestrictions") ?? true
     }
     
     
