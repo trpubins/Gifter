@@ -12,6 +12,9 @@ struct GifterFormView: View {
     /// Binds our View to the presentation mode so we can dismiss the View when we need to
     @Environment(\.presentationMode) var presentationMode
     
+    /// The gift exchange user settings provided by a parent View
+    @EnvironmentObject var giftExchangeSettings: UserSettings
+    
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
@@ -21,7 +24,7 @@ struct GifterFormView: View {
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
     
-    /// The gift exchange form data whose properties are bound to the UI form
+    /// The gifter form data whose properties are bound to the UI form
     @ObservedObject var data: GifterFormData
     
     /// State variable for determining if the save button is disabled
@@ -54,7 +57,11 @@ struct GifterFormView: View {
     
     var body: some View {
         
+        /// The name of the form
         let formName = "\(formType) Gifter"
+        
+        /// An array of gifters excluding the gifter associated with the form data
+        let otherGifters = selectedGiftExchange.gifters.filter( {$0.id != data.id} )
         
         VStack {
             
@@ -90,16 +97,16 @@ struct GifterFormView: View {
                     })
                 }
                 
-                // add Restrictions section if enough gifters are present
-                if (isNewForm(formType) && selectedGiftExchange.gifters.count > 0) ||
-                (selectedGiftExchange.gifters.count > 1) {
+                // add Restrictions section if multiple other gifters are present
+                if (otherGifters.count > 1) {
                     // Restrictions
                     let subHeading = "Restrictions"
                     Section(header: Text(subHeading)) {
                         NavigationLink(destination:
-                                        MultipleSelectionList(navTitle: subHeading)
-                                        .environmentObject(selectedGiftExchange)
-                                        .environmentObject(data)
+                                        MultipleSelectionList(settings: giftExchangeSettings,
+                                                              data: data,
+                                                              navTitle: subHeading,
+                                                              otherGifters: otherGifters)
                         )
                         {
                             Text("Number of restrictions: \(data.restrictedIds.count)")
@@ -321,6 +328,7 @@ struct GifterFormView: View {
 
 struct GifterFormView_Previews: PreviewProvider {
     
+    static let previewUserSettings: UserSettings = getPreviewUserSettings()
     static var previewGiftExchange: GiftExchange? = nil
     static var previewGifter: Gifter? = nil
     static var previewGifterFormData: GifterFormData = GifterFormData()
@@ -357,6 +365,7 @@ struct GifterFormView_Previews: PreviewProvider {
         // 1st preview
         NavigationView {
             EditGifterFormView_Preview()
+                .environmentObject(previewUserSettings)
                 .environmentObject(previewGiftExchange!)
                 .environmentObject(previewGifter!)
                 .environmentObject(previewGifterFormData)
@@ -364,6 +373,7 @@ struct GifterFormView_Previews: PreviewProvider {
         // 2nd preview
         NavigationView {
             GifterFormView(formType: FormType.Add)
+                .environmentObject(previewUserSettings)
                 .environmentObject(previewGiftExchange!)
                 .environmentObject(previewGifter!)
                 .environmentObject(previewGifterFormData)

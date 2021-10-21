@@ -96,6 +96,32 @@ class GifterFormData: ObservableObject {
         self.wishLists = formData.wishLists
     }
     
+    /**
+     Adds an id to the gifter's restricted list. This means the gifter will not gift an individual with that id.
+     
+     - Parameters:
+        - id: The id to add to the restricted list
+     */
+    func addRestrictedId(_ id: UUID) {
+        if self.restrictedIds.contains(id) {
+            return
+        }
+        self.restrictedIds.append(id)
+    }
+    
+    /**
+     Removes an id from the gifter's restricted list. Following this action, the gifter will be able to gift an individual with the specified id.
+     
+     - Parameters:
+        - id: The id to remove from the restricted list
+     */
+    func removeRestrictedId(_ id: UUID) {
+        if !self.restrictedIds.contains(id) {
+            return
+        }
+        self.restrictedIds = self.restrictedIds.filter {$0 != id}  // removes the array element by value
+    }
+    
     /// Adds a wish list to the gifter.
     func addWishList() {
         wishLists.append(WishList())
