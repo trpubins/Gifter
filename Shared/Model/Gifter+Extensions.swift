@@ -31,10 +31,16 @@ extension Gifter {
         set { email_ = newValue }
     }
     
-    /// The email of a person who shall receive gifts from this gifter
-    public var recipientEmail: String {
-        get { recipientEmail_ ?? "Unknown recipient email" }
-        set { recipientEmail_ = newValue }
+    /// The id of a gifter who previously received gifts from this gifter
+    public var previousRecipientId: UUID? {
+        get { previousRecipientId_ }
+        set { previousRecipientId_ = newValue }
+    }
+    
+    /// The id of a gifter who shall receive gifts from this gifter
+    public var recipientId: UUID? {
+        get { recipientId_ }
+        set { recipientId_ = newValue }
     }
     
     /// An array of restricted gifter ids
@@ -98,7 +104,7 @@ extension Gifter {
      - Returns: `true` if the id was successfully added; `false ` if the id already exists.
      */
     @discardableResult
-    public func addRestrictedId(id: UUID) -> Bool {
+    public func addRestrictedId(_ id: UUID) -> Bool {
         if self.restrictedIds.contains(id) {
             return false
         }
@@ -115,7 +121,7 @@ extension Gifter {
      - Returns: `true` if the id was successfully removed; `false ` if the id does not exist.
      */
     @discardableResult
-    public func removeRestrictedId(id: UUID) -> Bool {
+    public func removeRestrictedId(_ id: UUID) -> Bool {
         if !self.restrictedIds.contains(id) {
             return false
         }
@@ -132,7 +138,7 @@ extension Gifter {
      - Returns: `true` if the wish list was successfully added; `false ` if the wish list already exists.
      */
     @discardableResult
-    public func addWishList(list: String) -> Bool {
+    public func addWishList(_ list: String) -> Bool {
         if self.wishLists.contains(list) {
             return false
         }
@@ -149,7 +155,7 @@ extension Gifter {
      - Returns: `true` if the wish list was successfully removed; `false ` if the wish list does not exist.
      */
     @discardableResult
-    public func removeWishList(list: String) -> Bool {
+    public func removeWishList(_ list: String) -> Bool {
         if !self.wishLists.contains(list) {
             return false
         }
@@ -166,12 +172,12 @@ extension Gifter {
      - Returns: `true` if the gift exchange was successfully added; `false ` if the gift exchange already exists.
      */
     @discardableResult
-    public func addGiftExchange(exchange: GiftExchange) -> Bool {
+    public func addGiftExchange(_ exchange: GiftExchange) -> Bool {
         if self.giftExchanges.contains(exchange) {
             return false
         }
         self.addObject(value: exchange, forKey: "giftExchanges_")
-        self.addExchangeId(id: exchange.id)
+        self.addExchangeId(exchange.id)
         return true
     }
     
@@ -184,12 +190,12 @@ extension Gifter {
      - Returns: `true` if the gift exchange was successfully removed; `false ` if the gift exchange does not exist..
      */
     @discardableResult
-    public func removeGiftExchange(exchange: GiftExchange) -> Bool {
+    public func removeGiftExchange(_ exchange: GiftExchange) -> Bool {
         if !self.giftExchanges.contains(exchange) {
             return false
         }
         self.removeObject(value: exchange, forKey: "giftExchanges_")
-        self.removeExchangeId(id: exchange.id)
+        self.removeExchangeId(exchange.id)
         return true
     }
     
@@ -202,7 +208,7 @@ extension Gifter {
      - Returns: `true` if the exchange id was successfully added; `false ` if the exchange id already exists.
      */
     @discardableResult
-    private func addExchangeId(id: UUID) -> Bool {
+    private func addExchangeId(_ id: UUID) -> Bool {
         if self.exchangeIds.contains(id) {
             return false
         }
@@ -219,7 +225,7 @@ extension Gifter {
      - Returns: `true` if the exchange id was successfully removed; `false ` if the exchange id does not exist.
      */
     @discardableResult
-    private func removeExchangeId(id: UUID) -> Bool {
+    private func removeExchangeId(_ id: UUID) -> Bool {
         if !self.exchangeIds.contains(id) {
             return false
         }
