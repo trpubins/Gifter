@@ -110,7 +110,24 @@ struct Alerts {
                 
                 logFilter("deleting gifter \(gifter.name)...")
                 
-                // first, delete the object from CoreData
+                // first, clean up any connections to the gifter being deleted
+                let otherGifters = selectedGiftExchange.gifters.filter( {$0.id != gifter.id} )
+                for otherGifter in otherGifters {
+                    // check if the gifter is someone else's previous recipient
+                    if otherGifter.previousRecipientId == gifter.id {
+                        otherGifter.previousRecipientId = nil
+                    }
+                    
+                    // check if the gifter is somone else's current recipient
+                    if otherGifter.recipientId == gifter.id {
+                        otherGifter.recipientId = nil
+                    }
+                    
+                    // filter out the gifter from the array of restricted ids
+                    otherGifter.restrictedIds = otherGifter.restrictedIds.filter( {$0 != gifter.id} )
+                }
+                
+                // then, delete the object from CoreData
                 Gifter.delete(gifter: gifter, selectedGiftExchange: selectedGiftExchange)
                 
                 // dismiss the view if a presentation mode was provided

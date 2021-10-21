@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 
 /**
@@ -45,8 +44,10 @@ func getPreviewGifters() -> [Gifter] {
         ],
     ]
 
+    // gifters that can be identified later
     var tanner: Gifter? = nil
     var molly: Gifter? = nil
+    var trey: Gifter? = nil
     
     var gifters: [Gifter] = []
     for testData in testGifters {
@@ -69,16 +70,23 @@ func getPreviewGifters() -> [Gifter] {
         let gifter = Gifter.update(using: data)
         gifters.append(gifter)
         
+        // gifter assignments
         if data.name == "Tanner" {
             tanner = gifter
         } else if data.name == "Molly" {
             molly = gifter
+        } else if data.name == "Trey" {
+            trey = gifter
         }
         
     }
     
-    tanner!.addRestrictedId(id: molly!.id)
-    molly!.addRestrictedId(id: tanner!.id)
+    // add a previous recipient
+    tanner!.previousRecipientId = trey!.id
+    
+    // add restrictions
+    tanner!.addRestrictedId(molly!.id)
+    molly!.addRestrictedId(tanner!.id)
     
     return gifters
 }
