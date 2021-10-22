@@ -39,9 +39,14 @@ struct ToolbarMenuView: View {
     
     var body: some View {
         Menu {
-            // only show Delete button if there is more than 1 gift exchange
+            // show the other gift exchanges if they exist
             if self.giftExchangeSettings.hasMultipleGiftExchanges() {
-                deleteGiftExchangeButton()
+                ForEach(self.otherGiftExchanges) { exchange in
+                    Button(action: { changeGiftExchange(exchange) }, label: {
+                        Text(exchange.toString())
+                    })
+                }
+                Divider()
             }
             Button(action: { editGiftExchange() }) {
                 Label("Edit Gift Exchange", systemImage: "pencil")
@@ -49,14 +54,9 @@ struct ToolbarMenuView: View {
             Button(action: { addGiftExchange() }) {
                 Label("Add Gift Exchange", systemImage: "plus")
             }
-            // show the other gift exchanges if they exist
+            // only show Delete button if there is more than 1 gift exchange
             if self.giftExchangeSettings.hasMultipleGiftExchanges() {
-                Divider()
-                ForEach(self.otherGiftExchanges) { exchange in
-                    Button(action: { changeGiftExchange(exchange) }, label: {
-                        Text(exchange.toString())
-                    })
-                }
+                deleteGiftExchangeButton()
             }
         } label: {
             HStack {
