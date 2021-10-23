@@ -26,8 +26,8 @@ struct MainView: View {
         - id: The id used to identify the selected gift exchange
         - triggers: An object that holds several state variables that trigger different behaviors
      */
-    init(withId id: UUID, and triggers: StateTriggers) {
-        self.selectedGiftExchange = GiftExchange.get(withId: id)
+    init(withExchange giftExchange: GiftExchange, and triggers: StateTriggers) {
+        self.selectedGiftExchange = giftExchange
         self.triggers = triggers
         
         // present the gift exchange completed alert if the gift exchange's
@@ -80,11 +80,40 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     
-    static let previewUserSettings: UserSettings = getPreviewUserSettings()
+    static var previewUserSettings1: UserSettings? = nil
+    static var previewGiftExchange1: GiftExchange? = nil
+
+    static var previewUserSettings2: UserSettings? = nil
+    static let previewGiftExchange2: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
+
+    struct MainView_Preview: View {
+        let previewGifters = getPreviewGifters()
+        
+        init() {
+            MainView_Previews.previewGiftExchange1 = GiftExchange(context: PersistenceController.shared.context)
+            MainView_Previews.previewGiftExchange1!.name = "Pubins"
+            MainView_Previews.previewGiftExchange1!.emoji = "🎄"
+            
+            for gifter in previewGifters {
+                MainView_Previews.previewGiftExchange1!.addGifter(gifter)
+            }
+            
+            MainView_Previews.previewUserSettings1 = getPreviewUserSettings(withId: previewGiftExchange1!.id)
+            MainView_Previews.previewUserSettings2 = getPreviewUserSettings(withId: previewGiftExchange2.id)
+        }
+        
+        var body: some View {
+            MainView(withExchange: previewGiftExchange1!, and: StateTriggers())
+        }
+    }
     
     static var previews: some View {
-        MainView(withId: UUID(), and: StateTriggers())
-            .environmentObject(previewUserSettings)
+        // 1st preview
+        MainView_Preview()
+            .environmentObject(previewUserSettings1!)
+        // 2nd preview
+        MainView(withExchange: previewGiftExchange2, and: StateTriggers())
+            .environmentObject(previewUserSettings2!)
     }
     
 }

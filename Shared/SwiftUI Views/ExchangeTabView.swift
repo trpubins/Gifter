@@ -76,12 +76,33 @@ struct ExchangeTabView: View {
 
 struct ExchangeTabView_Previews: PreviewProvider {
     
-    static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
+    static let previewGiftExchange1: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
+    static var previewGiftExchange2: GiftExchange? = nil
+    
+    struct ExchangeTabView_Preview: View {
+        let previewGifters = getPreviewGifters()
+        
+        init() {
+            ExchangeTabView_Previews.previewGiftExchange2 = GiftExchange(context: PersistenceController.shared.context)
+            
+            for gifter in previewGifters {
+                ExchangeTabView_Previews.previewGiftExchange2!.addGifter(gifter)
+            }
+        }
+        
+        var body: some View {
+            ExchangeTabView()
+        }
+    }
     
     static var previews: some View {
+        // 1st preview
+        ExchangeTabView()
+            .environmentObject(previewGiftExchange1)
+        // 2nd preview
         NavigationView {
-            ExchangeTabView()
-                .environmentObject(previewGiftExchange)
+            ExchangeTabView_Preview()
+                .environmentObject(previewGiftExchange2!)
         }
     }
     

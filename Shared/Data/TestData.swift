@@ -20,6 +20,20 @@ func getPreviewUserSettings() -> UserSettings {
 }
 
 /**
+ Makes a UserSettings object and injects a gift exchange id for use in a preview.
+ 
+ - Parameters:
+    - id: The gift exchange id to inject into the settings
+ 
+ - Returns: A UserSettings object.
+ */
+func getPreviewUserSettings(withId id: UUID) -> UserSettings {
+    let previewUserSettings = UserSettings()
+    previewUserSettings.addGiftExchangeId(id: id)
+    return previewUserSettings
+}
+
+/**
  Makes a Gifter object array for use in a preview.
  
  - Returns: A Gifter object array.
