@@ -75,7 +75,7 @@ struct GifterFormView: View {
             
             Form {
                 // Gifter Info
-                Section(header: Text("Gifter Info")) {
+                Section(header: Text("Gifter Info (Required)")) {
                     nameTextField()
                     emailTextField()
                 }

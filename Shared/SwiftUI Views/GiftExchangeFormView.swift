@@ -60,7 +60,7 @@ struct GiftExchangeFormView: View {
             }
             
             Form {
-                Section(header: Text("Gift Exchange Info")) {
+                Section(header: Text("Gift Exchange Info (Required)")) {
                     nameTextField()
                     // SwiftUI bug: DatePicker causes app to throw warning when
                     // embedded inside a form. Ignore warning.
