@@ -19,11 +19,10 @@ struct MainView: View {
     var selectedGiftExchange: GiftExchange
     
     /**
-     Initializes the MainView by pulling out of CoreData the GiftExchange object as specified by the id.
-     Also, initializes the application state triggers and shows an alert if the gift exchange is completed.
+     Initializes the selected gift exchange and application state triggers, and shows an alert if the gift exchange is completed.
      
      - Parameters:
-        - id: The id used to identify the selected gift exchange
+        - giftExchange: The gift exchange being selected
         - triggers: An object that holds several state variables that trigger different behaviors
      */
     init(withExchange giftExchange: GiftExchange, and triggers: StateTriggers) {
