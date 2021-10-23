@@ -15,6 +15,9 @@ struct GiftersTabView: View {
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
     
+    
+    // MARK: Body
+    
     var body: some View {
         
         VStack {
@@ -30,26 +33,14 @@ struct GiftersTabView: View {
                 .padding([.top, .leading, .trailing])
             }  // end HStack
             Spacer()
+            // place add gifter button if there are no gifters
             if selectedGiftExchange.gifters.count == 0 {
                 Text("There are no gifters participating in this gift exchange!")
                     .multilineTextAlignment(.center)
-                if #available(iOS 15.0, *) {
-                    Button(action: { addGifter() }) {
-                        Label("Add Gifter", systemImage: "plus")
-                    }
-                    .tint(.accentColor)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.capsule)
-                    .controlSize(.large)
-                    .padding()
-                } else {
-                    // fallback on earlier versions
-                    Button(action: { addGifter() }) {
-                        Label("Add Gifter", systemImage: "plus")
-                    }
-                    .padding()
-                }
-            } else {
+                addGifterButton()
+            }
+            // otherwise, show a list of gifters in the selected gift exchange
+            else {
                 List(selectedGiftExchange.gifters) { gifter in
                     NavigationLink(
                         destination: GifterFormView(
@@ -69,6 +60,37 @@ struct GiftersTabView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { logAppear(title: "GiftersTabView") }
     }
+    
+    
+    // MARK: Sub Views
+    
+    /**
+     A button that adds a gifter.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func addGifterButton() -> some View {
+        if #available(iOS 15.0, *) {
+            Button(action: { addGifter() }) {
+                Label("Add Gifter", systemImage: "plus")
+            }
+            .tint(.accentColor)
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .padding()
+        } else {
+            // fallback on earlier versions
+            Button(action: { addGifter() }) {
+                Label("Add Gifter", systemImage: "plus")
+            }
+            .padding()
+        }
+    }
+    
+    
+    // MARK: Model Functions
     
     /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
     func addGifter() {
