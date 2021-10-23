@@ -17,6 +17,9 @@ struct CommonRegex {
     /// A regular expression for url web addresses
     static let url = buildUrlRegex()
     
+    /// A regular expression for an empty string
+    static let empty = "^$"
+    
     /**
      Builds the url web address regular expression.
      

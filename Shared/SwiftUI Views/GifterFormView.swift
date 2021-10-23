@@ -266,7 +266,7 @@ struct GifterFormView: View {
     @ViewBuilder
     func saveButton() -> some View {
         Button("Save", action: {
-            let gifter = Gifter.update(using: data)
+            let gifter = initGifter()
             commitDataEntry()
             logFilter("saving gifter: \(gifter.toString())")
         })
@@ -298,13 +298,24 @@ struct GifterFormView: View {
     
     // MARK: Model Functions
     
+    /**
+     * Initializes a Gifter object from the form data.
+     *
+     *  - Returns: The initialized gifter.
+     */
+    func initGifter() -> Gifter {
+        // filter out any empty wish lists before initializing Gifter
+        data.wishLists = data.wishLists.filter( {$0.url != ""} )
+        return Gifter.update(using: data)
+    }
+    
     /// Adds the gifter to the selected gift exchange and to persistent storage.
     func addNewGifter() {
         #if os(iOS)
         hideKeyboard()
         #endif
         
-        let gifter = Gifter.add(using: data)
+        let gifter = initGifter()
         selectedGiftExchange.addGifter(gifter)
         commitDataEntry()
         logFilter("adding gifter: \(gifter.toString())")

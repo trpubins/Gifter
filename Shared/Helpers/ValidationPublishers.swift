@@ -131,12 +131,16 @@ class ValidationPublishers {
                                    dropFirst: Bool) -> ValidationPublisher {
         
         func getPublisherMap() -> Publishers.Map<Published<Array<WishList>>.Publisher, Validation> {
+            let emptyPattern = CommonRegex.empty.r!
             return publisher.map { array in
                 if let value = array.first(where: { $0.id == id }) {
-                    guard pattern.matches(value.url) else {
+                    if pattern.matches(value.url) {
+                        return .success
+                    } else if emptyPattern.matches(value.url) {
+                        return .empty
+                    } else {
                         return .failure(message: errorMessage())
                     }
-                    return .success
                 } else {
                     return .success
                 }
@@ -163,10 +167,11 @@ class ValidationPublishers {
                                       dropFirst: Bool) -> ValidationPublisher {
         
         func getPublisherMap() -> Publishers.Map<Published<Array<WishList>>.Publisher, Validation> {
+            let emptyPattern = CommonRegex.empty.r!
             return publisher.map { array in
                 for value in array {
-                    guard pattern.matches(value.url) else {
-                        // publish failure if even one url does not match the regular expression
+                    guard pattern.matches(value.url) || emptyPattern.matches(value.url) else {
+                        // publish failure if even one url does not match either regular expressions
                         return .failure(message: errorMessage())
                     }
                 }
