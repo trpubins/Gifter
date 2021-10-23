@@ -25,7 +25,7 @@ struct GifterFormView: View {
     @EnvironmentObject var triggers: StateTriggers
     
     /// The gifter form data whose properties are bound to the UI form
-    @ObservedObject var data: GifterFormData
+    @StateObject var data: GifterFormData
     
     /// State variable for determining if the save button is disabled
     @State private var isSaveDisabled: Bool = true
@@ -48,7 +48,7 @@ struct GifterFormView: View {
      */
     init(formType: FormType, data: GifterFormData = GifterFormData()) {
         self.formType = formType
-        self.data = data
+        self._data = StateObject(wrappedValue: data)
         self.originalData = GifterFormData(formData: data)
     }
     

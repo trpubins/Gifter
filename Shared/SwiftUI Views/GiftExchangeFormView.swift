@@ -19,7 +19,7 @@ struct GiftExchangeFormView: View {
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
     /// The gift exchange form data whose properties are bound to the UI form
-    @ObservedObject var data: GiftExchangeFormData
+    @StateObject var data: GiftExchangeFormData
     
     /// State variable for determining if the save button is disabled
     @State private var isSaveDisabled: Bool = true
@@ -39,7 +39,7 @@ struct GiftExchangeFormView: View {
      */
     init(formType: FormType, data: GiftExchangeFormData = GiftExchangeFormData()) {
         self.formType = formType
-        self.data = data
+        self._data = StateObject(wrappedValue: data)
     }
     
     
