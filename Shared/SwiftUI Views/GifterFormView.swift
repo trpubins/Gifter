@@ -65,14 +65,6 @@ struct GifterFormView: View {
         
         VStack {
             
-            HStack {
-                Text(formName)
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    .padding([.top, .leading])
-                Spacer()
-            }
-            
             Form {
                 // Gifter Info
                 Section(header: Text("Gifter Info (Required)")) {
@@ -127,7 +119,7 @@ struct GifterFormView: View {
                     deleteButton()
                 }
             }  // end Form
-            .navigationTitle(String(stringLiteral: "\(formType)"))
+            .navigationTitle(String(stringLiteral: "\(formName)"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {

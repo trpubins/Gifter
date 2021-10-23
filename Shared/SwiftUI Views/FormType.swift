@@ -22,8 +22,20 @@ enum FormType {
  - Parameters:
     - formType: The form type enum
  
- - Returns: `true` if the form is for a new object, `false` if not.
+ - Returns: `true` if the form is for a new or add object, `false` otherwise.
  */
 func isNewForm(_ formType: FormType) -> Bool {
     return (formType == .New || formType == .Add)
+}
+
+/**
+ Evaluates a logical expression to determine if the form is only for a new object.
+ 
+ - Parameters:
+    - formType: The form type enum
+ 
+ - Returns: `true` if the form is only for a new object, `false` otherwise.
+ */
+func isBrandNewForm(_ formType: FormType) -> Bool {
+    return formType == .New
 }

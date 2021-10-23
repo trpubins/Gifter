@@ -51,12 +51,14 @@ struct GiftExchangeFormView: View {
 
         VStack {
             
-            HStack {
-                Text(formName)
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    .padding([.top, .leading])
-                Spacer()
+            if isBrandNewForm(formType) {
+                HStack {
+                    Text(formName)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .padding([.top, .leading])
+                    Spacer()
+                }
             }
             
             Form {
@@ -89,7 +91,7 @@ struct GiftExchangeFormView: View {
                     }
                 }
             }  // end Form
-            .navigationTitle(String(stringLiteral: "\(formType)"))
+            .navigationTitle(String(stringLiteral: "\(formName)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { cancelButton() }
@@ -258,6 +260,10 @@ struct GiftExchangeFormView_Previews: PreviewProvider {
         // 1st preview
         EditGiftExchangeFormView_Preview()
         // 2nd preview
+        NavigationView {
+            GiftExchangeFormView(formType: FormType.Add)
+        }
+        // 3nd preview
         GiftExchangeFormView(formType: FormType.New)
     }
 }
