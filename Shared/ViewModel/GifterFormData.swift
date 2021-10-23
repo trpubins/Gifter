@@ -232,6 +232,7 @@ class GifterFormData: ObservableObject {
      
      - Parameters:
         - id: The unique identifier for the wish list
+        - dropFirst: `true` to drop the first element that is published, `false` to drop no elements. By default, this parameter is `false`.
      
      - Returns: A validation publisher for the unique list in the wish list array.
      */
