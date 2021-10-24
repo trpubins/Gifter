@@ -90,7 +90,7 @@ struct GifterFormView: View {
                 }
                 
                 // add Restrictions section if multiple other gifters are present
-                if (otherGifters.count > 1) {
+                if (otherGifters.count >= 1) {
                     // Restrictions
                     let subHeading = "Restrictions"
                     Section(header: Text(subHeading)) {
