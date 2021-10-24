@@ -27,11 +27,21 @@ struct SettingsTabView: View {
             }  // end HStack
             Spacer()
             Form {
-                Section(header: Text("Restrictions"),
+                // Gift Exchange settings
+                Section(header: Text("Gift Exchange Settings"),
+                        footer: Text("Hides the gift exchange results after gifters have been matched when toggled on.")) {
+                    Toggle("Hide results", isOn: $giftExchangeSettings.hideResults)
+                        .onChange(of: giftExchangeSettings.hideResults) { toggleValue in
+                            logFilter("Gift Exchange Settings -> Hide results: \(toggleValue)")
+                            PersistenceController.shared.saveContext()
+                        }
+                }
+                // Gifter settings
+                Section(header: Text("Gifter Settings"),
                         footer: Text("Automatically restrict gifters from matching in consecutive gift exchanges when toggled on.")) {
                     Toggle("Auto restrictions", isOn: $giftExchangeSettings.autoRestrictions)
                         .onChange(of: giftExchangeSettings.autoRestrictions) { toggleValue in
-                            logFilter("Auto restrictions: \(toggleValue)")
+                            logFilter("Gifter Settings -> Auto restrictions: \(toggleValue)")
                             PersistenceController.shared.saveContext()
                         }
                 }
