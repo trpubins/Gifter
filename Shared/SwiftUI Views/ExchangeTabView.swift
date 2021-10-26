@@ -45,9 +45,18 @@ struct ExchangeTabView: View {
                     .multilineTextAlignment(.center)
                 addGifterButton()
             }
-            // otherwise, place the match gifters button
+            // otherwise, display elements for matching gifters
             else {
-                Text("Show button to Run Exchange")
+                if selectedGiftExchange.areGiftersMatched {
+                    //
+                    // TODO: Show / hide matching results per settings
+                    //
+                    EmptyView()
+                } else {
+                    Text("The gifters in this exchange have not yet been matched!")
+                        .multilineTextAlignment(.center)
+                    matchGiftersButton()
+                }
             }
             
             Spacer()
@@ -59,6 +68,32 @@ struct ExchangeTabView: View {
     
     
     // MARK: Sub Views
+    
+    /**
+     A button that matches the gifters in the exchange.
+     
+     - Returns: A Button View.
+     */
+    @ViewBuilder
+    func matchGiftersButton() -> some View {
+        let label = Label("Match Gifters", systemImage: "arrow.left.arrow.right")
+        if #available(iOS 15.0, *) {
+            Button(action: { matchGifters() }) {
+                label
+            }
+            .tint(.accentColor)
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .padding()
+        } else {
+            // fallback on earlier versions
+            Button(action: { matchGifters() }) {
+                label
+            }
+            .padding()
+        }
+    }
     
     /**
      A button that adds a gifter.
@@ -87,6 +122,11 @@ struct ExchangeTabView: View {
     
     
     // MARK: Model Functions
+    
+    /// Matches the gifters in the selected gift exchange.
+    func matchGifters() {
+        logFilter("matching gifters...")
+    }
     
     /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
     func addGifter() {

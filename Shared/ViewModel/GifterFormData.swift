@@ -61,7 +61,7 @@ class GifterFormData: ObservableObject {
     init(gifter: Gifter) {
         self.id = gifter.id
         self.name = gifter.name
-        self.email = gifter.email
+        self.email = gifter.email.address
         self.restrictedIds = gifter.restrictedIds
         self.wishLists = genWishLists(from: gifter.wishLists)
     }
@@ -187,7 +187,7 @@ class GifterFormData: ObservableObject {
     func hasChanged(comparedTo gifter: Gifter) -> Bool {
         return (
             self.name != gifter.name
-            || self.email != gifter.email
+            || self.email != gifter.email.address
             || Set(self.restrictedIds) != Set(gifter.restrictedIds)
             || !self.getWishListURLs().elementsEqual(gifter.wishLists)
         )

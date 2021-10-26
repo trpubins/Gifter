@@ -25,6 +25,12 @@ extension GiftExchange {
         set { name_ = newValue }
     }
     
+    /// Determines if the gifters in this gift exchange have been matched
+    public var areGiftersMatched: Bool {
+        get { areGiftersMatched_ }
+        set { areGiftersMatched_ = newValue }
+    }
+    
     /// The date of the gift exchange
     public var date: Date {
         get { date_ ?? Date.today }
@@ -147,6 +153,7 @@ extension GiftExchange {
      */
     private class func add() -> GiftExchange {
         let newGiftExchange = GiftExchange(context: PersistenceController.shared.context)
+        newGiftExchange.areGiftersMatched = false
         return newGiftExchange
     }
     

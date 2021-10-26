@@ -26,8 +26,8 @@ extension Gifter {
     }
     
     /// The gifter's email address
-    public var email: String {
-        get { email_ ?? "Unknown email" }
+    public var email: Email {
+        get { email_ ?? Email(address: "Unknown email") }
         set { email_ = newValue }
     }
     
@@ -83,6 +83,13 @@ extension Gifter {
     }
     
     /**
+     Initializes an empty email for this Gifter.
+     */
+    private func initEmail() {
+        email_ = Email()
+    }
+    
+    /**
      Updates the values of this Gifter's instance members.
      
      - Parameters:
@@ -90,7 +97,7 @@ extension Gifter {
      */
     private func updateValues(from data: GifterFormData) {
         self.name = data.name
-        self.email = data.email
+        self.email.address = data.email
         self.restrictedIds = data.restrictedIds
         self.wishLists = data.getWishListURLs()
     }
@@ -239,7 +246,7 @@ extension Gifter {
      - Returns: A combined string with the gifter's descriptive components.
      */
     public func toString() -> String {
-        return "\(self.name), \(self.email)"
+        return "\(self.name), \(self.email.address)"
     }
     
     
@@ -264,6 +271,7 @@ extension Gifter {
      */
     private class func add() -> Gifter {
         let newGifter = Gifter(context: PersistenceController.shared.context)
+        newGifter.initEmail()
         return newGifter
     }
     
