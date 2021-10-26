@@ -42,7 +42,7 @@ struct MainView: View {
         // https://developer.apple.com/forums/thread/673147
         // the below code is a hack for the SwiftUI bug mentioned in the above thread
         // the bug is that alert buttons do not take on the project's accent color
-        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "AccentColor")
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor.Accent
     }
     
     

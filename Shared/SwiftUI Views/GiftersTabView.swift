@@ -33,15 +33,9 @@ struct GiftersTabView: View {
                 .padding([.top, .leading, .trailing])
             }  // end HStack
             Spacer()
-            // place add gifter button if there are no gifters
-            if selectedGiftExchange.gifters.count == 0 {
-                Text("There are no gifters participating in this gift exchange!")
-                    .multilineTextAlignment(.center)
-                addGifterButton()
-            }
-            // otherwise, show a list of gifters in the selected gift exchange
-            else {
-                List(selectedGiftExchange.gifters) { gifter in
+            // show a list of gifters in the selected gift exchange
+            List {
+                ForEach(selectedGiftExchange.gifters) { gifter in
                     NavigationLink(
                         destination: GifterFormView(
                             formType: .Edit,
@@ -52,8 +46,11 @@ struct GiftersTabView: View {
                     ) {
                         GifterRowView(gifter: gifter)
                     }
-                }
-            }
+                }  // end ForEach
+                
+                // show an add button at the bottom of the list
+                addGifterButton()
+            }  // end List
             
             Spacer()
         }  // end VStack
@@ -71,21 +68,18 @@ struct GiftersTabView: View {
      */
     @ViewBuilder
     func addGifterButton() -> some View {
-        if #available(iOS 15.0, *) {
-            Button(action: { addGifter() }) {
-                Label("Add Gifter", systemImage: "plus")
+        Button(action: { addGifter() }) {
+            HStack {
+                Image(systemName: "plus")
+                    .resizable()
+                    .aspectRatio(nil, contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color.Accent)
+                    .padding(.horizontal, UIScreen.screenWidth/16)
+                Text("Add Gifter").font(.title3)
+                    .foregroundColor(Color.Accent)
+                Spacer()
             }
-            .tint(.accentColor)
-            .buttonStyle(.bordered)
-            .buttonBorderShape(.capsule)
-            .controlSize(.large)
-            .padding()
-        } else {
-            // fallback on earlier versions
-            Button(action: { addGifter() }) {
-                Label("Add Gifter", systemImage: "plus")
-            }
-            .padding()
         }
     }
     
@@ -102,17 +96,17 @@ struct GiftersTabView: View {
 
 struct GiftersTabView_Previews: PreviewProvider {
     
-    static let previewGiftExchange1: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
-    static var previewGiftExchange2: GiftExchange? = nil
+    static var previewGiftExchange1: GiftExchange? = nil
+    static let previewGiftExchange2: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
 
     struct GiftersTabView_Preview: View {
         let previewGifters = getPreviewGifters()
         
         init() {
-            GiftersTabView_Previews.previewGiftExchange2 = GiftExchange(context: PersistenceController.shared.context)
+            GiftersTabView_Previews.previewGiftExchange1 = GiftExchange(context: PersistenceController.shared.context)
             
             for gifter in previewGifters {
-                GiftersTabView_Previews.previewGiftExchange2!.addGifter(gifter)
+                GiftersTabView_Previews.previewGiftExchange1!.addGifter(gifter)
             }
         }
         
@@ -123,13 +117,13 @@ struct GiftersTabView_Previews: PreviewProvider {
     
     static var previews: some View {
         // 1st preview
-        GiftersTabView()
-            .environmentObject(previewGiftExchange1)
-        // 2nd preview
         NavigationView {
             GiftersTabView_Preview()
-                .environmentObject(previewGiftExchange2!)
+                .environmentObject(previewGiftExchange1!)
         }
+        // 2nd preview
+        GiftersTabView()
+            .environmentObject(previewGiftExchange2)
     }
     
 }
