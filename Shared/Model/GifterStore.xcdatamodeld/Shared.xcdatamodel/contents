@@ -6,7 +6,7 @@
         <attribute name="id_" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name_" attributeType="String"/>
         <attribute name="previousRecipientId_" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="recipientId_" optional="YES" attributeType="UUID" valueTransformerName="" usesScalarValueType="NO" customClassName="Gifter"/>
+        <attribute name="recipientId_" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="restrictedIds_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[UUID]"/>
         <attribute name="wishLists_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <relationship name="giftExchanges_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GiftExchange" inverseName="gifters_" inverseEntity="GiftExchange"/>
