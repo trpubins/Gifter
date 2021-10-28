@@ -55,6 +55,12 @@
 		BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */; };
 		BF9C2B412728A37E00AFC8FE /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */; };
 		BF9C2B422728A37E00AFC8FE /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */; };
+		BF9C2B442728ADF500AFC8FE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B432728ADF500AFC8FE /* Matrix.swift */; };
+		BF9C2B452728ADF500AFC8FE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B432728ADF500AFC8FE /* Matrix.swift */; };
+		BF9C2B472729386100AFC8FE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B462729386000AFC8FE /* Array+Extensions.swift */; };
+		BF9C2B482729386100AFC8FE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B462729386000AFC8FE /* Array+Extensions.swift */; };
+		BF9C2B4A272A619E00AFC8FE /* GiftingMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */; };
+		BF9C2B4B272A619E00AFC8FE /* GiftingMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */; };
 		BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
 		BFAB10D32708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */; };
 		BFAB10D42708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */; };
@@ -122,6 +128,9 @@
 		BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenuView.swift; sourceTree = "<group>"; };
 		BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		BF9C2B432728ADF500AFC8FE /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		BF9C2B462729386000AFC8FE /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingMatrix.swift; sourceTree = "<group>"; };
 		BF9EF1F326BC690E00FD01B3 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftExchangeFormData.swift; sourceTree = "<group>"; };
 		BFAB346E26BDFD0800D460D8 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
@@ -311,6 +320,7 @@
 				BFDFFC3426D9D5E300360050 /* Alerts.swift */,
 				BF7DE2CE272619EF00587974 /* Email.swift */,
 				BF60E31226F1A3D800EB6A42 /* WishList.swift */,
+				BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */,
 				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
 				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
 				BFF8122826C0479A00834B50 /* CoreData */,
@@ -338,6 +348,8 @@
 				BFF8123326C0506A00834B50 /* ValidationPublishers.swift */,
 				BFF8123226C0506A00834B50 /* Publisher+Validation.swift */,
 				BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */,
+				BF9C2B432728ADF500AFC8FE /* Matrix.swift */,
+				BF9C2B462729386000AFC8FE /* Array+Extensions.swift */,
 				BFF8124226C079A800834B50 /* Date+Extensions.swift */,
 				BF7C87EB26DAD938007B35B5 /* UIScreen+Extensions.swift */,
 				BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */,
@@ -477,6 +489,7 @@
 				BFF8122F26C0505E00834B50 /* SwiftUI+Validation.swift in Sources */,
 				BF60E31626F6B31C00EB6A42 /* GifterRowView.swift in Sources */,
 				BFEB827626C354A5004219E7 /* Development.swift in Sources */,
+				BF9C2B442728ADF500AFC8FE /* Matrix.swift in Sources */,
 				BFDFFC2E26D9A52700360050 /* StateTriggers.swift in Sources */,
 				BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */,
 				BF2A866426BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
@@ -493,6 +506,7 @@
 				BF0677CB270D5A4400F5EC8D /* MultipleSelectionList.swift in Sources */,
 				BFECF6B326A24EF00012227F /* MainViewIOS.swift in Sources */,
 				BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
+				BF9C2B4A272A619E00AFC8FE /* GiftingMatrix.swift in Sources */,
 				BFF8123826C0506A00834B50 /* ValidationPublishers.swift in Sources */,
 				BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */,
 				BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
@@ -503,6 +517,7 @@
 				BF9C2B412728A37E00AFC8FE /* Color+Extensions.swift in Sources */,
 				BF40D05D26DC57A200B02504 /* GifterFormData.swift in Sources */,
 				BFDFFC3526D9D5E300360050 /* Alerts.swift in Sources */,
+				BF9C2B472729386100AFC8FE /* Array+Extensions.swift in Sources */,
 				BF60E31026ED5D2C00EB6A42 /* CommonRegex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +540,7 @@
 				BFF8120826C042CF00834B50 /* GiftExchangeFormView.swift in Sources */,
 				BFECF6B626A24EF00012227F /* Persistence.swift in Sources */,
 				BF60E31726F6B31C00EB6A42 /* GifterRowView.swift in Sources */,
+				BF9C2B452728ADF500AFC8FE /* Matrix.swift in Sources */,
 				BFF8123526C0506A00834B50 /* Validation.swift in Sources */,
 				BFDFFC2F26D9A52700360050 /* StateTriggers.swift in Sources */,
 				BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
@@ -541,6 +557,7 @@
 				BF0677CC270D5A4400F5EC8D /* MultipleSelectionList.swift in Sources */,
 				BFF8123726C0506A00834B50 /* Publisher+Validation.swift in Sources */,
 				BFEB827326C30A0C004219E7 /* MainViewData.swift in Sources */,
+				BF9C2B4B272A619E00AFC8FE /* GiftingMatrix.swift in Sources */,
 				BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
 				BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
 				BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */,
@@ -551,6 +568,7 @@
 				BF9C2B422728A37E00AFC8FE /* Color+Extensions.swift in Sources */,
 				BF40D05E26DC57A200B02504 /* GifterFormData.swift in Sources */,
 				BFDFFC3626D9D5E300360050 /* Alerts.swift in Sources */,
+				BF9C2B482729386100AFC8FE /* Array+Extensions.swift in Sources */,
 				BF60E31126ED5D2C00EB6A42 /* CommonRegex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
