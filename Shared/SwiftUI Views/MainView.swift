@@ -90,8 +90,8 @@ struct MainView_Previews: PreviewProvider {
         
         init() {
             MainView_Previews.previewGiftExchange1 = GiftExchange(context: PersistenceController.shared.context)
-            MainView_Previews.previewGiftExchange1!.name = "Pubins"
-            MainView_Previews.previewGiftExchange1!.emoji = "🎄"
+            MainView_Previews.previewGiftExchange1!.name = "Yolo"
+            MainView_Previews.previewGiftExchange1!.emoji = "🎅🏻"
             
             for gifter in previewGifters {
                 MainView_Previews.previewGiftExchange1!.addGifter(gifter)
