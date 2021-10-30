@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 /// A person who spreads good giving vibes.
 extension Gifter {
@@ -29,6 +30,18 @@ extension Gifter {
     public var email: Email {
         get { email_ ?? Email(address: "Unknown email") }
         set { email_ = newValue }
+    }
+    
+    /// The gifter's profile picture
+    public var profilePic: UIImage? {
+        get {
+            if let pic = profilePic_ {
+                return UIImage(data: pic)
+            } else {
+                return nil
+            }
+        }
+        set { profilePic_ = newValue?.jpegData(compressionQuality: 1.0) }
     }
     
     /// The id of a gifter who previously received gifts from this gifter
