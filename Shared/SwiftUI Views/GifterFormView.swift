@@ -15,6 +15,9 @@ struct GifterFormView: View {
     /// The gift exchange user settings provided by a parent View
     @EnvironmentObject var giftExchangeSettings: UserSettings
     
+    /// The alert controller provided by a parent View
+    @EnvironmentObject var alertController: AlertController
+    
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
@@ -153,7 +156,12 @@ struct GifterFormView: View {
         }  // end VStack
         .onAppear { logAppear(title: "GifterFormView") }
         .alert(isPresented: $isDeleteAlertShowing) {
-            Alerts.gifterDeleteAlert(gifter: selectedGifter, selectedGiftExchange: selectedGiftExchange)
+            Alerts.gifterDeleteAlert(
+                gifter: selectedGifter,
+                selectedGiftExchange: selectedGiftExchange,
+                alertController: alertController,
+                mode: presentationMode
+            )
         }
         
     }  // end body
@@ -325,21 +333,40 @@ struct GifterFormView: View {
     }
     
     /// Adds the gifter to the selected gift exchange and to persistent storage.
+    /// Also, alerts the user if gifters were already matched.
     func addNewGifter() {
         #if os(iOS)
         hideKeyboard()
         #endif
         
+        // save boolean locally before changes are made
+        let areGiftersMatched = selectedGiftExchange.areGiftersMatched
+        
+        // add the gifter and persist the changes
         let gifter = initGifter()
         selectedGiftExchange.addGifter(gifter)
         commitDataEntry()
+        
+        // briefly wait for sheet to be dismissed before alerting user
+        let seconds = 0.1
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            // determine if gifters were matched prior to adding the new gifter
+            if areGiftersMatched {
+                // adding gifter has invalidated the matching so alert the user
+                alertController.info = AlertInfo(
+                    id: .AddGifterInvalidatesMatching,
+                    alert: Alerts.matchingInvalidatedAlert(.AddGifterInvalidatesMatching)
+                )
+            }
+        }
+        
         logFilter("adding gifter: \(gifter.toString())")
     }
     
     /// Triggers an alert for deleting the currently selected gift exchange.
     func deleteGifter() {
-        logFilter("delete gifter")
         self.isDeleteAlertShowing = true
+        logFilter("delete gifter")
     }
     
     /// Save the Gifter in CoreData, send user to Gifters Tab and dismiss the view.
@@ -355,6 +382,7 @@ struct GifterFormView: View {
 struct GifterFormView_Previews: PreviewProvider {
     
     static let previewUserSettings: UserSettings = getPreviewUserSettings()
+    static let previewAlertController = AlertController()
     static var previewGiftExchange: GiftExchange? = nil
     static var previewGifter: Gifter? = nil
     static var previewGifterFormData: GifterFormData = GifterFormData()
@@ -392,6 +420,7 @@ struct GifterFormView_Previews: PreviewProvider {
         NavigationView {
             EditGifterFormView_Preview()
                 .environmentObject(previewUserSettings)
+                .environmentObject(previewAlertController)
                 .environmentObject(previewGiftExchange!)
                 .environmentObject(previewGifter!)
                 .environmentObject(previewGifterFormData)
@@ -400,6 +429,7 @@ struct GifterFormView_Previews: PreviewProvider {
         NavigationView {
             GifterFormView(formType: FormType.Add)
                 .environmentObject(previewUserSettings)
+                .environmentObject(previewAlertController)
                 .environmentObject(previewGiftExchange!)
                 .environmentObject(previewGifter!)
                 .environmentObject(previewGifterFormData)
