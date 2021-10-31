@@ -103,6 +103,9 @@ extension GiftExchange {
     public func addGifter(_ gifter: Gifter) {
         // use the generated accessor for the gifters_ instance member
         self.addToGifters_(gifter)
+        
+        // adding a gifter invalidates any gift exchange matches
+        self.areGiftersMatched = false
     }
     
     /**
@@ -114,6 +117,9 @@ extension GiftExchange {
     public func removeGifter(_ gifter: Gifter) {
         // use the generated accessor for the gifters_ instance member
         self.removeFromGifters_(gifter)
+        
+        // removing a gifter invalidates any gift exchange matches
+        self.areGiftersMatched = false
     }
     
     /**
