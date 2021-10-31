@@ -13,6 +13,9 @@ struct ExchangeTabView: View {
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
+    /// The alert controller provided by a parent View
+    @EnvironmentObject var alertController: AlertController
+    
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
     
@@ -123,9 +126,27 @@ struct ExchangeTabView: View {
     
     // MARK: Model Functions
     
-    /// Matches the gifters in the selected gift exchange.
+    /// Attempts to match the gifters in the selected gift exchange.
     func matchGifters() {
         logFilter("matching gifters...")
+        var giftingMatrix = GiftingMatrix(giftExchange: selectedGiftExchange)
+        
+        if giftingMatrix.match() {
+            logFilter("gifters successfully matched")
+            selectedGiftExchange.areGiftersMatched = true
+        } else {
+            logFilter("a match could not be made, consider easing restrictions")
+            selectedGiftExchange.areGiftersMatched = false
+        }
+        
+        // persist changes
+        PersistenceController.shared.saveContext()
+        
+        // alert the user of the outcome
+        self.alertController.info = AlertInfo(
+            id: .GiftExchangeMatching,
+            alert: Alerts.giftExchangeMatchingAlert(matchingSuccess: selectedGiftExchange.areGiftersMatched)
+        )
     }
     
     /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
@@ -138,17 +159,18 @@ struct ExchangeTabView: View {
 
 struct ExchangeTabView_Previews: PreviewProvider {
     
-    static let previewGiftExchange1: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
-    static var previewGiftExchange2: GiftExchange? = nil
-    
+    static var previewGiftExchange1: GiftExchange? = nil
+    static let previewGiftExchange2: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
+    static let previewAlertController = AlertController()
+
     struct ExchangeTabView_Preview: View {
         let previewGifters = getPreviewGifters()
         
         init() {
-            ExchangeTabView_Previews.previewGiftExchange2 = GiftExchange(context: PersistenceController.shared.context)
+            ExchangeTabView_Previews.previewGiftExchange1 = GiftExchange(context: PersistenceController.shared.context)
             
             for gifter in previewGifters {
-                ExchangeTabView_Previews.previewGiftExchange2!.addGifter(gifter)
+                ExchangeTabView_Previews.previewGiftExchange1!.addGifter(gifter)
             }
         }
         
@@ -159,12 +181,16 @@ struct ExchangeTabView_Previews: PreviewProvider {
     
     static var previews: some View {
         // 1st preview
-        ExchangeTabView()
-            .environmentObject(previewGiftExchange1)
-        // 2nd preview
         NavigationView {
             ExchangeTabView_Preview()
-                .environmentObject(previewGiftExchange2!)
+                .environmentObject(previewGiftExchange1!)
+                .environmentObject(previewAlertController)
+        }
+        // 2nd preview
+        NavigationView {
+            ExchangeTabView()
+                .environmentObject(previewGiftExchange2)
+                .environmentObject(previewAlertController)
         }
     }
     
