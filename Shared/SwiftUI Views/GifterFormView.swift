@@ -108,12 +108,20 @@ struct GifterFormView: View {
                 
                 // insert add gifter button when a new gifter is being added
                 if isNewForm(formType) {
-                    Button(action: { addNewGifter() }, label: {
-                        HStack {
-                            Label("Add Gifter", systemImage: "person.badge.plus")
-                        }
-                    })
-                        .disabled(self.isSaveDisabled)
+                    Button(
+                        action: {
+                            if isSaveDisabled { guideUserReqFormFields() }
+                            else { addNewGifter() }
+                        },
+                        label: {
+                            HStack {
+                                Label("Add Gifter", systemImage: "person.badge.plus")
+                            }
+                        })
+                        // simulate a disabled button here by conditionally changing color
+                        // don't use a disabled button since we want to perform an action
+                        // to guide the user if they are clicking on the disabled button
+                        .foregroundColor(isSaveDisabled ? Color.Disabled : Color.Accent)
                 } else {
                     // insert delete button if in edit mode
                     deleteButton()
@@ -290,10 +298,25 @@ struct GifterFormView: View {
     
     // MARK: Model Functions
     
+    /// Guides the user by displaying error messages for required form fields.
+    func guideUserReqFormFields() {
+        // check if the name field has been updated
+        if data.name.isEmpty {
+            // trigger text field error message by assigning the field to itself
+            data.name = data.name
+        }
+        
+        // check if the email field has been updated
+        if data.email.isEmpty {
+            // trigger text field error message by assigning the field to itself
+            data.email = data.email
+        }
+    }
+    
     /**
-     * Initializes a Gifter object from the form data.
-     *
-     *  - Returns: The initialized gifter.
+     Initializes a Gifter object from the form data.
+     
+     - Returns: The initialized gifter.
      */
     func initGifter() -> Gifter {
         // filter out any empty wish lists before initializing Gifter

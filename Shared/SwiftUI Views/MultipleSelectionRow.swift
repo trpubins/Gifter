@@ -38,8 +38,7 @@ struct MultipleSelectionRow: View {
             }
         }
         .disabled(isDisabled)
-        // systemGray4 is equivalent to the disabled gray
-        .foregroundColor(isDisabled ? Color(.systemGray4) : .primary)
+        .foregroundColor(isDisabled ? Color.Disabled : .primary)
     }
 }
 

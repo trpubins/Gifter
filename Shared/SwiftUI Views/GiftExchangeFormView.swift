@@ -78,12 +78,20 @@ struct GiftExchangeFormView: View {
                 }
                 // insert start exchanging button when a new gift exchange is being added
                 if isNewForm(formType) {
-                    Button(action: { startExchanging() }, label: {
-                        HStack {
-                            Label("Start Exchanging!", systemImage: "gift")
-                        }
-                    })
-                    .disabled(self.isSaveDisabled)
+                    Button(
+                        action: {
+                            if isSaveDisabled { guideUserReqFormFields() }
+                            else { startExchanging() }
+                        },
+                        label: {
+                            HStack {
+                                Label("Start Exchanging!", systemImage: "gift")
+                            }
+                        })
+                        // simulate a disabled button here by conditionally changing color
+                        // don't use a disabled button since we want to perform an action
+                        // to guide the user if they are clicking on the disabled button
+                        .foregroundColor(isSaveDisabled ? Color.Disabled : Color.Accent)
                 } else {
                     // insert delete exchange button if there is more than 1 gift exchange
                     if giftExchangeSettings.hasMultipleGiftExchanges() {
@@ -202,6 +210,15 @@ struct GiftExchangeFormView: View {
     
     
     // MARK: Model Functions
+    
+    /// Guides the user by displaying error messages for required form fields.
+    func guideUserReqFormFields() {
+        // check if the name field has been updated
+        if data.name.isEmpty {
+            // trigger text field error message by assigning the field to itself
+            data.name = data.name
+        }
+    }
     
     /// Adds the gift exchange to persistent storage and the new gift exchange id to the user settings.
     /// The gift exchange can commence.

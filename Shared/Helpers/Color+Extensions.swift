@@ -11,6 +11,9 @@ import SwiftUI
 extension Color {
     /// The application accent color
     static let Accent: Color = Color(UIColor.Accent)
+    
+    /// Simulates a disabled UI component
+    static let Disabled: Color = Color(.systemGray4)  // systemGray4 is equivalent to the disabled gray
 }
 
 extension UIColor {
