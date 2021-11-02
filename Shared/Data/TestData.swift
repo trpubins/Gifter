@@ -61,6 +61,7 @@ func getPreviewGifters() -> [Gifter] {
     // gifters that can be identified later
     var tanner: Gifter? = nil
     var molly: Gifter? = nil
+    var taylor: Gifter? = nil
     var trey: Gifter? = nil
     
     var gifters: [Gifter] = []
@@ -89,6 +90,8 @@ func getPreviewGifters() -> [Gifter] {
             tanner = gifter
         } else if data.name == "Molly" {
             molly = gifter
+        } else if data.name == "Taylor" {
+            taylor = gifter
         } else if data.name == "Trey" {
             trey = gifter
         }
@@ -101,6 +104,12 @@ func getPreviewGifters() -> [Gifter] {
     // add restrictions
     tanner!.addRestrictedId(molly!.id)
     molly!.addRestrictedId(tanner!.id)
+    
+    // add recipients
+    tanner!.recipientId = taylor!.id
+    molly!.recipientId = trey!.id
+    taylor!.recipientId = molly!.id
+    trey!.recipientId = tanner!.id
     
     return gifters
 }

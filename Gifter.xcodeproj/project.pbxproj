@@ -16,8 +16,6 @@
 		BF1AE7FA26CF6DA3007DA87B /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */; };
 		BF1AE7FB26CF6DA3007DA87B /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */; };
 		BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF24840E26B5B29800F06413 /* SwiftSMTP */; };
-		BF2A865726BE6C090038C024 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */; };
-		BF2A865826BE6C090038C024 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */; };
 		BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
 		BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
 		BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
@@ -70,6 +68,8 @@
 		BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */; };
 		BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */; };
 		BFAB347626BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */; };
+		BFDEF049272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */; };
+		BFDEF04A272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */; };
 		BFDFFC2E26D9A52700360050 /* StateTriggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC2D26D9A52700360050 /* StateTriggers.swift */; };
 		BFDFFC2F26D9A52700360050 /* StateTriggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC2D26D9A52700360050 /* StateTriggers.swift */; };
 		BFDFFC3526D9D5E300360050 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC3426D9D5E300360050 /* Alerts.swift */; };
@@ -109,7 +109,6 @@
 		BF0DDCA326C2FB22005D0412 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		BF0DDCA926C3023B005D0412 /* MainViewMacOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewMacOS.swift; sourceTree = "<group>"; };
 		BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
-		BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDetailView.swift; sourceTree = "<group>"; };
 		BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTabView.swift; sourceTree = "<group>"; };
 		BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftersTabView.swift; sourceTree = "<group>"; };
 		BF2A865F26BE6D9A0038C024 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 		BFAB346E26BDFD0800D460D8 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
 		BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifter+Extensions.swift"; sourceTree = "<group>"; };
 		BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiftExchange+Extensions.swift"; sourceTree = "<group>"; };
+		BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeMatchingView.swift; sourceTree = "<group>"; };
 		BFDFFC2D26D9A52700360050 /* StateTriggers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTriggers.swift; sourceTree = "<group>"; };
 		BFDFFC3426D9D5E300360050 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		BFEB827126C30A0C004219E7 /* MainViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewData.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */,
-				BF2A865626BE6C090038C024 /* ExchangeDetailView.swift */,
+				BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */,
 			);
 			name = "Exchange Tab";
 			sourceTree = "<group>";
@@ -481,7 +481,7 @@
 				BF8F8E1F26D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
 				BF60E31326F1A3D800EB6A42 /* WishList.swift in Sources */,
 				BF0DDCA426C2FB22005D0412 /* View+Extensions.swift in Sources */,
-				BF2A865726BE6C090038C024 /* ExchangeDetailView.swift in Sources */,
+				BFDEF049272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */,
 				BF40D05A26DC535600B02504 /* GifterFormView.swift in Sources */,
 				BFF8120726C042CF00834B50 /* GiftExchangeFormView.swift in Sources */,
 				BF7C87EC26DAD938007B35B5 /* UIScreen+Extensions.swift in Sources */,
@@ -532,6 +532,7 @@
 				BFAB10D42708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */,
 				BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
 				BF60E31426F1A3D800EB6A42 /* WishList.swift in Sources */,
+				BFDEF04A272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */,
 				BF8A4A5926CCA16200EE2CCC /* UIImage+Extensions.swift in Sources */,
 				BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
 				BF40D05B26DC535600B02504 /* GifterFormView.swift in Sources */,
@@ -546,7 +547,6 @@
 				BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
 				BFF8123026C0505E00834B50 /* SwiftUI+Validation.swift in Sources */,
 				BFF8124426C079A800834B50 /* Date+Extensions.swift in Sources */,
-				BF2A865826BE6C090038C024 /* ExchangeDetailView.swift in Sources */,
 				BF0DDCAB26C3023B005D0412 /* MainViewMacOS.swift in Sources */,
 				BFF8123926C0506A00834B50 /* ValidationPublishers.swift in Sources */,
 				BF0677CF270D5A7100F5EC8D /* MultipleSelectionRow.swift in Sources */,
