@@ -39,14 +39,14 @@ extension NSManagedObject {
      Finds an NSManagedObject with the specified email address (there should only be one, really).
      
      - Parameters:
-        - email: The email address of the NSManagedObject
+        - address: The email address of the NSManagedObject
         - context: The managed object context to fetch results from
      
      - Returns: An instance of the NSManagedObject or nil if no object was found in the context.
      */
-    class func object(withEmail email: String, context: NSManagedObjectContext) -> Self? {
+    class func object(withEmail address: String, context: NSManagedObjectContext) -> Self? {
         let fetchRequest: NSFetchRequest<Self> = NSFetchRequest<Self>(entityName: Self.description())
-        fetchRequest.predicate = NSPredicate(format: "email_ == %@", email as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "email_.address == %@", address as CVarArg)
         do {
             let results = try context.fetch(fetchRequest)
             return results.first
