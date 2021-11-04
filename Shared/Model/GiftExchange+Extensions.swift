@@ -95,6 +95,34 @@ extension GiftExchange {
     }
     
     /**
+    Retrieves the status of emails in this gift exchange.
+     
+     - Returns: The collective email state of all the gifters in the gift exchange.
+     */
+    public func getEmailStatus() -> EmailState {        
+        var isOneSent = false
+        var isOneUnsent = false
+
+        // loop thru each gifter and update the local bools
+        for gifter in self.gifters {
+            if gifter.email.state == EmailState.Sent && !isOneSent {
+                isOneSent = true
+            } else if gifter.email.state == EmailState.Unsent && !isOneUnsent {
+                isOneUnsent = true
+            }
+        }
+        
+        // if both states exist in the gift exchange, then the state is mixed
+        if isOneSent && isOneUnsent {
+            return EmailState.Mixed
+        } else if isOneSent {
+            return EmailState.Sent
+        } else {
+            return EmailState.Unsent
+        }
+    }
+    
+    /**
      Adds a gifter to this GiftExchange.
      
      - Parameters:

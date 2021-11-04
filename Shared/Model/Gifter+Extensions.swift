@@ -115,6 +115,18 @@ extension Gifter {
         self.wishLists = data.getWishListURLs()
     }
     
+    /// Resets the email state back to the default state.
+    public func resetEmailState() {
+        let address = self.email.address
+        self.email = Email(address: address, state: .Unsent)
+    }
+    
+    /// Advances the email state to the next state.
+    public func advanceEmailState() {
+        let address = self.email.address
+        self.email = Email(address: address, state: .Sent)
+    }
+    
     /**
      Adds an id to the Gifter's restricted list. This means the Gifter will not gift an individual with that id.
      

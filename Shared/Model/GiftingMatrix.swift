@@ -95,6 +95,9 @@ struct GiftingMatrix {
             gifter.recipientId = idArr[recipientIdx]
             rowsMatched.append(row)
             
+            // reset the email status of the gifter following match
+            gifter.resetEmailState()
+            
             // sort rows (gifters) matched in descending order to create a stack
             var sortedRowsMatched = rowsMatched.sorted(by: { $0 > $1 })
             var rowMatched = sortedRowsMatched.popLast()

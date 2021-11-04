@@ -10,12 +10,12 @@ import Foundation
 /**
  An enumeration for describing the state of an Email.
  
- Enumerations include: .Unsent, .Sent, & .Delivered
+ Enumerations include: .Unsent, .Sent, & .Mixed
  */
-enum EmailState: String, Codable {
+public enum EmailState: String, Codable {
     case Unsent
     case Sent
-    case Delivered
+    case Mixed
 }
 
 /// A class to represent a gifter's email.

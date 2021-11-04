@@ -41,6 +41,26 @@ struct ExchangeTabView: View {
                 }
                 .padding([.top, .leading, .trailing])
             }  // end HStack
+            HStack {
+                VStack(alignment: .leading) {
+                    if selectedGiftExchange.areGiftersMatched {
+                        Text("Gifters matched: Yes")
+                    } else {
+                        Text("Gifters matched: No")
+                    }
+                    let emailStatus = selectedGiftExchange.getEmailStatus()
+                    if emailStatus == .Sent {
+                        Text("Email status: Sent (All)")
+                    } else if emailStatus == .Unsent {
+                        Text("Email status: Unsent (All)")
+                    } else {
+                        Text("Email status: Unsent (1 or more)")
+                    }
+                }
+                .padding()
+                
+                Spacer()
+            }
             Spacer()
             // place add gifter button if not enough gifters to match
             if selectedGiftExchange.gifters.count < 2 {
@@ -54,7 +74,11 @@ struct ExchangeTabView: View {
                     //
                     // TODO: Show / hide matching results per settings
                     //
-                    EmptyView()
+                    VStack {
+                        ExchangeMatchingView()
+                            .environmentObject(selectedGiftExchange)
+                        matchGiftersButton()
+                    }
                 } else {
                     Text("The gifters in this exchange have not yet been matched!")
                         .multilineTextAlignment(.center)

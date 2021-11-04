@@ -20,8 +20,14 @@ struct MainViewIOS: View {
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
     
+    /// State variable for determining if the email confirmation dialog is showing
+    @State private var isEmailDialogShowing = false
+    
     /// An array of dictionaries holding data relevant to the MainViews
     let mainViewTabs: [MainViewData]
+    
+    
+    // MARK: Body
     
     var body: some View {
 
@@ -63,28 +69,8 @@ struct MainViewIOS: View {
         // alerts won't display here since there is a parent view with an alert modifier already
     }
     
-    /**
-     Returns a 'filled' image name when the provided tab is the selected tab. In iOS 15, tab label images are always filled whether
-     or not the filled version is specified.
-     
-     This function keeps our MainViewIOS source code DRY. In particular, it saves us from having several
-     conditionals in the MainViewIOS body property to only slightly change the systemImage from generic to
-     'filled' when a tab is selected.
-     
-     - Parameters:
-        - tabData: The data associated with a main view tab
-     
-     - Returns: The system image name, generic or 'filled' version based on the tab selection.
-
-     */
-    func getLabelImg(tabData: MainViewData) -> String {
-        // opt for 'filled' image when the tab is selected
-        if (self.triggers.selectedTab == tabData.tabNum) {
-            return tabData.imgName + ".fill"
-        } else {
-            return tabData.imgName
-        }
-    }
+    
+    // MARK: Sub Views
     
     /**
      Generates a NavigationView with the specified tab data. The NavigationView also holds a toolbar menu.
@@ -94,35 +80,78 @@ struct MainViewIOS: View {
      
      - Returns: A NavigationView that includes an interactive Menu in the toolbar.
      */
+    @ViewBuilder
     func getTabView(tabData: MainViewData) -> some View {
-        return {
-            NavigationView {
-                tabData.dest
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            Button(action: { addGifter() }) {
-                                Image(systemName: "person.badge.plus")
-                            }
-                        }
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button(action: { logFilter("email gifters") }) {
-                                Image(systemName: "envelope")
-                            }
-                            // MARK: TODO
-                            // need to change this condition to be based on gift exchange
-                            // matching Bool
-                            .disabled(true)
-                        }
-                        ToolbarItem(placement: .principal) {
-                            ToolbarMenuView(unselectedIds: giftExchangeSettings.unselectedIdList)
-                                .environmentObject(giftExchangeSettings)
-                                .environmentObject(selectedGiftExchange)
-                                .environmentObject(triggers)
+        NavigationView {
+            tabData.dest
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button(action: { addGifter() }) {
+                            Image(systemName: "person.badge.plus")
                         }
                     }
-                    .environmentObject(selectedGiftExchange)
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        toolbarEmailButton()
+                    }
+                    ToolbarItem(placement: .principal) {
+                        ToolbarMenuView(unselectedIds: giftExchangeSettings.unselectedIdList)
+                            .environmentObject(giftExchangeSettings)
+                            .environmentObject(selectedGiftExchange)
+                            .environmentObject(triggers)
+                    }
+                }
+                .environmentObject(selectedGiftExchange)
+        }
+    }
+    
+    /**
+     Generates a toolbar email button.
+     
+     - Returns: An email button that sends emails to gifters in the gift exchange.
+     */
+    @ViewBuilder
+    func toolbarEmailButton() -> some View {
+        if #available(iOS 15.0, *) {
+            Button(action: { isEmailDialogShowing = true }) {
+                Image(systemName: "envelope")
             }
-        }()
+            // disable this button if gifters are not matched
+            .disabled(!selectedGiftExchange.areGiftersMatched)
+            .confirmationDialog("Send personalized emails to each gifter in the gift exchange",
+                                isPresented: $isEmailDialogShowing,
+                                titleVisibility: .visible) {
+                
+                let emailStatus = selectedGiftExchange.getEmailStatus()
+                if emailStatus == EmailState.Unsent {
+                    Button(action: { emailGifters(allGifters: true) }, label: {
+                        Text("Send emails")
+                    })
+                } else if emailStatus == EmailState.Mixed {
+                    Button(action: { emailGifters(allGifters: false) }, label: {
+                        Text("Send only unsent emails")
+                    })
+                    Button(action: { emailGifters(allGifters: true) }, label: {
+                        Text("Send all emails")
+                    })
+                    Button(role: .cancel, action: { }, label: {
+                        Text("Cancel")
+                    })
+                }
+                // all emails must have been sent
+                else {
+                    Button(action: { emailGifters(allGifters: true) }, label: {
+                        Text("Send all emails again")
+                    })
+                }
+            }
+        } else {
+            // fallback on earlier versions
+            Button(action: { emailGifters(allGifters: false) }) {
+                Image(systemName: "envelope")
+            }
+            // disable this button if gifters are not matched
+            .disabled(!selectedGiftExchange.areGiftersMatched)
+        }
     }
     
     /**
@@ -133,6 +162,7 @@ struct MainViewIOS: View {
      
      - Returns: A configured GiftExchangeFormView.
      */
+    @ViewBuilder
     func getGiftExchangeFormView(formType: FormType) -> some View {
         NavigationView {
             if isNewForm(formType) {
@@ -154,6 +184,7 @@ struct MainViewIOS: View {
      
      - Returns: A configured GifterFormView.
      */
+    @ViewBuilder
     func getGifterFormView(formType: FormType) -> some View {
         NavigationView {
             if isNewForm(formType) {
@@ -162,10 +193,47 @@ struct MainViewIOS: View {
         }
     }
     
+    
+    // MARK: Model Functions
+    
+    /**
+     Emails the gifters their respective recipient information.
+     
+     - Parameters:
+        - allGifters: `true` to send emails to all gifters, `false` to send only undelivered emails
+     */
+    func emailGifters(allGifters: Bool) {
+        logFilter("emailing gifters...")
+        sendMail(toAll: allGifters, inExchange: selectedGiftExchange)
+    }
+    
     /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
     func addGifter() {
         logFilter("add gifter")
         triggers.isAddGifterFormShowing = true
+    }
+    
+    /**
+     Returns a 'filled' image name when the provided tab is the selected tab. In iOS 15, tab label images are always filled whether
+     or not the filled version is specified.
+     
+     This function keeps our MainViewIOS source code DRY. In particular, it saves us from having several
+     conditionals in the MainViewIOS body property to only slightly change the systemImage from generic to
+     'filled' when a tab is selected.
+     
+     - Parameters:
+        - tabData: The data associated with a main view tab
+     
+     - Returns: The system image name, default or 'filled' version based on the tab selection.
+     
+     */
+    func getLabelImg(tabData: MainViewData) -> String {
+        // opt for 'filled' image when the tab is selected
+        if (self.triggers.selectedTab == tabData.tabNum) {
+            return tabData.imgName + ".fill"
+        } else {
+            return tabData.imgName
+        }
     }
     
 }
