@@ -178,7 +178,7 @@ struct Alerts {
                         otherGifter.restrictedIds = otherGifter.restrictedIds.filter( {$0 != gifterId} )
                         
                         // check if deleting gifter invalidates restrictions on the other gifters
-                        if otherGifter.restrictedIds.count >= (otherGifters.count - 1) {
+                        if otherGifters.count > 1 && ( otherGifter.restrictedIds.count >= (otherGifters.count - 1) ) {
                             // this otherGifter has too many restrictions so need to clear their restrictions
                             otherGifter.restrictedIds = []
                             giftersWithRestrictionsCleared.append(otherGifter)
