@@ -78,13 +78,18 @@ struct PersistenceController {
      Attempts to commit unsaved changes to the context’s parent store. But first checks to see if the context has any changes.
      */
     public func saveContext() {
-        if context.hasChanges {
+        // inner function to attempt CoreData save operation
+        func attemptSave() {
             do {
                 try context.save()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+        
+        if context.hasChanges {
+            attemptSave()
         }
     }
     
