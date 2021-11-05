@@ -193,7 +193,6 @@
 				BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */,
 				BF40D05926DC535600B02504 /* GifterFormView.swift */,
 				BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */,
-				BF60E31826F6C80E00EB6A42 /* FormType.swift */,
 				BF0677CA270D5A4400F5EC8D /* MultipleSelectionList.swift */,
 				BF0677CD270D5A7100F5EC8D /* MultipleSelectionRow.swift */,
 			);
@@ -203,6 +202,7 @@
 		BFAB10D127084338009ADBC1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BF60E31826F6C80E00EB6A42 /* FormType.swift */,
 				BF2EF74E26C0E3840095B714 /* UserSettings.swift */,
 				BFDFFC2D26D9A52700360050 /* StateTriggers.swift */,
 				BF85E621270993EE00292923 /* AlertController.swift */,
