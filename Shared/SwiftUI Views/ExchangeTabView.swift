@@ -43,20 +43,37 @@ struct ExchangeTabView: View {
             }  // end HStack
             HStack {
                 VStack(alignment: .leading) {
-                    if selectedGiftExchange.areGiftersMatched {
-                        Text("Gifters matched: Yes")
-                    } else {
-                        Text("Gifters matched: No")
-                    }
-                    let emailStatus = selectedGiftExchange.getEmailStatus()
-                    if emailStatus == .Sent {
-                        Text("Email status: Sent (All)")
-                    } else if emailStatus == .Unsent {
-                        Text("Email status: Unsent (All)")
-                    } else {
-                        Text("Email status: Unsent (1 or more)")
-                    }
-                }
+                    HStack {
+                        // status text
+                        if selectedGiftExchange.areGiftersMatched {
+                            VStack(alignment: .leading) {
+                                Text("Gifters matched: Yes")
+                                let emailStatus = selectedGiftExchange.getEmailStatus()
+                                if emailStatus == .Sent {
+                                    Text("Emails: Sent")
+                                } else if emailStatus == .Unsent {
+                                    Text("Emails: Unsent")
+                                } else {
+                                    Text("Emails: Unsent\n(1 or more)")
+                                }
+                            }
+                        } else {
+                            Text("Gifters matched: No")
+                        }
+                        Spacer()
+                        // hide-show results button
+                        Toggle(isOn: $selectedGiftExchange.hideResults) {
+                            if selectedGiftExchange.hideResults {
+                                Label("Show results", systemImage: "eye.fill")
+                            } else {
+                                Label("Hide results", systemImage: "eye.slash")
+                            }
+                        }
+                        .controlSize(.regular)
+                        .toggleStyle(.button)
+                        
+                    }  // end HStack
+                }  // end VStack
                 .padding()
                 
                 Spacer()
@@ -71,12 +88,15 @@ struct ExchangeTabView: View {
             // otherwise, display elements for matching gifters
             else {
                 if selectedGiftExchange.areGiftersMatched {
-                    //
-                    // TODO: Show / hide matching results per settings
-                    //
-                    VStack {
-                        ExchangeMatchingView()
-                            .environmentObject(selectedGiftExchange)
+                    if !selectedGiftExchange.hideResults {
+                        VStack {
+                            ExchangeMatchingView()
+                                .environmentObject(selectedGiftExchange)
+                            Text("Send emails using envelope button in the toolbar")
+                            matchGiftersButton()
+                        }  // end VStack
+                    } else {
+                        Text("Send emails using envelope button in the toolbar")
                         matchGiftersButton()
                     }
                 } else {

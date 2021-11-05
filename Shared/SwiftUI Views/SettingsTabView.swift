@@ -27,15 +27,6 @@ struct SettingsTabView: View {
             }  // end HStack
             Spacer()
             Form {
-                // Gift Exchange settings
-                Section(header: Text("Gift Exchange Settings"),
-                        footer: Text("Hides the gift exchange results after gifters have been matched when toggled on.")) {
-                    Toggle("Hide results", isOn: $selectedGiftExchange.hideResults)
-                        .onChange(of: selectedGiftExchange.hideResults) { toggleValue in
-                            logFilter("Gift Exchange Settings -> Hide results: \(toggleValue)")
-                            PersistenceController.shared.saveContext()
-                        }
-                }
                 // Gifter settings
                 Section(header: Text("Gifter Settings"),
                         footer: Text("Automatically restrict gifters from matching in consecutive gift exchanges when toggled on.")) {
