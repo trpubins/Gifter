@@ -67,7 +67,7 @@ public func sendMail(toAll allGifters: Bool = false, inExchange giftExchange: Gi
         let mail = Mail(
             from: santa,
             to: [Mail.User(name: gifter.name, email: gifter.email.address)],
-            subject: giftExchange.toString(),
+            subject: giftExchange.toString() + " Gift Exchange",
             text: message
         )
         
