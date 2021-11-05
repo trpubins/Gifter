@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SettingsTabView: View {
     
-    /// The gift exchange user settings provided by a parent View
-    @EnvironmentObject var giftExchangeSettings: UserSettings
+    /// The gift exchange current selection provided by a parent View
+    @EnvironmentObject var selectedGiftExchange: GiftExchange
     
     
     // MARK: Body
@@ -30,8 +30,8 @@ struct SettingsTabView: View {
                 // Gift Exchange settings
                 Section(header: Text("Gift Exchange Settings"),
                         footer: Text("Hides the gift exchange results after gifters have been matched when toggled on.")) {
-                    Toggle("Hide results", isOn: $giftExchangeSettings.hideResults)
-                        .onChange(of: giftExchangeSettings.hideResults) { toggleValue in
+                    Toggle("Hide results", isOn: $selectedGiftExchange.hideResults)
+                        .onChange(of: selectedGiftExchange.hideResults) { toggleValue in
                             logFilter("Gift Exchange Settings -> Hide results: \(toggleValue)")
                             PersistenceController.shared.saveContext()
                         }
@@ -39,9 +39,15 @@ struct SettingsTabView: View {
                 // Gifter settings
                 Section(header: Text("Gifter Settings"),
                         footer: Text("Automatically restrict gifters from matching in consecutive gift exchanges when toggled on.")) {
-                    Toggle("Auto restrictions", isOn: $giftExchangeSettings.autoRestrictions)
-                        .onChange(of: giftExchangeSettings.autoRestrictions) { toggleValue in
+                    Toggle("Auto restrictions", isOn: $selectedGiftExchange.autoRestrictions)
+                        .onChange(of: selectedGiftExchange.autoRestrictions) { toggleValue in
                             logFilter("Gifter Settings -> Auto restrictions: \(toggleValue)")
+                            // update the restricted list based on the toggle state
+                            if toggleValue {
+                                addRestrictions()
+                            } else {
+                                removeRestrictions()
+                            }
                             PersistenceController.shared.saveContext()
                         }
                 }
@@ -52,16 +58,50 @@ struct SettingsTabView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { logAppear(title: "SettingsTabView") }
     }
+    
+    
+    // MARK: Model Functions
+    
+    /// Adds the previous recipient for each gifter as a restriction, as applicable.
+    func addRestrictions() {
+        for gifter in selectedGiftExchange.gifters {
+            if let previousRecipientId = gifter.previousRecipientId {
+                gifter.addRestrictedId(previousRecipientId)
+            }
+        }
+    }
+    
+    /// Removes the previous recipient for each gifter as a restriction, as applicable.
+    func removeRestrictions() {
+        for gifter in selectedGiftExchange.gifters {
+            if let previousRecipientId = gifter.previousRecipientId {
+                gifter.removeRestrictedId(previousRecipientId)
+            }
+        }
+    }
+    
 }
 
 struct SettingsTabView_Previews: PreviewProvider {
     
-    static let previewUserSettings: UserSettings = getPreviewUserSettings()
+    static let previewGiftExchange: GiftExchange = GiftExchange(context: PersistenceController.shared.context)
 
+    struct SettingsTabView_Preview: View {
+        let previewGifters = getPreviewGifters()
+        
+        init() {
+            SettingsTabView_Previews.previewGiftExchange.autoRestrictions = true
+        }
+        
+        var body: some View {
+            SettingsTabView()
+                .environmentObject(previewGiftExchange)
+        }
+    }
+    
     static var previews: some View {
         NavigationView {
-            SettingsTabView()
-                .environmentObject(previewUserSettings)
+            SettingsTabView_Preview()
         }
     }
     

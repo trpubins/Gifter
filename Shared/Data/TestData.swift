@@ -100,6 +100,7 @@ func getPreviewGifters() -> [Gifter] {
     
     // add a previous recipient
     tanner!.previousRecipientId = trey!.id
+    tanner!.addRestrictedId(trey!.id)  // manually adding previous recipient as restriction for preview
     
     // add restrictions
     tanner!.addRestrictedId(molly!.id)

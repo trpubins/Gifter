@@ -25,20 +25,6 @@ class UserSettings: ObservableObject {
             encode(property: self.idList, key: "giftExchangeList")
         }
     }
-    
-    /// Hides the results of the gift exchange matching if `true`
-    @Published var hideResults: Bool = true {
-        didSet {
-            encode(property: self.hideResults, key: "hideResults")
-        }
-    }
-    
-    /// Automatically restricts gifters from matching in consecutive gift exchanges if `true`
-    @Published var autoRestrictions: Bool = true {
-        didSet {
-            encode(property: self.autoRestrictions, key: "autoRestrictions")
-        }
-    }
 
     
     // MARK: Computed Properties
@@ -69,8 +55,6 @@ class UserSettings: ObservableObject {
      */
     init() {
         self.idList = decode(type: [UUID].self, key: "giftExchangeList") ?? []
-        self.hideResults = decode(type: Bool.self, key: "hideResults") ?? true
-        self.autoRestrictions = decode(type: Bool.self, key: "autoRestrictions") ?? true
     }
     
     

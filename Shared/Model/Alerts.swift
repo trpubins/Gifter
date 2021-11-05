@@ -55,8 +55,28 @@ struct Alerts {
             title: Text("Gift exchange completed!"),
             message: Text("The gift exchange date will remain the same for the upcoming year"),
             dismissButton: .cancel(Text("OK")) {
+                
                 logFilter("updated gift exchange year")
+                
+                // update the gift exchange year
                 completedGiftExchange.updateNextYear()
+                
+                // assign previous recipients now that gift exchange has passed
+                for gifter in completedGiftExchange.gifters {
+                    gifter.previousRecipientId = gifter.recipientId
+                    gifter.recipientId = nil
+                    
+                    // if auto restrictions are enabled, add previous recipient to restricted list
+                    if completedGiftExchange.autoRestrictions {
+                        if let previousRecipientId = gifter.previousRecipientId {
+                            gifter.addRestrictedId(previousRecipientId)
+                        }
+                    }
+                }
+                
+                // unmatch gifters
+                completedGiftExchange.areGiftersMatched = false
+                
                 PersistenceController.shared.saveContext()
             }
         )

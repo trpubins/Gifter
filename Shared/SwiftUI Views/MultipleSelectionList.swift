@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MultipleSelectionList: View {
 
-    /// The gift exchange user settings as an observed object
-    @ObservedObject var giftExchangeSettings: UserSettings
+    /// The gift exchange current selection
+    @ObservedObject var selectedGiftExchange: GiftExchange
     
     /// The gifter form data whose properties are bound to the UI form
     @ObservedObject var data: GifterFormData
@@ -31,13 +31,13 @@ struct MultipleSelectionList: View {
      Initializes the selection list instance members.
      
      - Parameters:
-        - settings: The gift exchange user settings
+        - giftExchange: The selected gift exchange
         - data: The form data representing the selected gifter
         - navTitle: The navigation title for the view
         - otherGifters: Array of gifters excluding the gifter associated with the form data
      */
-    init(settings: UserSettings, data: GifterFormData, navTitle: String, otherGifters: [Gifter]) {
-        self.giftExchangeSettings = settings
+    init(giftExchange: GiftExchange, data: GifterFormData, navTitle: String, otherGifters: [Gifter]) {
+        self.selectedGiftExchange = giftExchange
         self.data = data
         self.navTitle = navTitle
         self.otherGifters = otherGifters
@@ -62,7 +62,7 @@ struct MultipleSelectionList: View {
                     
                     // check if auto restrictions is on and if any of the other
                     // gifters were the previous recipient
-                    if self.giftExchangeSettings.autoRestrictions && selectedGifter?.previousRecipientId == gifter.id {
+                    if self.selectedGiftExchange.autoRestrictions && selectedGifter?.previousRecipientId == gifter.id {
                         MultipleSelectionRow(title: "\(gifter.name)*",
                                              isSelected: isSelected,
                                              isDisabled: true) {
@@ -140,14 +140,10 @@ struct MultipleSelectionList: View {
         if let previousRecipientId = selectedGifter.previousRecipientId {
             // ensure the previous recipient is in the gift exchange
             if recipientExists(previousRecipientId) {
-                // add recipient to restricted ids if auto restrictions is on
-                if self.giftExchangeSettings.autoRestrictions {
-                    self.data.addRestrictedId(previousRecipientId)
+                // show asterisk if auto restrictions is on
+                if self.selectedGiftExchange.autoRestrictions {
                     return true
-                }
-                // remove recipient from restricted ids if auto restrictions is off
-                else {
-                    self.data.removeRestrictedId(previousRecipientId)
+                } else {
                     return false
                 }
             }
@@ -236,6 +232,8 @@ struct MultipleSelectionList_Previews: PreviewProvider {
         init() {            
             MultipleSelectionList_Previews.previewGiftExchange = GiftExchange(context: PersistenceController.shared.context)
             
+            MultipleSelectionList_Previews.previewGiftExchange!.autoRestrictions = true
+            
             for gifter in previewGifters {
                 MultipleSelectionList_Previews.previewGiftExchange!.addGifter(gifter)
             }
@@ -245,7 +243,7 @@ struct MultipleSelectionList_Previews: PreviewProvider {
         
         var body: some View {
             let otherGifters = previewGiftExchange!.gifters.filter( {$0.id != previewFormData.id} )
-            MultipleSelectionList(settings: previewUserSettings,
+            MultipleSelectionList(giftExchange: previewGiftExchange!,
                                   data: previewFormData,
                                   navTitle: "Restrictions",
                                   otherGifters: otherGifters)

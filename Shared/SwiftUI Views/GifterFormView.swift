@@ -12,9 +12,6 @@ struct GifterFormView: View {
     /// Binds our View to the presentation mode so we can dismiss the View when we need to
     @Environment(\.presentationMode) var presentationMode
     
-    /// The gift exchange user settings provided by a parent View
-    @EnvironmentObject var giftExchangeSettings: UserSettings
-    
     /// The alert controller provided by a parent View
     @EnvironmentObject var alertController: AlertController
     
@@ -98,10 +95,12 @@ struct GifterFormView: View {
                     let subHeading = "Restrictions"
                     Section(header: Text(subHeading)) {
                         NavigationLink(destination:
-                                        MultipleSelectionList(settings: giftExchangeSettings,
-                                                              data: data,
-                                                              navTitle: subHeading,
-                                                              otherGifters: otherGifters)
+                                        MultipleSelectionList(
+                                            giftExchange: selectedGiftExchange,
+                                            data: data,
+                                            navTitle: subHeading,
+                                            otherGifters: otherGifters
+                                        )
                         )
                         {
                             Text("Number of restrictions: \(data.restrictedIds.count)")

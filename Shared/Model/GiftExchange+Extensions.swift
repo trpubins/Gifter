@@ -25,12 +25,6 @@ extension GiftExchange {
         set { name_ = newValue }
     }
     
-    /// Determines if the gifters in this gift exchange have been matched
-    public var areGiftersMatched: Bool {
-        get { areGiftersMatched_ }
-        set { areGiftersMatched_ = newValue }
-    }
-    
     /// The date of the gift exchange
     public var date: Date {
         get { date_ ?? Date.today }
@@ -41,6 +35,24 @@ extension GiftExchange {
     public var emoji: String {
         get { emoji_ ?? emojis.first! }
         set { emoji_ = newValue }
+    }
+    
+    /// Determines if the gifters in this gift exchange have been matched
+    public var areGiftersMatched: Bool {
+        get { areGiftersMatched_ }
+        set { areGiftersMatched_ = newValue }
+    }
+    
+    /// Automatically restrict gifters from matching in consecutive gift exchanges when `true`.
+    public var autoRestrictions: Bool {
+        get { autoRestrictions_ }
+        set { autoRestrictions_ = newValue }
+    }
+    
+    /// Hides the gift exchange results after gifters have been matched when `true`.
+    public var hideResults: Bool {
+        get { hideResults_ }
+        set { hideResults_ = newValue }
     }
     
     /// This gift exchange's associated gifters -- converts NSSet to swift array
@@ -62,6 +74,13 @@ extension GiftExchange {
      */
     private func initId(withId id: UUID) {
         id_ = id
+    }
+    
+    /// Initializes the properties for this GiftExchange that are not associated with the gift exchange form data.
+    private func initNonFormDataProperties() {
+        self.areGiftersMatched = false
+        self.autoRestrictions = true
+        self.hideResults = false
     }
     
     /**
@@ -187,7 +206,7 @@ extension GiftExchange {
      */
     private class func add() -> GiftExchange {
         let newGiftExchange = GiftExchange(context: PersistenceController.shared.context)
-        newGiftExchange.areGiftersMatched = false
+        newGiftExchange.initNonFormDataProperties()
         return newGiftExchange
     }
     
