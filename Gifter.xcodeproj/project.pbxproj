@@ -26,6 +26,8 @@
 		BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */; };
 		BF2EF74F26C0E3840095B714 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EF74E26C0E3840095B714 /* UserSettings.swift */; };
 		BF2EF75026C0E3840095B714 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EF74E26C0E3840095B714 /* UserSettings.swift */; };
+		BF34028E2735FC1800547251 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34028D2735FC1800547251 /* Reach.swift */; };
+		BF34028F2735FC1800547251 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34028D2735FC1800547251 /* Reach.swift */; };
 		BF40D05A26DC535600B02504 /* GifterFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40D05926DC535600B02504 /* GifterFormView.swift */; };
 		BF40D05B26DC535600B02504 /* GifterFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40D05926DC535600B02504 /* GifterFormView.swift */; };
 		BF40D05D26DC57A200B02504 /* GifterFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40D05C26DC57A200B02504 /* GifterFormData.swift */; };
@@ -114,6 +116,7 @@
 		BF2A865F26BE6D9A0038C024 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
 		BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		BF2EF74E26C0E3840095B714 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		BF34028D2735FC1800547251 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		BF40D05926DC535600B02504 /* GifterFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterFormView.swift; sourceTree = "<group>"; };
 		BF40D05C26DC57A200B02504 /* GifterFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterFormData.swift; sourceTree = "<group>"; };
 		BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonRegex.swift; sourceTree = "<group>"; };
@@ -321,8 +324,8 @@
 				BF7DE2CE272619EF00587974 /* Email.swift */,
 				BF60E31226F1A3D800EB6A42 /* WishList.swift */,
 				BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */,
-				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
 				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
+				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
 				BFF8122826C0479A00834B50 /* CoreData */,
 				BFEB827426C353E2004219E7 /* Development */,
 			);
@@ -349,6 +352,7 @@
 				BFF8123226C0506A00834B50 /* Publisher+Validation.swift */,
 				BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */,
 				BF9C2B432728ADF500AFC8FE /* Matrix.swift */,
+				BF34028D2735FC1800547251 /* Reach.swift */,
 				BF9C2B462729386000AFC8FE /* Array+Extensions.swift */,
 				BFF8124226C079A800834B50 /* Date+Extensions.swift */,
 				BF7C87EB26DAD938007B35B5 /* UIScreen+Extensions.swift */,
@@ -512,6 +516,7 @@
 				BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
 				BF85E622270993EE00292923 /* AlertController.swift in Sources */,
 				BF7DE2CF272619EF00587974 /* Email.swift in Sources */,
+				BF34028E2735FC1800547251 /* Reach.swift in Sources */,
 				BF60E31926F6C80E00EB6A42 /* FormType.swift in Sources */,
 				BF2A866026BE6D9A0038C024 /* SettingsTabView.swift in Sources */,
 				BF9C2B412728A37E00AFC8FE /* Color+Extensions.swift in Sources */,
@@ -563,6 +568,7 @@
 				BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */,
 				BF85E623270993EE00292923 /* AlertController.swift in Sources */,
 				BF7DE2D0272619EF00587974 /* Email.swift in Sources */,
+				BF34028F2735FC1800547251 /* Reach.swift in Sources */,
 				BF60E31A26F6C80E00EB6A42 /* FormType.swift in Sources */,
 				BFEB827726C354A5004219E7 /* Development.swift in Sources */,
 				BF9C2B422728A37E00AFC8FE /* Color+Extensions.swift in Sources */,

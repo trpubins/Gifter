@@ -17,6 +17,9 @@ struct MainViewIOS: View {
     /// The gift exchange current selection provided by a parent View
     @EnvironmentObject var selectedGiftExchange: GiftExchange
     
+    /// The alert controller provided by a parent View
+    @EnvironmentObject var alertController: AlertController
+    
     /// Object encapsulating various state variables provided by a parent View
     @EnvironmentObject var triggers: StateTriggers
     
@@ -203,14 +206,45 @@ struct MainViewIOS: View {
         - allGifters: `true` to send emails to all gifters, `false` to send only undelivered emails
      */
     func emailGifters(allGifters: Bool) {
-        logFilter("emailing gifters...")
-        sendMail(toAll: allGifters, inExchange: selectedGiftExchange)
+        // send emails if connected to the internet
+        if hasInternetConnection() {
+            logFilter("emailing gifters...")
+            sendMail(toAll: allGifters, inExchange: selectedGiftExchange)
+        }
+        // otherwise, send an alert to the user
+        else {
+            alertController.info = AlertInfo(
+                id: .NoInternetConnection,
+                alert: Alerts.noInternetConnectionAlert()
+            )
+        }
     }
     
     /// Triggers a sheet for adding a new gifter and changes the tab selection to the Gifters Tab.
     func addGifter() {
         logFilter("add gifter")
         triggers.isAddGifterFormShowing = true
+    }
+    
+    /**
+     Confirm user’s internet connection.
+     
+     - Returns: `true` if connected to the internet, `false` otherwise.
+     */
+    func hasInternetConnection() -> Bool {
+        // get connection status
+        let status = Reach().connectionStatus()
+        
+        switch status {
+            case .unknown, .offline:
+                logFilter("Internet connection: Not connected")
+                return false
+            case .online(.wwan):
+                logFilter("Internet connection: Connected via WWAN")
+            case .online(.wiFi):
+                logFilter("Internet connection: Connected via WiFi")
+        }
+        return true
     }
     
     /**

@@ -12,7 +12,7 @@ import SwiftUI
  An enumeration for describing alert information.
  
  Enumerations include: .GiftExchangeCompleted, .GiftExchangeMatching, .DeleteGiftExchange, .DeleteGifter,
- .AddGifterInvalidatesMatching, .DeleteGifterInvalidatesMatching, & .OtherGifterChanges
+ .AddGifterInvalidatesMatching, .DeleteGifterInvalidatesMatching, .OtherGifterChanges, & .NoInternetConnection
  */
 enum AlertType {
     case GiftExchangeCompleted
@@ -22,6 +22,7 @@ enum AlertType {
     case AddGifterInvalidatesMatching
     case DeleteGifterInvalidatesMatching
     case OtherGifterChanges
+    case NoInternetConnection
 }
 
 
@@ -300,4 +301,18 @@ struct Alerts {
         )
     }
     
+    /**
+     Generates an alert to inform the user they have no internet connection.
+     
+     - Returns: A populated alert that informs the user to try emailing gifters again after connecting to internet.
+     */
+    static func noInternetConnectionAlert() -> Alert {
+        return Alert(
+            title: Text("No internet connection"),
+            message: Text("Sending emails requires an internet connection. Try again after internet connection is established."),
+            dismissButton: .cancel(Text("OK")) {
+                logFilter("alerting user there is no internet connection")
+            }
+        )
+    }
 }
