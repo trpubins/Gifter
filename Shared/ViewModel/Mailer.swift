@@ -25,8 +25,11 @@ private let santa = Mail.User(name: "Secret Santa", email: "secret-santa-app@ema
  - Parameters:
     - allGifters: `true` if emails shall be sent to all gifters regardless of email status, `false` otherwise - by default, `false`
     - giftExchange: The gift exchange  to send emails out to
+    - alertController: For sending alert information at the app level
  */
-public func sendMail(toAll allGifters: Bool = false, inExchange giftExchange: GiftExchange) {
+public func sendMail(toAll allGifters: Bool = false,
+                     inExchange giftExchange: GiftExchange,
+                     withController alertController: AlertController) {
     
     /// An array of emails to deliver
     var emails: [Mail] = []
@@ -76,6 +79,7 @@ public func sendMail(toAll allGifters: Bool = false, inExchange giftExchange: Gi
         mailIds[mail.uuid] = gifter
     }
     
+    // send the emails
     smtp.send(
         emails,
         // This optional callback gets called after each `Mail` is sent.
@@ -97,7 +101,7 @@ public func sendMail(toAll allGifters: Bool = false, inExchange giftExchange: Gi
             DispatchQueue.main.async {
                 giftExchange.objectWillChange.send()
             }
-        },
+        },  // end progress callback
         // This optional callback gets called after all the mails have been sent.
         // `sent` is an array of the successfully sent `Mail`s.
         // `failed` is an array of (Mail, Error)--the failed `Mail`s and their corresponding errors.
@@ -106,12 +110,36 @@ public func sendMail(toAll allGifters: Bool = false, inExchange giftExchange: Gi
             // (called once after all emails are sent)
             PersistenceController.shared.saveContext()
             
-            // log the completion results
+            // alert the user of the completion results
             if !failed.isEmpty {
                 logFilter("failed: \(failed)")
+                var giftersUnsent: [Gifter] = []
+                for fail in failed {
+                    if let affectedGifter = mailIds[fail.0.uuid] {
+                        giftersUnsent.append(affectedGifter)
+                    }
+                }
+                
+                // changes made to UI must be performed on the main thread
+                DispatchQueue.main.async {
+                    alertController.info = AlertInfo(
+                        id: .EmailsSent,
+                        alert: Alerts.emailsSentAlert(giftersUnsent)
+                    )
+                }
+            } else {
+                logFilter("completed: \(sent)")
+                
+                // changes made to UI must be performed on the main thread
+                DispatchQueue.main.async {
+                    alertController.info = AlertInfo(
+                        id: .EmailsSent,
+                        alert: Alerts.emailsSentAlert()
+                    )
+                }
             }
-            logFilter("completed: \(sent)")
-        }
+            
+        }  // end completion callback
     )
     
 }

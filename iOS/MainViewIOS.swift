@@ -209,7 +209,7 @@ struct MainViewIOS: View {
         // send emails if connected to the internet
         if hasInternetConnection() {
             logFilter("emailing gifters...")
-            sendMail(toAll: allGifters, inExchange: selectedGiftExchange)
+            sendMail(toAll: allGifters, inExchange: selectedGiftExchange, withController: alertController)
         }
         // otherwise, send an alert to the user
         else {

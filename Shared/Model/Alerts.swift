@@ -12,7 +12,7 @@ import SwiftUI
  An enumeration for describing alert information.
  
  Enumerations include: .GiftExchangeCompleted, .GiftExchangeMatching, .DeleteGiftExchange, .DeleteGifter,
- .AddGifterInvalidatesMatching, .DeleteGifterInvalidatesMatching, .OtherGifterChanges, & .NoInternetConnection
+ .AddGifterInvalidatesMatching, .DeleteGifterInvalidatesMatching, .OtherGifterChanges, .EmailsSent, & .NoInternetConnection
  */
 enum AlertType {
     case GiftExchangeCompleted
@@ -22,6 +22,7 @@ enum AlertType {
     case AddGifterInvalidatesMatching
     case DeleteGifterInvalidatesMatching
     case OtherGifterChanges
+    case EmailsSent
     case NoInternetConnection
 }
 
@@ -159,11 +160,10 @@ struct Alerts {
      
      - Returns: A populated alert that deletes the specified gifter if the user presses the Delete button.
      */
-    static func gifterDeleteAlert(
-        gifter: Gifter,
-        selectedGiftExchange: GiftExchange,
-        alertController: AlertController,
-        mode: Binding<PresentationMode>? = nil) -> Alert {
+    static func gifterDeleteAlert(gifter: Gifter,
+                                  selectedGiftExchange: GiftExchange,
+                                  alertController: AlertController,
+                                  mode: Binding<PresentationMode>? = nil) -> Alert {
         
             // copy some variables locally before the data is potentially altered
             let gifterId = gifter.id
@@ -282,14 +282,7 @@ struct Alerts {
      - Returns: A populated alert that informs the user of those gifters affected by the changes.
      */
     static func otherGifterChangesAlert(_ giftersWithRestrictionsCleared: [Gifter]) -> Alert {
-        // build a string with the name(s) of the affected gifters
-        let delimiter = ", "
-        var names = ""
-        for gifter in giftersWithRestrictionsCleared {
-            names += gifter.name + delimiter
-        }
-        // drop the final delimiter substring
-        names = String(names.dropLast(delimiter.count))
+        let names = affectedGiftersStringBuilder(giftersWithRestrictionsCleared)
         
         return Alert(
             title: Text("Gifter data has been changed"),
@@ -299,6 +292,41 @@ struct Alerts {
                 logFilter("alerting user that gifter restrictions have been cleared")
             }
         )
+    }
+    
+    /**
+     Generates an alert to inform the user of the sent or unsent emails.
+     
+     - Parameters:
+        - giftersUnsent: An array of gifters whose emails did not get sent - by default, nil.
+     
+     - Returns: A populated alert that informs the user of any sent or unsent emails..
+     */
+    static func emailsSentAlert(_ giftersUnsent: [Gifter]? = nil) -> Alert {
+        if giftersUnsent != nil {
+            // at least one email was unsent
+            let names = affectedGiftersStringBuilder(giftersUnsent!)  // force unwrap since we know the array is not nil
+            
+            return Alert(
+                title: Text("Some emails failed to send!"),
+                message: Text("Some emails were not able to be sent. See the Gift Exchange tab for more information on email status. " +
+                              "Below is a list of gifter(s) who did not receive an email:\n\n\(names)"),
+                dismissButton: .cancel(Text("OK")) {
+                    logFilter("alerting user there are unsent emails")
+                }
+            )
+            
+        } else {
+            // no emails unsent means that all emails were successfully sent
+            return Alert(
+                title: Text("Emails successfully sent!"),
+                message: Text("All emails were successfully sent to the gifter email addresses. Still, please inform gifters to check the spam/junk folder in their email. " +
+                              "\n\nHave fun exchanging!"),
+                dismissButton: .cancel(Text("OK")) {
+                    logFilter("alerting user all emails successfully sent")
+                }
+            )
+        }
     }
     
     /**
@@ -315,4 +343,25 @@ struct Alerts {
             }
         )
     }
+    
+    /**
+     Builds a string with the name(s) of the specified gifters.
+     
+     - Parameters:
+        - gifters: An array of affected gifters
+     
+     - Returns: A comma-delimited string of gifter names.
+     */
+    private static func affectedGiftersStringBuilder(_ gifters: [Gifter]) -> String {
+        // build a string with the name(s) of the affected gifters
+        let delimiter = ", "
+        var names = ""
+        for gifter in gifters {
+            names += gifter.name + delimiter
+        }
+        // drop the final delimiter substring
+        names = String(names.dropLast(delimiter.count))
+        return names
+    }
+    
 }
