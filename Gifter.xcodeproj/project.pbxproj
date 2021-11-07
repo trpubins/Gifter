@@ -15,6 +15,8 @@
 		BF0DDCAB26C3023B005D0412 /* MainViewMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0DDCA926C3023B005D0412 /* MainViewMacOS.swift */; };
 		BF1AE7FA26CF6DA3007DA87B /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */; };
 		BF1AE7FB26CF6DA3007DA87B /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */; };
+		BF1CE7BB273798AF00B46607 /* Stacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1CE7BA273798AF00B46607 /* Stacks.swift */; };
+		BF1CE7BC273798AF00B46607 /* Stacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1CE7BA273798AF00B46607 /* Stacks.swift */; };
 		BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF24840E26B5B29800F06413 /* SwiftSMTP */; };
 		BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
 		BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
@@ -111,6 +113,7 @@
 		BF0DDCA326C2FB22005D0412 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		BF0DDCA926C3023B005D0412 /* MainViewMacOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewMacOS.swift; sourceTree = "<group>"; };
 		BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		BF1CE7BA273798AF00B46607 /* Stacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stacks.swift; sourceTree = "<group>"; };
 		BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTabView.swift; sourceTree = "<group>"; };
 		BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftersTabView.swift; sourceTree = "<group>"; };
 		BF2A865F26BE6D9A0038C024 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
@@ -351,6 +354,7 @@
 				BFF8123326C0506A00834B50 /* ValidationPublishers.swift */,
 				BFF8123226C0506A00834B50 /* Publisher+Validation.swift */,
 				BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */,
+				BF1CE7BA273798AF00B46607 /* Stacks.swift */,
 				BF9C2B432728ADF500AFC8FE /* Matrix.swift */,
 				BF34028D2735FC1800547251 /* Reach.swift */,
 				BF9C2B462729386000AFC8FE /* Array+Extensions.swift */,
@@ -511,6 +515,7 @@
 				BFECF6B326A24EF00012227F /* MainViewIOS.swift in Sources */,
 				BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
 				BF9C2B4A272A619E00AFC8FE /* GiftingMatrix.swift in Sources */,
+				BF1CE7BB273798AF00B46607 /* Stacks.swift in Sources */,
 				BFF8123826C0506A00834B50 /* ValidationPublishers.swift in Sources */,
 				BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */,
 				BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
@@ -563,6 +568,7 @@
 				BFF8123726C0506A00834B50 /* Publisher+Validation.swift in Sources */,
 				BFEB827326C30A0C004219E7 /* MainViewData.swift in Sources */,
 				BF9C2B4B272A619E00AFC8FE /* GiftingMatrix.swift in Sources */,
+				BF1CE7BC273798AF00B46607 /* Stacks.swift in Sources */,
 				BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
 				BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
 				BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */,

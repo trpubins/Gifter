@@ -169,6 +169,33 @@ struct Matrix<T> {
         return rowWithMin!
     }
     
+    /**
+     Identifies the matrix rows by their sums in descending order.
+     
+     - Returns: The row indices in the matrix ordered by the maximum sums.
+     */
+    func rowsSortedByMaxSum() -> Stack<T> where T == Int {
+        var sums: [Int] = []
+        var rows: [Int] = []
+        
+        for row in 0..<self.rows {
+            // sum the columns in the row
+            let sum = sumColumns(at: row)
+            sums.append(sum)
+            rows.append(row)
+        }
+        
+        // use zip to combine the two arrays and sort that based on the first
+        let combined = zip(sums, rows).sorted {$0.0 < $1.0}
+        
+        // use map to extract the individual array of interest
+        let rowsSorted = combined.map {$0.1}
+        
+        // return the rows sorted by the maximum sum
+        // that is, a pop() operation shall return the maximum sum in the stack
+        return Stack<Int>(rowsSorted)
+    }
+    
     
     // MARK: Private Object Methods
     
