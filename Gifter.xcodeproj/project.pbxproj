@@ -212,6 +212,7 @@
 				BF2EF74E26C0E3840095B714 /* UserSettings.swift */,
 				BFDFFC2D26D9A52700360050 /* StateTriggers.swift */,
 				BF85E621270993EE00292923 /* AlertController.swift */,
+				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
 				BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */,
 				BF40D05C26DC57A200B02504 /* GifterFormData.swift */,
 			);
@@ -327,7 +328,6 @@
 				BF7DE2CE272619EF00587974 /* Email.swift */,
 				BF60E31226F1A3D800EB6A42 /* WishList.swift */,
 				BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */,
-				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
 				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
 				BFF8122826C0479A00834B50 /* CoreData */,
 				BFEB827426C353E2004219E7 /* Development */,
