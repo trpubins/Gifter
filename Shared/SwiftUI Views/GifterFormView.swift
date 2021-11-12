@@ -206,11 +206,13 @@ struct GifterFormView: View {
         if isNewForm(formType) {
             textField
                 .autocapitalization(.none)
+                .textContentType(.emailAddress)
                 .disableAutocorrection(true)
                 .validation(data.emailValidation(dropFirst: true))
         } else {
             textField
                 .autocapitalization(.none)
+                .textContentType(.emailAddress)
                 .disableAutocorrection(true)
                 .validation(data.emailValidation(dropFirst: false))
         }
