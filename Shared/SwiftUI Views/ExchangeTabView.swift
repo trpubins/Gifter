@@ -92,6 +92,7 @@ struct ExchangeTabView: View {
                         VStack {
                             ExchangeMatchingView()
                                 .environmentObject(selectedGiftExchange)
+                            Divider()
                             Text("Send emails using envelope button in the toolbar")
                             matchGiftersButton()
                         }  // end VStack
