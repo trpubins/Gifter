@@ -53,7 +53,7 @@ struct ExchangeMatchingView: View {
                             let recipient = Gifter.get(withId: recipientId)
                             
                             contentText(gifter.name, screenWidth: screenWidth)
-                            contentText(recipient?.name ?? "Unknown", screenWidth: screenWidth)
+                            contentTextLink(recipient, screenWidth: screenWidth)
                             contentText(gifter.email.state.rawValue, screenWidth: screenWidth)
                         }
                     }
@@ -99,6 +99,55 @@ struct ExchangeMatchingView: View {
             .frame(width: screenWidth/3.25)
             .background(Rectangle().strokeBorder(borderColor))
     }
+    
+    /**
+     Template for the grid view content text, which also acts as a url link.
+     
+     - Parameters:
+        - gifter: The gifter to convert into tappable text
+        - screenWidth: The width of the screen
+     
+     - Returns: A grid (cell) content Text View with a tappable link.
+     */
+    @ViewBuilder
+    func contentTextLink(_ gifter: Gifter?, screenWidth: CGFloat) -> some View {
+        Text(linkifyGifter(gifter)).font(.title3)
+            .padding()
+            .frame(width: screenWidth/3.25)
+            .background(Rectangle().strokeBorder(borderColor))
+    }
+    
+    
+    // MARK: Helpers
+    
+    /**
+     Converts the gifter into a tappable link whereby the link destination is the gifter's first wish list.
+     
+     - Parameters:
+        - gifter: The gifter whose name shall be converted into tappable text
+     
+     - Returns: A string that contains the property of a url link.
+     */
+    func linkifyGifter(_ gifter: Gifter?) -> AttributedString {
+        // get the link to the user's first wish list
+        var link: String
+        if let url = gifter?.wishLists.first {
+            // add the https prefix if it is not present
+            if url.hasPrefix("https://") || url.hasPrefix("http://") {
+                link = url
+            } else {
+                link = "https://\(url)"
+            }
+        } else {
+            // link to pinterest by default
+            link = "https://pinterest.com"
+        }
+        // build the AttributedString
+        var attributedText = AttributedString(gifter?.name ?? "Unknown")
+        attributedText.link = URL(string: link)
+        return attributedText
+    }
+
     
 }
 
