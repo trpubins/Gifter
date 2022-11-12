@@ -11,13 +11,13 @@ import SwiftSMTP
 
 /// The Simple Mail Transfer Protocol (SMTP) object all mail will be sent from
 private let smtp = SMTP(
-    hostname: "smtp.mail.com",     // SMTP server address
-    email: "secret-santa-app@email.com",        // username to login
-    password: "pIfhe2-durjud-hovwib"            // password to login
+    hostname: "smtp.gmail.com",                     // SMTP server address
+    email: "secret.santa.gifter.app@gmail.com",     // username to login
+    password: "hblnnazgfdwnnies"                    // google app password
 )
 
 /// The Secret Santa mailbox emails shall be sent from
-private let santa = Mail.User(name: "Secret Santa", email: "secret-santa-app@email.com")
+private let santa = Mail.User(name: "Secret Santa", email: "secret.santa.gifter.app@gmail.com")
 
 /**
  Sends an email from the secret santa mailbox to each gifter in the exchange.
@@ -37,6 +37,9 @@ public func sendMail(toAll allGifters: Bool = false,
     /// A dictionary to map Mail id's to gifters
     var mailIds: [String:Gifter] = [:]
     
+    // reusable stylesheet
+    let css = getCss()
+    
     // construct a personalized email for each gifter
     for gifter in giftExchange.gifters {
         
@@ -47,31 +50,23 @@ public func sendMail(toAll allGifters: Bool = false,
         }
         
         // generate the personalized body message
-        var message = "\(gifter.name ),\n\nYou are gifting "
-        
         var recipientName = "Unknown"
-        var wishLists = ""
+        var wishLists: [String] = []
         if let recipientId = gifter.recipientId {
             if let recipient = Gifter.get(withId: recipientId) {
                 recipientName = recipient.name
-                
-                for wishList in recipient.wishLists {
-                    wishLists += "\(wishList)\n"
-                }
+                wishLists = recipient.wishLists
             }
         }
-        if !wishLists.isEmpty {
-            message += "\(recipientName)! Here are their wish lists:\n\n\(wishLists)"
-        } else {
-            message += "\(recipientName)"
-        }
+        let html = genEmailHtml(for: gifter.name, in: giftExchange.name, inYear: giftExchange.date.year,
+                                to: recipientName, with: wishLists, style: css)
         
         // construct the Mail object
         let mail = Mail(
             from: santa,
             to: [Mail.User(name: gifter.name, email: gifter.email.address)],
             subject: giftExchange.toString() + " Gift Exchange",
-            text: message
+            attachments: [Attachment(htmlContent: html)]
         )
         
         // add to the email array and the mail id dictionary
