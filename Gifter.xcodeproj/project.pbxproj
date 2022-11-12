@@ -3,26 +3,152 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BFECF6AF26A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
-		BFECF6B026A24EF00012227F /* Gifter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */; };
+		BF0677CB270D5A4400F5EC8D /* MultipleSelectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0677CA270D5A4400F5EC8D /* MultipleSelectionList.swift */; };
+		BF0677CC270D5A4400F5EC8D /* MultipleSelectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0677CA270D5A4400F5EC8D /* MultipleSelectionList.swift */; };
+		BF0677CE270D5A7100F5EC8D /* MultipleSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0677CD270D5A7100F5EC8D /* MultipleSelectionRow.swift */; };
+		BF0677CF270D5A7100F5EC8D /* MultipleSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0677CD270D5A7100F5EC8D /* MultipleSelectionRow.swift */; };
+		BF0DDCA426C2FB22005D0412 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0DDCA326C2FB22005D0412 /* View+Extensions.swift */; };
+		BF0DDCAB26C3023B005D0412 /* MainViewMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0DDCA926C3023B005D0412 /* MainViewMacOS.swift */; };
+		BF1AE7FA26CF6DA3007DA87B /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */; };
+		BF1AE7FB26CF6DA3007DA87B /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */; };
+		BF1CE7BB273798AF00B46607 /* Stacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1CE7BA273798AF00B46607 /* Stacks.swift */; };
+		BF1CE7BC273798AF00B46607 /* Stacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1CE7BA273798AF00B46607 /* Stacks.swift */; };
+		BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF24840E26B5B29800F06413 /* SwiftSMTP */; };
+		BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
+		BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */; };
+		BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
+		BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */; };
+		BF2A866026BE6D9A0038C024 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865F26BE6D9A0038C024 /* SettingsTabView.swift */; };
+		BF2A866126BE6D9A0038C024 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A865F26BE6D9A0038C024 /* SettingsTabView.swift */; };
+		BF2A866426BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */; };
+		BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */; };
+		BF2EF74F26C0E3840095B714 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EF74E26C0E3840095B714 /* UserSettings.swift */; };
+		BF2EF75026C0E3840095B714 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2EF74E26C0E3840095B714 /* UserSettings.swift */; };
+		BF34028E2735FC1800547251 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34028D2735FC1800547251 /* Reach.swift */; };
+		BF34028F2735FC1800547251 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34028D2735FC1800547251 /* Reach.swift */; };
+		BF40D05A26DC535600B02504 /* GifterFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40D05926DC535600B02504 /* GifterFormView.swift */; };
+		BF40D05B26DC535600B02504 /* GifterFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40D05926DC535600B02504 /* GifterFormView.swift */; };
+		BF40D05D26DC57A200B02504 /* GifterFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40D05C26DC57A200B02504 /* GifterFormData.swift */; };
+		BF40D05E26DC57A200B02504 /* GifterFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40D05C26DC57A200B02504 /* GifterFormData.swift */; };
+		BF41128126B4ED6400BA7D4F /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = BF41128026B4ED6400BA7D4F /* SwiftSMTP */; };
+		BF60E31026ED5D2C00EB6A42 /* CommonRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */; };
+		BF60E31126ED5D2C00EB6A42 /* CommonRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */; };
+		BF60E31326F1A3D800EB6A42 /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E31226F1A3D800EB6A42 /* WishList.swift */; };
+		BF60E31426F1A3D800EB6A42 /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E31226F1A3D800EB6A42 /* WishList.swift */; };
+		BF60E31626F6B31C00EB6A42 /* GifterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E31526F6B31C00EB6A42 /* GifterRowView.swift */; };
+		BF60E31726F6B31C00EB6A42 /* GifterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E31526F6B31C00EB6A42 /* GifterRowView.swift */; };
+		BF60E31926F6C80E00EB6A42 /* FormType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E31826F6C80E00EB6A42 /* FormType.swift */; };
+		BF60E31A26F6C80E00EB6A42 /* FormType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60E31826F6C80E00EB6A42 /* FormType.swift */; };
+		BF7C87EC26DAD938007B35B5 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C87EB26DAD938007B35B5 /* UIScreen+Extensions.swift */; };
+		BF7C87ED26DAD938007B35B5 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C87EB26DAD938007B35B5 /* UIScreen+Extensions.swift */; };
+		BF7DE2CF272619EF00587974 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DE2CE272619EF00587974 /* Email.swift */; };
+		BF7DE2D0272619EF00587974 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DE2CE272619EF00587974 /* Email.swift */; };
+		BF85E622270993EE00292923 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85E621270993EE00292923 /* AlertController.swift */; };
+		BF85E623270993EE00292923 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85E621270993EE00292923 /* AlertController.swift */; };
+		BF8A4A5526CC9EF800EE2CCC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4A5426CC9EF800EE2CCC /* MainView.swift */; };
+		BF8A4A5626CC9EF800EE2CCC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4A5426CC9EF800EE2CCC /* MainView.swift */; };
+		BF8A4A5726CCA0DB00EE2CCC /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
+		BF8A4A5926CCA16200EE2CCC /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */; };
+		BF8F8E1F26D4536A009D1D3E /* ToolbarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */; };
+		BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */; };
+		BF9C2B412728A37E00AFC8FE /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */; };
+		BF9C2B422728A37E00AFC8FE /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */; };
+		BF9C2B442728ADF500AFC8FE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B432728ADF500AFC8FE /* Matrix.swift */; };
+		BF9C2B452728ADF500AFC8FE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B432728ADF500AFC8FE /* Matrix.swift */; };
+		BF9C2B472729386100AFC8FE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B462729386000AFC8FE /* Array+Extensions.swift */; };
+		BF9C2B482729386100AFC8FE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B462729386000AFC8FE /* Array+Extensions.swift */; };
+		BF9C2B4A272A619E00AFC8FE /* GiftingMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */; };
+		BF9C2B4B272A619E00AFC8FE /* GiftingMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */; };
+		BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EF1F326BC690E00FD01B3 /* TestData.swift */; };
+		BFAB10D32708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */; };
+		BFAB10D42708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */; };
+		BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
+		BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB346E26BDFD0800D460D8 /* Mailer.swift */; };
+		BFAB347226BE126400D460D8 /* Gifter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */; };
+		BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */; };
+		BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */; };
+		BFAB347626BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */; };
+		BFDEF049272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */; };
+		BFDEF04A272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */; };
+		BFDFFC2E26D9A52700360050 /* StateTriggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC2D26D9A52700360050 /* StateTriggers.swift */; };
+		BFDFFC2F26D9A52700360050 /* StateTriggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC2D26D9A52700360050 /* StateTriggers.swift */; };
+		BFDFFC3526D9D5E300360050 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC3426D9D5E300360050 /* Alerts.swift */; };
+		BFDFFC3626D9D5E300360050 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFFC3426D9D5E300360050 /* Alerts.swift */; };
+		BFEB827226C30A0C004219E7 /* MainViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEB827126C30A0C004219E7 /* MainViewData.swift */; };
+		BFEB827326C30A0C004219E7 /* MainViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEB827126C30A0C004219E7 /* MainViewData.swift */; };
+		BFEB827626C354A5004219E7 /* Development.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEB827526C354A5004219E7 /* Development.swift */; };
+		BFEB827726C354A5004219E7 /* Development.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEB827526C354A5004219E7 /* Development.swift */; };
+		BFECF6AF26A24EF00012227F /* GifterStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */; };
+		BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */; };
 		BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69B26A24EF00012227F /* GifterApp.swift */; };
 		BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69B26A24EF00012227F /* GifterApp.swift */; };
-		BFECF6B326A24EF00012227F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* ContentView.swift */; };
-		BFECF6B426A24EF00012227F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* ContentView.swift */; };
+		BFECF6B326A24EF00012227F /* MainViewIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69C26A24EF00012227F /* MainViewIOS.swift */; };
 		BFECF6B526A24EF00012227F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69D26A24EF00012227F /* Persistence.swift */; };
 		BFECF6B626A24EF00012227F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECF69D26A24EF00012227F /* Persistence.swift */; };
 		BFECF6B726A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
 		BFECF6B826A24EF00012227F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECF69E26A24EF00012227F /* Assets.xcassets */; };
+		BFF8120726C042CF00834B50 /* GiftExchangeFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */; };
+		BFF8120826C042CF00834B50 /* GiftExchangeFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */; };
+		BFF8122F26C0505E00834B50 /* SwiftUI+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8122E26C0505E00834B50 /* SwiftUI+Validation.swift */; };
+		BFF8123026C0505E00834B50 /* SwiftUI+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8122E26C0505E00834B50 /* SwiftUI+Validation.swift */; };
+		BFF8123426C0506A00834B50 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8123126C0506900834B50 /* Validation.swift */; };
+		BFF8123526C0506A00834B50 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8123126C0506900834B50 /* Validation.swift */; };
+		BFF8123626C0506A00834B50 /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8123226C0506A00834B50 /* Publisher+Validation.swift */; };
+		BFF8123726C0506A00834B50 /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8123226C0506A00834B50 /* Publisher+Validation.swift */; };
+		BFF8123826C0506A00834B50 /* ValidationPublishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8123326C0506A00834B50 /* ValidationPublishers.swift */; };
+		BFF8123926C0506A00834B50 /* ValidationPublishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8123326C0506A00834B50 /* ValidationPublishers.swift */; };
+		BFF8123C26C051B100834B50 /* Regex in Frameworks */ = {isa = PBXBuildFile; productRef = BFF8123B26C051B100834B50 /* Regex */; };
+		BFF8123E26C051CE00834B50 /* Regex in Frameworks */ = {isa = PBXBuildFile; productRef = BFF8123D26C051CE00834B50 /* Regex */; };
+		BFF8124326C079A800834B50 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8124226C079A800834B50 /* Date+Extensions.swift */; };
+		BFF8124426C079A800834B50 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8124226C079A800834B50 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF0677CA270D5A4400F5EC8D /* MultipleSelectionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionList.swift; sourceTree = "<group>"; };
+		BF0677CD270D5A7100F5EC8D /* MultipleSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionRow.swift; sourceTree = "<group>"; };
+		BF0DDCA326C2FB22005D0412 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		BF0DDCA926C3023B005D0412 /* MainViewMacOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewMacOS.swift; sourceTree = "<group>"; };
+		BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		BF1CE7BA273798AF00B46607 /* Stacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stacks.swift; sourceTree = "<group>"; };
+		BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTabView.swift; sourceTree = "<group>"; };
+		BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftersTabView.swift; sourceTree = "<group>"; };
+		BF2A865F26BE6D9A0038C024 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
+		BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
+		BF2EF74E26C0E3840095B714 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		BF34028D2735FC1800547251 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
+		BF40D05926DC535600B02504 /* GifterFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterFormView.swift; sourceTree = "<group>"; };
+		BF40D05C26DC57A200B02504 /* GifterFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterFormData.swift; sourceTree = "<group>"; };
+		BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonRegex.swift; sourceTree = "<group>"; };
+		BF60E31226F1A3D800EB6A42 /* WishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
+		BF60E31526F6B31C00EB6A42 /* GifterRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterRowView.swift; sourceTree = "<group>"; };
+		BF60E31826F6C80E00EB6A42 /* FormType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormType.swift; sourceTree = "<group>"; };
+		BF7C87EB26DAD938007B35B5 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
+		BF7DE2CE272619EF00587974 /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
+		BF85E621270993EE00292923 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		BF8A4A5426CC9EF800EE2CCC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenuView.swift; sourceTree = "<group>"; };
+		BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		BF9C2B432728ADF500AFC8FE /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		BF9C2B462729386000AFC8FE /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingMatrix.swift; sourceTree = "<group>"; };
+		BF9EF1F326BC690E00FD01B3 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftExchangeFormData.swift; sourceTree = "<group>"; };
+		BFAB346E26BDFD0800D460D8 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
+		BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifter+Extensions.swift"; sourceTree = "<group>"; };
+		BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiftExchange+Extensions.swift"; sourceTree = "<group>"; };
+		BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeMatchingView.swift; sourceTree = "<group>"; };
+		BFDFFC2D26D9A52700360050 /* StateTriggers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTriggers.swift; sourceTree = "<group>"; };
+		BFDFFC3426D9D5E300360050 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		BFEB827126C30A0C004219E7 /* MainViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewData.swift; sourceTree = "<group>"; };
+		BFEB827526C354A5004219E7 /* Development.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Development.swift; sourceTree = "<group>"; };
 		BFECF69A26A24EF00012227F /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		BFECF69B26A24EF00012227F /* GifterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterApp.swift; sourceTree = "<group>"; };
-		BFECF69C26A24EF00012227F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BFECF69C26A24EF00012227F /* MainViewIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewIOS.swift; sourceTree = "<group>"; };
 		BFECF69D26A24EF00012227F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		BFECF69E26A24EF00012227F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFECF6A326A24EF00012227F /* Gifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +156,12 @@
 		BFECF6AB26A24EF00012227F /* Gifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFECF6AD26A24EF00012227F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFECF6AE26A24EF00012227F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftExchangeFormView.swift; sourceTree = "<group>"; };
+		BFF8122E26C0505E00834B50 /* SwiftUI+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Validation.swift"; sourceTree = "<group>"; };
+		BFF8123126C0506900834B50 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		BFF8123226C0506A00834B50 /* Publisher+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
+		BFF8123326C0506A00834B50 /* ValidationPublishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationPublishers.swift; sourceTree = "<group>"; };
+		BFF8124226C079A800834B50 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +169,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF8123C26C051B100834B50 /* Regex in Frameworks */,
+				BF41128126B4ED6400BA7D4F /* SwiftSMTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,12 +178,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF8123E26C051CE00834B50 /* Regex in Frameworks */,
+				BF24840F26B5B29800F06413 /* SwiftSMTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF24840D26B5B29800F06413 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF4ED36226D1C26B007FD298 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				BFF8120626C042CF00834B50 /* GiftExchangeFormView.swift */,
+				BF40D05926DC535600B02504 /* GifterFormView.swift */,
+				BF1AE7F926CF6DA3007DA87B /* EmojiView.swift */,
+				BF0677CA270D5A4400F5EC8D /* MultipleSelectionList.swift */,
+				BF0677CD270D5A7100F5EC8D /* MultipleSelectionRow.swift */,
+			);
+			name = Forms;
+			sourceTree = "<group>";
+		};
+		BFAB10D127084338009ADBC1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF60E31826F6C80E00EB6A42 /* FormType.swift */,
+				BF2EF74E26C0E3840095B714 /* UserSettings.swift */,
+				BFDFFC2D26D9A52700360050 /* StateTriggers.swift */,
+				BF85E621270993EE00292923 /* AlertController.swift */,
+				BFAB346E26BDFD0800D460D8 /* Mailer.swift */,
+				BFAB10D22708439B009ADBC1 /* GiftExchangeFormData.swift */,
+				BF40D05C26DC57A200B02504 /* GifterFormData.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BFEB827426C353E2004219E7 /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				BFEB827526C354A5004219E7 /* Development.swift */,
+			);
+			name = Development;
+			sourceTree = "<group>";
+		};
 		BFECF69326A24EEF0012227F = {
 			isa = PBXGroup;
 			children = (
@@ -57,17 +234,19 @@
 				BFECF6A526A24EF00012227F /* iOS */,
 				BFECF6AC26A24EF00012227F /* macOS */,
 				BFECF6A426A24EF00012227F /* Products */,
+				BF24840D26B5B29800F06413 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		BFECF69826A24EEF0012227F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				BFECF69B26A24EF00012227F /* GifterApp.swift */,
-				BFECF69C26A24EF00012227F /* ContentView.swift */,
-				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BFF8122126C0465400834B50 /* SwiftUI Views */,
+				BFAB10D127084338009ADBC1 /* ViewModel */,
+				BFF8122626C0475D00834B50 /* Model */,
+				BFF8122926C047FC00834B50 /* Helpers */,
+				BFF8122A26C0480500834B50 /* Data */,
 				BFECF69E26A24EF00012227F /* Assets.xcassets */,
-				BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -84,6 +263,8 @@
 		BFECF6A526A24EF00012227F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				BFECF69C26A24EF00012227F /* MainViewIOS.swift */,
+				BF0DDCA326C2FB22005D0412 /* View+Extensions.swift */,
 				BFECF6A626A24EF00012227F /* Info.plist */,
 			);
 			path = iOS;
@@ -92,10 +273,105 @@
 		BFECF6AC26A24EF00012227F /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				BF0DDCA926C3023B005D0412 /* MainViewMacOS.swift */,
+				BF8A4A5826CCA16200EE2CCC /* UIImage+Extensions.swift */,
 				BFECF6AD26A24EF00012227F /* Info.plist */,
 				BFECF6AE26A24EF00012227F /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		BFF8122126C0465400834B50 /* SwiftUI Views */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69B26A24EF00012227F /* GifterApp.swift */,
+				BF8A4A5426CC9EF800EE2CCC /* MainView.swift */,
+				BF8F8E1E26D4536A009D1D3E /* ToolbarMenuView.swift */,
+				BF4ED36226D1C26B007FD298 /* Forms */,
+				BFF8122426C046D200834B50 /* Exchange Tab */,
+				BFF8122326C046B200834B50 /* Gifters Tab */,
+				BFF8122226C0469800834B50 /* Settings Tab */,
+			);
+			path = "SwiftUI Views";
+			sourceTree = "<group>";
+		};
+		BFF8122226C0469800834B50 /* Settings Tab */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A865F26BE6D9A0038C024 /* SettingsTabView.swift */,
+			);
+			name = "Settings Tab";
+			sourceTree = "<group>";
+		};
+		BFF8122326C046B200834B50 /* Gifters Tab */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A865C26BE6D8C0038C024 /* GiftersTabView.swift */,
+				BF60E31526F6B31C00EB6A42 /* GifterRowView.swift */,
+			);
+			name = "Gifters Tab";
+			sourceTree = "<group>";
+		};
+		BFF8122426C046D200834B50 /* Exchange Tab */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A865926BE6D6E0038C024 /* ExchangeTabView.swift */,
+				BFDEF048272F33C6003BE7B7 /* ExchangeMatchingView.swift */,
+			);
+			name = "Exchange Tab";
+			sourceTree = "<group>";
+		};
+		BFF8122626C0475D00834B50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFDFFC3426D9D5E300360050 /* Alerts.swift */,
+				BF7DE2CE272619EF00587974 /* Email.swift */,
+				BF60E31226F1A3D800EB6A42 /* WishList.swift */,
+				BF9C2B49272A619E00AFC8FE /* GiftingMatrix.swift */,
+				BFEB827126C30A0C004219E7 /* MainViewData.swift */,
+				BFF8122826C0479A00834B50 /* CoreData */,
+				BFEB827426C353E2004219E7 /* Development */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFF8122826C0479A00834B50 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BFECF69D26A24EF00012227F /* Persistence.swift */,
+				BFAB347126BE126400D460D8 /* Gifter+Extensions.swift */,
+				BFAB347426BE127500D460D8 /* GiftExchange+Extensions.swift */,
+				BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		BFF8122926C047FC00834B50 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BFF8122E26C0505E00834B50 /* SwiftUI+Validation.swift */,
+				BFF8123126C0506900834B50 /* Validation.swift */,
+				BFF8123326C0506A00834B50 /* ValidationPublishers.swift */,
+				BFF8123226C0506A00834B50 /* Publisher+Validation.swift */,
+				BF60E30F26ED5D2C00EB6A42 /* CommonRegex.swift */,
+				BF1CE7BA273798AF00B46607 /* Stacks.swift */,
+				BF9C2B432728ADF500AFC8FE /* Matrix.swift */,
+				BF34028D2735FC1800547251 /* Reach.swift */,
+				BF9C2B462729386000AFC8FE /* Array+Extensions.swift */,
+				BFF8124226C079A800834B50 /* Date+Extensions.swift */,
+				BF7C87EB26DAD938007B35B5 /* UIScreen+Extensions.swift */,
+				BF9C2B402728A37E00AFC8FE /* Color+Extensions.swift */,
+				BF2A866326BF8AB30038C024 /* NSManagedObject+Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BFF8122A26C0480500834B50 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BF9EF1F326BC690E00FD01B3 /* TestData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +390,10 @@
 			dependencies = (
 			);
 			name = "Gifter (iOS)";
+			packageProductDependencies = (
+				BF41128026B4ED6400BA7D4F /* SwiftSMTP */,
+				BFF8123B26C051B100834B50 /* Regex */,
+			);
 			productName = "Gifter (iOS)";
 			productReference = BFECF6A326A24EF00012227F /* Gifter.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +411,10 @@
 			dependencies = (
 			);
 			name = "Gifter (macOS)";
+			packageProductDependencies = (
+				BF24840E26B5B29800F06413 /* SwiftSMTP */,
+				BFF8123D26C051CE00834B50 /* Regex */,
+			);
 			productName = "Gifter (macOS)";
 			productReference = BFECF6AB26A24EF00012227F /* Gifter.app */;
 			productType = "com.apple.product-type.application";
@@ -161,6 +445,10 @@
 				Base,
 			);
 			mainGroup = BFECF69326A24EEF0012227F;
+			packageReferences = (
+				BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
+				BFF8123A26C051B100834B50 /* XCRemoteSwiftPackageReference "Regex" */,
+			);
 			productRefGroup = BFECF6A426A24EF00012227F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -195,10 +483,52 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFEB827226C30A0C004219E7 /* MainViewData.swift in Sources */,
+				BFAB347526BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
+				BFAB10D32708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */,
+				BF8F8E1F26D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
+				BF60E31326F1A3D800EB6A42 /* WishList.swift in Sources */,
+				BF0DDCA426C2FB22005D0412 /* View+Extensions.swift in Sources */,
+				BFDEF049272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */,
+				BF40D05A26DC535600B02504 /* GifterFormView.swift in Sources */,
+				BFF8120726C042CF00834B50 /* GiftExchangeFormView.swift in Sources */,
+				BF7C87EC26DAD938007B35B5 /* UIScreen+Extensions.swift in Sources */,
+				BF2EF74F26C0E3840095B714 /* UserSettings.swift in Sources */,
+				BFF8122F26C0505E00834B50 /* SwiftUI+Validation.swift in Sources */,
+				BF60E31626F6B31C00EB6A42 /* GifterRowView.swift in Sources */,
+				BFEB827626C354A5004219E7 /* Development.swift in Sources */,
+				BF9C2B442728ADF500AFC8FE /* Matrix.swift in Sources */,
+				BFDFFC2E26D9A52700360050 /* StateTriggers.swift in Sources */,
 				BFECF6B126A24EF00012227F /* GifterApp.swift in Sources */,
+				BF2A866426BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
 				BFECF6B526A24EF00012227F /* Persistence.swift in Sources */,
-				BFECF6AF26A24EF00012227F /* Gifter.xcdatamodeld in Sources */,
-				BFECF6B326A24EF00012227F /* ContentView.swift in Sources */,
+				BFECF6AF26A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
+				BFF8123426C0506A00834B50 /* Validation.swift in Sources */,
+				BFAB347226BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
+				BFF8123626C0506A00834B50 /* Publisher+Validation.swift in Sources */,
+				BF0677CE270D5A7100F5EC8D /* MultipleSelectionRow.swift in Sources */,
+				BF9EF1F426BC690E00FD01B3 /* TestData.swift in Sources */,
+				BF8A4A5526CC9EF800EE2CCC /* MainView.swift in Sources */,
+				BFF8124326C079A800834B50 /* Date+Extensions.swift in Sources */,
+				BF1AE7FA26CF6DA3007DA87B /* EmojiView.swift in Sources */,
+				BF0677CB270D5A4400F5EC8D /* MultipleSelectionList.swift in Sources */,
+				BFECF6B326A24EF00012227F /* MainViewIOS.swift in Sources */,
+				BF2A865D26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
+				BF9C2B4A272A619E00AFC8FE /* GiftingMatrix.swift in Sources */,
+				BF1CE7BB273798AF00B46607 /* Stacks.swift in Sources */,
+				BFF8123826C0506A00834B50 /* ValidationPublishers.swift in Sources */,
+				BFAB346F26BDFD0800D460D8 /* Mailer.swift in Sources */,
+				BF2A865A26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
+				BF85E622270993EE00292923 /* AlertController.swift in Sources */,
+				BF7DE2CF272619EF00587974 /* Email.swift in Sources */,
+				BF34028E2735FC1800547251 /* Reach.swift in Sources */,
+				BF60E31926F6C80E00EB6A42 /* FormType.swift in Sources */,
+				BF2A866026BE6D9A0038C024 /* SettingsTabView.swift in Sources */,
+				BF9C2B412728A37E00AFC8FE /* Color+Extensions.swift in Sources */,
+				BF40D05D26DC57A200B02504 /* GifterFormData.swift in Sources */,
+				BFDFFC3526D9D5E300360050 /* Alerts.swift in Sources */,
+				BF9C2B472729386100AFC8FE /* Array+Extensions.swift in Sources */,
+				BF60E31026ED5D2C00EB6A42 /* CommonRegex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,9 +537,51 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFECF6B226A24EF00012227F /* GifterApp.swift in Sources */,
+				BF8A4A5626CC9EF800EE2CCC /* MainView.swift in Sources */,
+				BF2A865E26BE6D8C0038C024 /* GiftersTabView.swift in Sources */,
+				BFAB10D42708439B009ADBC1 /* GiftExchangeFormData.swift in Sources */,
+				BF8F8E2026D4536A009D1D3E /* ToolbarMenuView.swift in Sources */,
+				BF60E31426F1A3D800EB6A42 /* WishList.swift in Sources */,
+				BFDEF04A272F33C6003BE7B7 /* ExchangeMatchingView.swift in Sources */,
+				BF8A4A5926CCA16200EE2CCC /* UIImage+Extensions.swift in Sources */,
+				BF2A865B26BE6D6E0038C024 /* ExchangeTabView.swift in Sources */,
+				BF40D05B26DC535600B02504 /* GifterFormView.swift in Sources */,
+				BF2A866126BE6D9A0038C024 /* SettingsTabView.swift in Sources */,
+				BF7C87ED26DAD938007B35B5 /* UIScreen+Extensions.swift in Sources */,
+				BFF8120826C042CF00834B50 /* GiftExchangeFormView.swift in Sources */,
 				BFECF6B626A24EF00012227F /* Persistence.swift in Sources */,
-				BFECF6B026A24EF00012227F /* Gifter.xcdatamodeld in Sources */,
-				BFECF6B426A24EF00012227F /* ContentView.swift in Sources */,
+				BF60E31726F6B31C00EB6A42 /* GifterRowView.swift in Sources */,
+				BF9C2B452728ADF500AFC8FE /* Matrix.swift in Sources */,
+				BFF8123526C0506A00834B50 /* Validation.swift in Sources */,
+				BFDFFC2F26D9A52700360050 /* StateTriggers.swift in Sources */,
+				BFECF6B026A24EF00012227F /* GifterStore.xcdatamodeld in Sources */,
+				BFF8123026C0505E00834B50 /* SwiftUI+Validation.swift in Sources */,
+				BFF8124426C079A800834B50 /* Date+Extensions.swift in Sources */,
+				BF0DDCAB26C3023B005D0412 /* MainViewMacOS.swift in Sources */,
+				BFF8123926C0506A00834B50 /* ValidationPublishers.swift in Sources */,
+				BF0677CF270D5A7100F5EC8D /* MultipleSelectionRow.swift in Sources */,
+				BF2EF75026C0E3840095B714 /* UserSettings.swift in Sources */,
+				BF8A4A5726CCA0DB00EE2CCC /* TestData.swift in Sources */,
+				BFAB347626BE127500D460D8 /* GiftExchange+Extensions.swift in Sources */,
+				BF1AE7FB26CF6DA3007DA87B /* EmojiView.swift in Sources */,
+				BF0677CC270D5A4400F5EC8D /* MultipleSelectionList.swift in Sources */,
+				BFF8123726C0506A00834B50 /* Publisher+Validation.swift in Sources */,
+				BFEB827326C30A0C004219E7 /* MainViewData.swift in Sources */,
+				BF9C2B4B272A619E00AFC8FE /* GiftingMatrix.swift in Sources */,
+				BF1CE7BC273798AF00B46607 /* Stacks.swift in Sources */,
+				BFAB347326BE126400D460D8 /* Gifter+Extensions.swift in Sources */,
+				BF2A866526BF8AB30038C024 /* NSManagedObject+Extensions.swift in Sources */,
+				BFAB347026BDFD0800D460D8 /* Mailer.swift in Sources */,
+				BF85E623270993EE00292923 /* AlertController.swift in Sources */,
+				BF7DE2D0272619EF00587974 /* Email.swift in Sources */,
+				BF34028F2735FC1800547251 /* Reach.swift in Sources */,
+				BF60E31A26F6C80E00EB6A42 /* FormType.swift in Sources */,
+				BFEB827726C354A5004219E7 /* Development.swift in Sources */,
+				BF9C2B422728A37E00AFC8FE /* Color+Extensions.swift in Sources */,
+				BF40D05E26DC57A200B02504 /* GifterFormData.swift in Sources */,
+				BFDFFC3626D9D5E300360050 /* Alerts.swift in Sources */,
+				BF9C2B482729386100AFC8FE /* Array+Extensions.swift in Sources */,
+				BF60E31126ED5D2C00EB6A42 /* CommonRegex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +625,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -267,6 +640,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -312,6 +687,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -320,6 +696,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -336,7 +714,7 @@
 				DEVELOPMENT_TEAM = BT57S69NV3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,7 +736,7 @@
 				DEVELOPMENT_TEAM = BT57S69NV3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -378,6 +756,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = BT57S69NV3;
@@ -388,7 +767,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tsauce.Gifter;
 				PRODUCT_NAME = Gifter;
 				SDKROOT = macosx;
@@ -402,6 +781,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = BT57S69NV3;
@@ -412,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tsauce.Gifter;
 				PRODUCT_NAME = Gifter;
 				SDKROOT = macosx;
@@ -452,14 +832,56 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-SMTP";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.200;
+			};
+		};
+		BFF8123A26C051B100834B50 /* XCRemoteSwiftPackageReference "Regex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/crossroadlabs/Regex";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF24840E26B5B29800F06413 /* SwiftSMTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
+			productName = SwiftSMTP;
+		};
+		BF41128026B4ED6400BA7D4F /* SwiftSMTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF41127F26B4ED6400BA7D4F /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
+			productName = SwiftSMTP;
+		};
+		BFF8123B26C051B100834B50 /* Regex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFF8123A26C051B100834B50 /* XCRemoteSwiftPackageReference "Regex" */;
+			productName = Regex;
+		};
+		BFF8123D26C051CE00834B50 /* Regex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFF8123A26C051B100834B50 /* XCRemoteSwiftPackageReference "Regex" */;
+			productName = Regex;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin XCVersionGroup section */
-		BFECF69926A24EF00012227F /* Gifter.xcdatamodeld */ = {
+		BFECF69926A24EF00012227F /* GifterStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				BFECF69A26A24EF00012227F /* Shared.xcdatamodel */,
 			);
 			currentVersion = BFECF69A26A24EF00012227F /* Shared.xcdatamodel */;
-			path = Gifter.xcdatamodeld;
+			path = GifterStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

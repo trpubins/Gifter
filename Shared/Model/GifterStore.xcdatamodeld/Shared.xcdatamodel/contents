@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Gifter" representedClassName="Gifter" syncable="YES" codeGenerationType="class">
+        <attribute name="email_" attributeType="Transformable" valueTransformerName="" customClassName="Email"/>
+        <attribute name="exchangeIds_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[UUID]"/>
+        <attribute name="id_" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name_" attributeType="String"/>
+        <attribute name="previousRecipientId_" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="profilePic_" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="recipientId_" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="restrictedIds_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[UUID]"/>
+        <attribute name="wishLists_" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <relationship name="giftExchanges_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GiftExchange" inverseName="gifters_" inverseEntity="GiftExchange"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id_"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="GiftExchange" representedClassName="GiftExchange" syncable="YES" codeGenerationType="class">
+        <attribute name="areGiftersMatched_" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="autoRestrictions_" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="date_" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="emoji_" attributeType="String"/>
+        <attribute name="hideResults_" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id_" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name_" attributeType="String"/>
+        <relationship name="gifters_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Gifter" inverseName="giftExchanges_" inverseEntity="Gifter"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id_"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Gifter" positionX="-63" positionY="-18" width="128" height="179"/>
+        <element name="GiftExchange" positionX="-63" positionY="9" width="128" height="149"/>
+    </elements>
+</model>
