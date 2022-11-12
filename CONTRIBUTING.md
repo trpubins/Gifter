@@ -3,6 +3,9 @@
 This page is dedicated to outline where to start with
 questions, concerns, feature requests, or desires to contribute.
 
+These guidelines were inspired by
+[PyVista](https://github.com/pyvista/pyvista/blob/main/CONTRIBUTING.rst).
+
 ## Table of Contents
 
 - [Cloning the Repository](#cloning-the-repository)
@@ -94,8 +97,8 @@ unit tests will be executed after all pull requests.
 ### Creating a New Pull Request
 
 Once a branch has been tested locally, merge into `main` by creating
-a new [pull request](https://github.com/trpubins/Gifter/pulls).
+a new [pull request](https://github.com/trpubins/Gifter/pulls). Provide
+a succinct title and summarize a description of the changes.
 
-Provide a succinct title and summarize a description of the changes.
-ALWAYS "Squash and Merge" when merging into `main` to ensure its
+**ALWAYS** "Squash and Merge" when merging into `main` to ensure its
 stability at every commit.
